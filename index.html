@@ -345,19 +345,40 @@ function addMessage(text, className) {
   messages.scrollTop = messages.scrollHeight;
 }
 
-function botReply(userText) {
-  let reply = "I'm your Dental AI Assistant 🤖";
+async function botReply(userText) {
+  // show typing
+  addMessage("Typing...", "bot");
 
-  if (userText.toLowerCase().includes("price")) {
-    reply = "Our pricing only at £1900/month.";
-  } else if (userText.toLowerCase().includes("contact")) {
-    reply = "You can contact us at patientacquisitionhub@gmail.com";
-  } else if (userText.toLowerCase().includes("hello")) {
-    reply = "Hello! How can I help you today?";
+  try {
+    const response = await fetch("/api/chat", { // your serverless function
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText }),
+    });
+
+    const data = await response.json();
+
+    // remove typing message
+    const lastBot = document.querySelector(".bot:last-child");
+    if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
+
+    // add AI reply
+    addMessage(data.reply, "bot");
+
+  } catch (err) {
+    // remove typing
+    const lastBot = document.querySelector(".bot:last-child");
+    if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
+
+    addMessage("Sorry, something went wrong 🤖", "bot");
+    console.error(err);
   }
-
-  setTimeout(() => addMessage(reply, "bot"), 500);
 }
+
+input.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") sendBtn.click();
+});
+
 
 sendBtn.onclick = () => {
   const text = input.value.trim();

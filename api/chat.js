@@ -29,3 +29,17 @@ export default async function handler(req, res) {
     res.status(500).json({ error: error.message });
   }
 }
+async function botReply(userText) {
+  addMessage("Typing...", "bot");
+
+  const response = await fetch("/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userText }),
+  });
+
+  const data = await response.json();
+
+  document.querySelector(".bot:last-child").remove();
+  addMessage(data.reply, "bot");
+}

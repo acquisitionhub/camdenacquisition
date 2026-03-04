@@ -375,11 +375,7 @@ sendBtn.onclick = () => {
 input.addEventListener("keypress", function(e) {
   if (e.key === "Enter") sendBtn.click();
 });
- toggleBtn.addEventListener("click", function (event) {
-  event.stopPropagation(); // IMPORTANT
-  chatbox.style.display =
-    chatbox.style.display === "flex" ? "none" : "flex";
-});
+ 
 </script>
 </body>
 </html>

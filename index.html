@@ -375,6 +375,13 @@ sendBtn.onclick = () => {
 input.addEventListener("keypress", function(e) {
   if (e.key === "Enter") sendBtn.click();
 });
+  document.addEventListener("click", function (event) {
+  const isClickInsideChat = chatbox.contains(event.target);
+  const isClickOnButton = toggleBtn.contains(event.target);
+
+  if (!isClickInsideChat && !isClickOnButton) {
+    chatbox.style.display = "none";
+  }
 </script>
 </body>
 </html>

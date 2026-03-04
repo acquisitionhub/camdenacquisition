@@ -232,10 +232,10 @@ function App() {
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  Helpmate AI
+                  PAH AI Assistant 
                 </h1>
                 <p className={`text-xs ${mutedText}`}>
-                  Your intelligent assistant
+                  Your AI assistant
                 </p>
               </div>
             </div>
@@ -282,9 +282,9 @@ function App() {
             {/* Hero Prompts */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-3xl mt-8">
               {[
-                "Write a poem about AI",
-                "Help me plan a trip",
-                "Tips for learning coding"
+                "Grow my dental practice",
+                "Get more high-value dental patients",
+                ""
               ].map((prompt, i) => (
                 <button
                   key={i}

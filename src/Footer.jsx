@@ -31,7 +31,7 @@ const Footer = ({ darkMode }) => {
         </a>
       </div>
       <p className={`text-[10px] sm:text-xs mt-1 ${darkMode ? "text-slate-400" : "text-slate-600"}`}>
-        &copy; 2025 HelpMate AI
+        &copy; 2026 PAH AI Assistant
       </p>
     </footer>
   );

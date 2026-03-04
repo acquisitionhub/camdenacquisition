@@ -235,7 +235,7 @@ function App() {
                   PAH AI Assistant 
                 </h1>
                 <p className={`text-xs ${mutedText}`}>
-                  Your AI assistant
+                  Your Growth assistant
                 </p>
               </div>
             </div>

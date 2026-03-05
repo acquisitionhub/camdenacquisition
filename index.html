@@ -262,90 +262,50 @@ Our missed call recovery and patient acquisition system ensures every enquiry tu
 
       </script>
         <!-- Your website content above -->
-     <style>
-#chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background:#36454F;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#chatbox {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 350px;
-  height: 500px;
-  background: #1e1e1e;
-  border-radius: 12px;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  font-family: Arial, sans-serif;
-}
-
-#chat-header {
-  background: #07363c;
-  padding: 15px;
-  color: white;
-  font-weight: bold;
-}
-
-#chat-messages {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-.message {
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  max-width: 80%;
-}
-
-.user {
-  background: #2a2a2a;
-  color: white;
-  align-self: flex-end;
-}
-
-.bot {
-  background: #333;
-  color: #ddd;
-  align-self: flex-start;
-}
-
-#chat-input-area {
-  display: flex;
-  border-top: 1px solid #333;
-}
-
-#chat-input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  outline: none;
-  background: #2a2a2a;
-  color: white;
-}
-
-#send-btn {
-  background: #07363c;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-</style>
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental AI Chatbot</title>
+  <style>
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background:#07363c;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #chatbox {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      background: #1e1e1e;
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+    }
+    #chat-header { background: #07363c; padding: 15px; color: white; font-weight: bold; }
+    #chat-messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; }
+    .message { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; max-width: 80%; }
+    .user { background: #2a2a2a; color: white; align-self: flex-end; }
+    .bot { background: #333; color: #ddd; align-self: flex-start; }
+    #chat-input-area { display: flex; border-top: 1px solid #333; }
+    #chat-input { flex: 1; padding: 10px; border: none; outline: none; background: #2a2a2a; color: white; }
+    #send-btn { background: #07363c; border: none; color: white; padding: 10px 15px; cursor: pointer; }
+  </style>
+</head>
+<body>
 
 <button id="chat-toggle">Chat</button>
 
@@ -379,39 +339,27 @@ function addMessage(text, className) {
 }
 
 async function botReply(userText) {
-  // show typing
   addMessage("Typing...", "bot");
 
   try {
-    const response = await fetch("/api/chat", { // your serverless function
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: userText }),
     });
 
     const data = await response.json();
-
-    // remove typing message
     const lastBot = document.querySelector(".bot:last-child");
     if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
-
-    // add AI reply
     addMessage(data.reply, "bot");
 
   } catch (err) {
-    // remove typing
     const lastBot = document.querySelector(".bot:last-child");
     if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
-
     addMessage("Sorry, something went wrong 🤖", "bot");
     console.error(err);
   }
 }
-
-input.addEventListener("keypress", function(e) {
-  if (e.key === "Enter") sendBtn.click();
-});
-
 
 sendBtn.onclick = () => {
   const text = input.value.trim();
@@ -424,8 +372,10 @@ sendBtn.onclick = () => {
 input.addEventListener("keypress", function(e) {
   if (e.key === "Enter") sendBtn.click();
 });
- 
 </script>
+
+</body>
+</html>
 </body>
 </html>
 

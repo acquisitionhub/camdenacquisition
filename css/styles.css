@@ -138,3 +138,20 @@ Explanation
         font-size: 15px;
     }
 }
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #07363c, #0a4a52);
+  color: white;
+  font-weight: bold;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.cta-btn:hover {
+  background: linear-gradient(45deg, #0a4a52, #07363c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}

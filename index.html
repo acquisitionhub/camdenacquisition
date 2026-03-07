@@ -263,117 +263,349 @@ Our missed call recovery and patient acquisition system ensures every enquiry tu
 
       </script>
         <!-- Your website content above -->
-   <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dental AI Chatbot</title>
-  <style>
-   #chat-toggle {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental AI Chatbot</title>
+
+<style>
+
+/* Page font */
+body{
+  font-family: Arial, sans-serif;
+}
+
+/* Chat Button */
+
+#chat-toggle{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: linear-gradient(45deg, #07363c, #0a4a52);
+  background: linear-gradient(45deg,#07363c,#0a4a52);
   color: white;
-  border: 2px solid white; /* added black border, 2px thick */
+  border: 2px solid white;
   padding: 12px 16px;
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
+  z-index: 999;
 }
-    #chatbox {
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      width: 350px;
-      height: 500px;
-      background: #1e1e1e;
-      border-radius: 12px;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      font-family: Arial, sans-serif;
-    }
-    #chat-header { background: #07363c; padding: 15px; color: white; font-weight: bold; }
-    #chat-messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; }
-    .message { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; max-width: 80%; }
-    .user { background: #2a2a2a; color: white; align-self: flex-end; }
-    .bot { background: #333; color: #ddd; align-self: flex-start; }
-    #chat-input-area { display: flex; border-top: 1px solid #333; }
-    #chat-input { flex: 1; padding: 10px; border: none; outline: none; background: #2a2a2a; color: white; }
-    #send-btn { background: #07363c; border: none; color: white; padding: 10px 15px; cursor: pointer; }
-  </style>
+
+/* Chat Window */
+
+#chatbox{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  max-width: 95vw;
+  max-height: 85vh;
+
+  background: #1e1e1e;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+
+  transform: translateY(30px);
+  opacity: 0;
+  pointer-events: none;
+
+  transition: all .3s ease;
+}
+
+/* When open */
+
+#chatbox.open{
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Header */
+
+#chat-header{
+  background:#07363c;
+  color:white;
+  padding:15px;
+  font-weight:bold;
+}
+
+/* Messages */
+
+#chat-messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  font-size:14px;
+
+  display:flex;
+  flex-direction:column;
+}
+
+/* Message bubbles */
+
+.message{
+  margin-bottom:10px;
+  padding:10px 14px;
+  border-radius:12px;
+  max-width:75%;
+}
+
+.user{
+  background:#2a2a2a;
+  color:white;
+  align-self:flex-end;
+}
+
+.bot{
+  background:#333;
+  color:#ddd;
+  align-self:flex-start;
+}
+
+/* Input Area */
+
+#chat-input-area{
+  display:flex;
+  border-top:1px solid #333;
+}
+
+#chat-input{
+  flex:1;
+  padding:12px;
+  border:none;
+  outline:none;
+  background:#2a2a2a;
+  color:white;
+}
+
+#send-btn{
+  background:#07363c;
+  border:none;
+  color:white;
+  padding:12px 16px;
+  cursor:pointer;
+}
+
+/* Typing Animation */
+
+.typing{
+  display:inline-block;
+}
+
+.typing span{
+  height:6px;
+  width:6px;
+  margin:0 2px;
+  background:#bbb;
+  border-radius:50%;
+  display:inline-block;
+  animation:bounce 1.4s infinite;
+}
+
+.typing span:nth-child(2){
+  animation-delay:.2s;
+}
+
+.typing span:nth-child(3){
+  animation-delay:.4s;
+}
+
+@keyframes bounce{
+
+0%,80%,100%{
+transform:scale(0);
+}
+
+40%{
+transform:scale(1);
+}
+
+}
+
+/* Mobile Fullscreen */
+
+@media (max-width:600px){
+
+#chatbox{
+width:100vw;
+height:100vh;
+right:0;
+bottom:0;
+border-radius:0;
+}
+
+#chat-toggle{
+bottom:15px;
+right:15px;
+}
+
+}
+
+</style>
 </head>
+
+
 <body>
 
 <button id="chat-toggle">Chat</button>
 
 <div id="chatbox">
-  <div id="chat-header">Dental AI Assistant</div>
-  <div id="chat-messages"></div>
-  <div id="chat-input-area">
-    <input id="chat-input" placeholder="Type a message..." />
-    <button id="send-btn">Send</button>
-  </div>
+
+<div id="chat-header">
+Dental AI Assistant
+</div>
+
+<div id="chat-messages"></div>
+
+<div id="chat-input-area">
+<input id="chat-input" placeholder="Type a message..." />
+<button id="send-btn">Send</button>
+</div>
+
 </div>
 
 <script>
+
 const toggleBtn = document.getElementById("chat-toggle");
 const chatbox = document.getElementById("chatbox");
 const sendBtn = document.getElementById("send-btn");
 const input = document.getElementById("chat-input");
 const messages = document.getElementById("chat-messages");
 
+
+/* Toggle Chat */
+
 toggleBtn.onclick = () => {
-  chatbox.style.display = chatbox.style.display === "flex" ? "none" : "flex";
-  chatbox.style.display = "flex";
+
+chatbox.classList.toggle("open");
+
 };
 
-function addMessage(text, className) {
-  const msg = document.createElement("div");
-  msg.classList.add("message", className);
-  msg.textContent = text;
-  messages.appendChild(msg);
-  messages.scrollTop = messages.scrollHeight;
+
+/* Add Message */
+
+function addMessage(text,className){
+
+const msg = document.createElement("div");
+
+msg.classList.add("message",className);
+
+msg.innerHTML = text;
+
+messages.appendChild(msg);
+
+messages.scrollTop = messages.scrollHeight;
+
 }
 
-async function botReply(userText) {
-  addMessage("Typing...", "bot");
 
-  try {
-    const response = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userText }),
-    });
+/* Typing Indicator */
 
-    const data = await response.json();
-    const lastBot = document.querySelector(".bot:last-child");
-    if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
-    addMessage(data.reply, "bot");
+function showTyping(){
 
-  } catch (err) {
-    const lastBot = document.querySelector(".bot:last-child");
-    if (lastBot && lastBot.textContent === "Typing...") lastBot.remove();
-    addMessage("Sorry, something went wrong 🤖", "bot");
-    console.error(err);
-  }
+const typingHTML = `
+<div class="message bot typing-indicator">
+<div class="typing">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+`;
+
+messages.insertAdjacentHTML("beforeend",typingHTML);
+
+messages.scrollTop = messages.scrollHeight;
+
 }
+
+
+function removeTyping(){
+
+const typing = document.querySelector(".typing-indicator");
+
+if(typing) typing.remove();
+
+}
+
+
+/* Bot Reply */
+
+async function botReply(userText){
+
+showTyping();
+
+try{
+
+const response = await fetch("/api/chat",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body: JSON.stringify({
+message:userText
+})
+
+});
+
+const data = await response.json();
+
+removeTyping();
+
+addMessage(data.reply,"bot");
+
+}catch(err){
+
+removeTyping();
+
+addMessage("Sorry, something went wrong 🤖","bot");
+
+}
+
+}
+
+
+/* Send Message */
 
 sendBtn.onclick = () => {
-  const text = input.value.trim();
-  if (!text) return;
-  addMessage(text, "user");
-  input.value = "";
-  botReply(text);
+
+const text = input.value.trim();
+
+if(!text) return;
+
+addMessage(text,"user");
+
+input.value="";
+
+botReply(text);
+
 };
 
-input.addEventListener("keypress", function(e) {
-  if (e.key === "Enter") sendBtn.click();
+
+/* Enter Key */
+
+input.addEventListener("keypress",function(e){
+
+if(e.key==="Enter") sendBtn.click();
+
 });
+
 </script>
+
+</body>
+</html>
 
 
 

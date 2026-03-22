@@ -878,16 +878,25 @@ sendBtn.onclick  = sendMessage;
 input.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); });
 
 /* ===== Quick reply chips ===== */
-  quickBtns.forEach(btn => {
+/* quickBtns.forEach(btn => {
   btn.onclick = () => {
     const label = btn.textContent.trim();
+    // strip leading emoji for the API call
+    const clean = label.replace(/^[\p{Emoji}\s]+/u, "").trim();
+    quickWrapper.style.display = "none";
+    addUserMessage(label);
+    botReply(clean);
+  };
+}); */
 
+quickBtns.forEach(btn => {
+  btn.onclick = () => {
+    const label = btn.textContent.trim();
     // ⭐ Google Review button — open link, don't send to AI
     if (btn.id === "review-btn") {
       window.open("https://g.page/r/CaqSIaSgMzenEAI/review", "_blank");
       return;
     }
-
     // strip leading emoji for the API call
     const clean = label.replace(/^[\p{Emoji}\s]+/u, "").trim();
     quickWrapper.style.display = "none";
@@ -895,18 +904,6 @@ input.addEventListener("keypress", e => { if (e.key === "Enter") sendMessage(); 
     botReply(clean);
   };
 });
-
-<!---quickBtns.forEach(btn => {
-  btn.onclick = () => {
-    const label = btn.textContent.trim();
-    // strip leading emoji for the API call
-    const clean = label.replace(/^[\p{Emoji}\s]+/u, "").trim();
-    quickWrapper.style.display = "none";
-    addUserMessage(label);
-    botReply(clean);
-  };
-});--->
-
 </script>
 </body>
 </html>

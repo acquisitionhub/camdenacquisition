@@ -1136,7 +1136,119 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
 </div><!-- /page -->
 
 <script>
-  let missed = 5, patVal = 250;
+
+// ══════════════════════════════════════════════════════
+// CONFIGURATION: Replace with your GHL Webhook URL
+// ══════════════════════════════════════════════════════
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID_HERE';
+
+// Global object to store data across steps
+let leadData = {
+    name: '',
+    email: '',
+    practice: '',
+    dailyMissed: 5,
+    patientValue: 250,
+    monthlyLoss: 37500
+};
+
+// --- STEP 1 -> STEP 2 ---
+function next1() {
+    const nameInput = document.getElementById('fname');
+    const emailInput = document.getElementById('email');
+    
+    // Simple Validation
+    if (!nameInput.value) { document.getElementById('err-name').classList.add('on'); return; }
+    if (!emailInput.value.includes('@')) { document.getElementById('err-email').classList.add('on'); return; }
+
+    // Save data
+    leadData.name = nameInput.value;
+    leadData.email = emailInput.value;
+    leadData.practice = document.getElementById('pname').value;
+
+    // UI Transition
+    document.getElementById('p1').classList.remove('on');
+    document.getElementById('p2').classList.add('on');
+    
+    // Update Stepper
+    document.getElementById('c1').classList.add('done');
+    document.getElementById('b1').classList.add('done');
+    document.getElementById('c2').classList.add('active');
+    document.getElementById('l2').classList.add('active');
+}
+
+// --- CALCULATION LOGIC ---
+function onSlide(el) {
+    leadData.dailyMissed = parseInt(el.value);
+    document.getElementById('snum').innerText = leadData.dailyMissed;
+    
+    // Update the slider background fill
+    const val = (el.value - el.min) / (el.max - el.min) * 100;
+    el.style.setProperty('--pct', val + '%');
+    
+    updateLiveTicker();
+}
+
+function onValue() {
+    leadData.patientValue = parseInt(document.getElementById('pval').value) || 0;
+    updateLiveTicker();
+}
+
+function updateLiveTicker() {
+    leadData.monthlyLoss = leadData.dailyMissed * leadData.patientValue * 30;
+    document.getElementById('live').innerText = '£' + leadData.monthlyLoss.toLocaleString();
+}
+
+// --- STEP 2 -> STEP 3 (Final Submission) ---
+async function calc() {
+    const annualLoss = leadData.monthlyLoss * 12;
+
+    // 1. Update Results UI
+    document.getElementById('r-monthly').innerText = '£' + leadData.monthlyLoss.toLocaleString();
+    document.getElementById('r-annual').innerText = '£' + annualLoss.toLocaleString();
+    document.getElementById('s-mo').innerText = '£' + leadData.monthlyLoss.toLocaleString();
+    document.getElementById('s-yr').innerText = '£' + annualLoss.toLocaleString();
+    document.getElementById('s-calls').innerText = (leadData.dailyMissed * 30).toLocaleString();
+    document.getElementById('s-pv').innerText = '£' + leadData.patientValue;
+
+    // 2. AUTO-SUBMIT TO GHL
+    // This sends the data in the background as soon as they click 'Calculate'
+    try {
+        fetch(GHL_WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Essential for GHL cross-origin requests
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                first_name: leadData.name,
+                email: leadData.email,
+                company_name: leadData.practice,
+                missed_calls_per_day: leadData.dailyMissed,
+                average_patient_value: leadData.patientValue,
+                monthly_revenue_loss: leadData.monthlyLoss,
+                annual_revenue_loss: annualLoss,
+                source: "Missed Call Calculator"
+            })
+        });
+    } catch (e) {
+        console.log("CRM error caught:", e);
+    }
+
+    // 3. UI Transition to Results
+    document.getElementById('p2').classList.remove('on');
+    document.getElementById('p3').classList.add('on');
+    
+    // Update Stepper
+    document.getElementById('c2').classList.add('done');
+    document.getElementById('b2').classList.add('done');
+    document.getElementById('c3').classList.add('active');
+    document.getElementById('l3').classList.add('active');
+}
+
+function demo() {
+    window.location.href = "https://patientacquisitionhub.com/book-demo";
+}
+</script>
+ <!--- let missed = 5, patVal = 250;
 
   function fmt(n) {
     if (n >= 1000000) return (n/1e6).toFixed(1).replace('.0','') + 'M';
@@ -1255,8 +1367,7 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
     document.querySelector('.recalc')?.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') back();
     });
-  });
-</script>
+  });--->
 </body>
 </html>
 

@@ -2,7 +2,7 @@
 
 <html lang="en-GB">
 <head>
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+     
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -1369,6 +1369,70 @@ function demo() {
       if (e.key === 'Enter' || e.key === ' ') back();
     });
   });
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+  // Initialize your account immediately
+  (function() {
+      emailjs.init("Q2eKuuLp_3c7mdLC6"); // Replace with your actual Public Key
+  })();
+
+  // Your navigation and slider functions go here...
+  function next1() {
+      // ... (keep your existing next1 code here)
+  }
+
+  function onSlide(el) {
+      // ... (keep your existing slider code here)
+  }
+
+  // YOUR NEW CALC FUNCTION
+  async function calc() {
+      const name = document.getElementById('fname').value;
+      const email = document.getElementById('email').value;
+      const practice = document.getElementById('pname').value || "Not provided";
+      const dailyMissed = parseInt(document.getElementById('slider').value);
+      const patientVal = parseInt(document.getElementById('pval').value) || 0;
+
+      const monthlyLoss = dailyMissed * patientVal * 30;
+      const annualLoss = monthlyLoss * 12;
+
+      const templateParams = {
+          to_name: name,
+          to_email: email,
+          practice_name: practice,
+          missed_per_day: dailyMissed,
+          patient_value: "£" + patientVal.toLocaleString(),
+          monthly_loss: "£" + monthlyLoss.toLocaleString(),
+          annual_loss: "£" + annualLoss.toLocaleString()
+      };
+
+      // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your actual IDs
+      emailjs.send('service_s6stsxi', 'template_tu7pr0j', templateParams)
+          .then(function(response) {
+             console.log('Email sent!', response.status);
+          }, function(error) {
+             console.error('Email failed!', error);
+          });
+
+      // Update UI
+      document.getElementById('r-monthly').innerText = '£' + monthlyLoss.toLocaleString();
+      document.getElementById('r-annual').innerText = '£' + annualLoss.toLocaleString();
+      document.getElementById('s-mo').innerText = '£' + monthlyLoss.toLocaleString();
+      document.getElementById('s-yr').innerText = '£' + annualLoss.toLocaleString();
+      document.getElementById('s-calls').innerText = (dailyMissed * 30).toLocaleString();
+      document.getElementById('s-pv').innerText = '£' + patientVal.toLocaleString();
+
+      document.getElementById('p2').classList.remove('on');
+      document.getElementById('p3').classList.add('on');
+      document.getElementById('c2').classList.add('done');
+      document.getElementById('b2').classList.add('done');
+      document.getElementById('c3').classList.add('active');
+  }
+</script>
+
+</body>
+</html>
      </script>
 </body>
 </html>

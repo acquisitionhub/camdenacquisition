@@ -1,0 +1,35 @@
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+.wrap{font-family:'DM Sans',sans-serif;max-width:320px;margin:2rem auto;text-align:center;}
+.card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.75rem 1.5rem;background:var(--color-background-primary);}
+.brand{font-family:'DM Serif Display',serif;font-size:18px;color:var(--color-text-primary);margin-bottom:4px;}
+.sub{font-size:12px;color:var(--color-text-secondary);margin-bottom:1.5rem;letter-spacing:0.05em;text-transform:uppercase;}
+#qr{margin:0 auto 1.25rem;}
+.url{font-size:12px;color:#185FA5;margin-top:0.75rem;}
+.cta{font-size:13px;color:var(--color-text-secondary);margin-top:0.5rem;}
+</style>
+
+<div class="wrap">
+  <div class="card">
+    <div class="brand">Patient Acquisition Hub</div>
+    <div class="sub">Scan to visit our website</div>
+    <div id="qr"></div>
+    <div class="url">patientacquisitionhub.com</div>
+    <div class="cta">Book a free 20-minute demo</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+new QRCode(document.getElementById('qr'),{
+  text:'https://www.patientacquisitionhub.com',
+  width:200,
+  height:200,
+  colorDark:'#185FA5',
+  colorLight:'#ffffff',
+  correctLevel:QRCode.CorrectLevel.H
+});
+</script>

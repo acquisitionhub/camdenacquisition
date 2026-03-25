@@ -1137,131 +1137,54 @@ input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
 
 </div><!-- /page -->
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 <script>
+  // ══════════════════════════════════════════════════════
+  // CONFIGURATION
+  // ══════════════════════════════════════════════════════
+  (function() {
+      // Your Public Key from EmailJS Account > API Keys
+      emailjs.init("Q2eKuuLp_3c7mdLC6"); 
+  })();
 
-// ══════════════════════════════════════════════════════
-// CONFIGURATION: Replace with your GHL Webhook URL
-// ══════════════════════════════════════════════════════
-const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/rSB0w5EZ53kRLwoPse1t/webhook-trigger/901aa8d7-4f58-4558-8c12-647f0faf91f7';
+  let missed = 5;
+  let patVal = 250;
+  let leadName = '';
+  let leadEmail = '';
+  let leadPractice = '';
 
-let leadData = {
-    name: '',
-    email: '',
-    practice: '',
-    dailyMissed: 5,
-    patientValue: 250,
-    monthlyLoss: 37500
-};
-
-// --- STEP 1 -> STEP 2 ---
-function next1() {
-    const nameInput = document.getElementById('fname');
-    const emailInput = document.getElementById('email');
-    
-    // Simple Validation
-    if (!nameInput.value) { document.getElementById('err-name').classList.add('on'); return; }
-    if (!emailInput.value.includes('@')) { document.getElementById('err-email').classList.add('on'); return; }
-
-    // Save data
-    leadData.name = nameInput.value;
-    leadData.email = emailInput.value;
-    leadData.practice = document.getElementById('pname').value;
-
-    // UI Transition
-    document.getElementById('p1').classList.remove('on');
-    document.getElementById('p2').classList.add('on');
-    
-    // Update Stepper
-    document.getElementById('c1').classList.add('done');
-    document.getElementById('b1').classList.add('done');
-    document.getElementById('c2').classList.add('active');
-    document.getElementById('l2').classList.add('active');
-}
-
-// --- CALCULATION LOGIC ---
-function onSlide(el) {
-    leadData.dailyMissed = parseInt(el.value);
-    document.getElementById('snum').innerText = leadData.dailyMissed;
-    
-    // Update the slider background fill
-    const val = (el.value - el.min) / (el.max - el.min) * 100;
-    el.style.setProperty('--pct', val + '%');
-    
-    updateLiveTicker();
-}
-
-function onValue() {
-    leadData.patientValue = parseInt(document.getElementById('pval').value) || 0;
-    updateLiveTicker();
-}
-
-function updateLiveTicker() {
-    leadData.monthlyLoss = leadData.dailyMissed * leadData.patientValue * 30;
-    document.getElementById('live').innerText = '£' + leadData.monthlyLoss.toLocaleString();
-}
-
-// --- STEP 2 -> STEP 3 (Final Submission) ---
-async function calc() {
-    const annualLoss = leadData.monthlyLoss * 12;
-
-    // 1. Update Results UI
-    document.getElementById('r-monthly').innerText = '£' + leadData.monthlyLoss.toLocaleString();
-    document.getElementById('r-annual').innerText = '£' + annualLoss.toLocaleString();
-    document.getElementById('s-mo').innerText = '£' + leadData.monthlyLoss.toLocaleString();
-    document.getElementById('s-yr').innerText = '£' + annualLoss.toLocaleString();
-    document.getElementById('s-calls').innerText = (leadData.dailyMissed * 30).toLocaleString();
-    document.getElementById('s-pv').innerText = '£' + leadData.patientValue;
-
-    // 2. AUTO-SUBMIT TO GHL
-    // This sends the data in the background as soon as they click 'Calculate'
-    try {
-        fetch(GHL_WEBHOOK_URL, {
-            method: 'POST',
-            mode: 'no-cors', // Essential for GHL cross-origin requests
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                first_name: leadData.name,
-                email: leadData.email,
-                company_name: leadData.practice,
-                missed_calls_per_day: leadData.dailyMissed,
-                average_patient_value: leadData.patientValue,
-                monthly_revenue_loss: leadData.monthlyLoss,
-                annual_revenue_loss: annualLoss,
-                source: "Missed Call Calculator"
-            })
-        });
-    } catch (e) {
-        console.log("CRM error caught:", e);
-    }
-
-    // 3. UI Transition to Results
-    document.getElementById('p2').classList.remove('on');
-    document.getElementById('p3').classList.add('on');
-    
-    // Update Stepper
-    document.getElementById('c2').classList.add('done');
-    document.getElementById('b2').classList.add('done');
-    document.getElementById('c3').classList.add('active');
-    document.getElementById('l3').classList.add('active');
-}
-
-function demo() {
-    window.location.href = "https://patientacquisitionhub.com/book-demo";
-}
-
- let missed = 5, patVal = 250;
-
+  // --- Helper: Format numbers for professional display (e.g., 10k instead of 10000) ---
   function fmt(n) {
     if (n >= 1000000) return (n/1e6).toFixed(1).replace('.0','') + 'M';
     if (n >= 10000)   return Math.round(n/1000) + 'k';
     return n.toLocaleString('en-GB');
   }
 
+  // --- Navigation (Step 1 to Step 2) ---
+  function next1() {
+    leadName = document.getElementById('fname').value.trim();
+    leadEmail = document.getElementById('email').value.trim();
+    leadPractice = document.getElementById('pname').value.trim() || "Not provided";
+
+    let ok = true;
+    document.getElementById('err-name').classList.remove('on');
+    document.getElementById('err-email').classList.remove('on');
+
+    if (!leadName)  { document.getElementById('err-name').classList.add('on'); ok = false; }
+    if (!leadEmail || !leadEmail.includes('@')) { document.getElementById('err-email').classList.add('on'); ok = false; }
+    
+    if (!ok) return;
+
+    go(2);
+    refreshLive();
+  }
+
+  // --- Calculation Logic (Updates as they slide) ---
   function onSlide(el) {
     missed = parseInt(el.value);
     document.getElementById('snum').textContent = missed;
-    el.setAttribute('aria-valuenow', missed);
-    const pct = ((missed-1)/29*100).toFixed(1) + '%';
+    const pct = ((missed - 1) / 29 * 100).toFixed(1) + '%';
     el.style.setProperty('--pct', pct);
     refreshLive();
   }
@@ -1279,156 +1202,98 @@ function demo() {
     setTimeout(() => el.classList.remove('pop'), 250);
   }
 
-  function next1() {
-    const name  = document.getElementById('fname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    let ok = true;
-    document.getElementById('err-name').classList.remove('on');
-    document.getElementById('err-email').classList.remove('on');
-    if (!name)  { document.getElementById('err-name').classList.add('on'); ok = false; }
-    if (!email || !email.includes('@')) { document.getElementById('err-email').classList.add('on'); ok = false; }
-    if (!ok) return;
-    go(2);
-    refreshLive();
-    initSlider();
-  }
-
-  function initSlider() {
-    const el = document.getElementById('slider');
-    const pct = ((parseInt(el.value)-1)/29*100).toFixed(1) + '%';
-    el.style.setProperty('--pct', pct);
-  }
-
-  function calc() {
-    patVal = parseFloat(document.getElementById('pval').value);
+  // --- Final Submit (Step 2 to Step 3) ---
+  async function calc() {
     if (!patVal || patVal <= 0) {
       document.getElementById('err-val').classList.add('on');
       return;
     }
     document.getElementById('err-val').classList.remove('on');
 
-    const mo  = missed * patVal * 30;
-    const yr  = mo * 12;
-    const cls = missed * 30;
+    const mo = missed * patVal * 30;
+    const yr = mo * 12;
 
+    // 1. Prepare Data for EmailJS
+    const templateParams = {
+      to_name: leadName,
+      to_email: leadEmail,
+      practice_name: leadPractice,
+      missed_per_day: missed,
+      patient_value: "£" + patVal.toLocaleString(),
+      monthly_loss: "£" + mo.toLocaleString(),
+      annual_loss: "£" + yr.toLocaleString()
+    };
+
+    // 2. SEND TO EMAILJS
+    emailjs.send('service_s6stsxi', 'template_tu7pr0j', templateParams)
+      .then(function(response) {
+         console.log('SUCCESS!', response.status, response.text);
+      }, function(error) {
+         console.error('FAILED...', error);
+      });
+
+    /* // GHL WEBHOOK COMMENTED OUT
+    try {
+      fetch('YOUR_GHL_URL_HERE', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(templateParams)
+      });
+    } catch (e) { console.log("GHL Error", e); }
+    */
+
+    // 3. UI Transition & Counter Animation
     go(3);
-    count('r-monthly',  mo,  '£');
-    count('r-annual',   yr,  '£');
-    count('s-mo',       mo,  '£');
-    count('s-yr',       yr,  '£');
-    document.getElementById('s-calls').textContent = cls.toLocaleString('en-GB');
-    document.getElementById('s-pv').textContent    = '£' + patVal;
+    count('r-monthly', mo, '£');
+    count('r-annual', yr, '£');
+    count('s-mo', mo, '£');
+    count('s-yr', yr, '£');
+    document.getElementById('s-calls').textContent = (missed * 30).toLocaleString('en-GB');
+    document.getElementById('s-pv').textContent = '£' + patVal.toLocaleString();
   }
 
+  // --- UI Utilities (Animations) ---
   function count(id, target, pre) {
     const el = document.getElementById(id);
     const t0 = performance.now();
     const dur = 1300;
     (function tick(now) {
-      const p = Math.min((now-t0)/dur, 1);
-      const e = 1 - Math.pow(1-p, 3);
-      el.textContent = (pre||'') + fmt(Math.round(e*target));
+      const p = Math.min((now - t0) / dur, 1);
+      const e = 1 - Math.pow(1 - p, 3); // Ease out
+      el.textContent = (pre || '') + fmt(Math.round(e * target));
       if (p < 1) requestAnimationFrame(tick);
     })(t0);
   }
 
   function go(n) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
-    document.getElementById('p'+n).classList.add('on');
-    document.getElementById('stepper').setAttribute('aria-valuenow', n);
-
+    document.getElementById('p' + n).classList.add('on');
+    
+    // Update Stepper Visuals
     for (let i = 1; i <= 3; i++) {
-      const c = document.getElementById('c'+i);
-      const l = document.getElementById('l'+i);
-      c.classList.remove('active','done');
-      l.classList.remove('active');
-      if (i < n)       { c.classList.add('done'); c.textContent = '✓'; }
-      else if (i === n){ c.classList.add('active'); c.textContent = i; l.classList.add('active'); }
-      else             { c.textContent = i; }
+      const c = document.getElementById('c' + i);
+      const l = document.getElementById('l' + i);
+      if(!c) continue;
+      c.classList.remove('active', 'done');
+      if (i < n) { c.classList.add('done'); c.textContent = '✓'; }
+      else if (i === n) { c.classList.add('active'); c.textContent = i; if(l) l.classList.add('active'); }
+      else { c.textContent = i; if(l) l.classList.remove('active'); }
     }
     for (let i = 1; i <= 2; i++) {
-      document.getElementById('b'+i).classList.toggle('done', i < n);
+      const b = document.getElementById('b' + i);
+      if(b) b.classList.toggle('done', i < n);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function back() { go(2); }
-
   function demo() {
-    // Replace with your booking URL:
-    // window.open('https://calendly.com/yourlink', '_blank');
-     window.open('https://patientacquisitionhub.com/missed-call.html');
-    //alert('Connect your Calendly or booking link here.');
+    window.open('https://patientacquisitionhub.com/missed-call.html');
   }
 
-  // Keyboard support
   document.addEventListener('DOMContentLoaded', () => {
     refreshLive();
-    initSlider();
-    document.querySelector('.recalc')?.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') back();
-    });
   });
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-<script>
-  // Initialize your account immediately
-  (function() {
-      emailjs.init("Q2eKuuLp_3c7mdLC6"); // Replace with your actual Public Key
-  })();
-
-  // Your navigation and slider functions go here...
-  function next1() {
-      // ... (keep your existing next1 code here)
-  }
-
-  function onSlide(el) {
-      // ... (keep your existing slider code here)
-  }
-
-  // YOUR NEW CALC FUNCTION
-  async function calc() {
-      const name = document.getElementById('fname').value;
-      const email = document.getElementById('email').value;
-      const practice = document.getElementById('pname').value || "Not provided";
-      const dailyMissed = parseInt(document.getElementById('slider').value);
-      const patientVal = parseInt(document.getElementById('pval').value) || 0;
-
-      const monthlyLoss = dailyMissed * patientVal * 30;
-      const annualLoss = monthlyLoss * 12;
-
-      const templateParams = {
-          to_name: name,
-          to_email: email,
-          practice_name: practice,
-          missed_per_day: dailyMissed,
-          patient_value: "£" + patientVal.toLocaleString(),
-          monthly_loss: "£" + monthlyLoss.toLocaleString(),
-          annual_loss: "£" + annualLoss.toLocaleString()
-      };
-
-      // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with your actual IDs
-      emailjs.send('service_s6stsxi', 'template_tu7pr0j', templateParams)
-          .then(function(response) {
-             console.log('Email sent!', response.status);
-          }, function(error) {
-             console.error('Email failed!', error);
-          });
-
-      // Update UI
-      document.getElementById('r-monthly').innerText = '£' + monthlyLoss.toLocaleString();
-      document.getElementById('r-annual').innerText = '£' + annualLoss.toLocaleString();
-      document.getElementById('s-mo').innerText = '£' + monthlyLoss.toLocaleString();
-      document.getElementById('s-yr').innerText = '£' + annualLoss.toLocaleString();
-      document.getElementById('s-calls').innerText = (dailyMissed * 30).toLocaleString();
-      document.getElementById('s-pv').innerText = '£' + patientVal.toLocaleString();
-
-      document.getElementById('p2').classList.remove('on');
-      document.getElementById('p3').classList.add('on');
-      document.getElementById('c2').classList.add('done');
-      document.getElementById('b2').classList.add('done');
-      document.getElementById('c3').classList.add('active');
-  }
 </script>
 
 </body>

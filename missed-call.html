@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Never Lose a Patient Again — Missed Call Recovery for Dental Clinics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E42;
+    --navy-light: #253C54;
+    --gold: #C8A45A;
+    --gold-light: #E8C97C;
+    --cream: #F7F3EE;
+    --cream-dark: #EDE8E0;
+    --white: #FFFFFF;
+    --text-muted: #8A9AAB;
+    --red-alert: #D94F3D;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 10px 28px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    gap: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(200,164,90,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200,164,90,0.15);
+    border: 1px solid rgba(200,164,90,0.3);
+    color: var(--gold);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 58px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+  .hero p {
+    color: var(--text-muted);
+    font-size: 17px;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 36px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--text-muted);
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); }
+
+  /* HERO CARD */
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .call-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px 24px;
+    position: relative;
+    animation: slideIn 0.6s ease both;
+  }
+  .call-card:nth-child(1) { animation-delay: 0.1s; }
+  .call-card:nth-child(2) { animation-delay: 0.3s; }
+  .call-card:nth-child(3) { animation-delay: 0.5s; }
+  .call-card:nth-child(4) { animation-delay: 0.7s; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  .call-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .call-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .label-missed { color: var(--red-alert); }
+  .label-sent { color: #4CAF79; }
+  .label-booked { color: var(--gold); }
+  .label-recovered { color: #4CAF79; }
+  .call-time { color: var(--text-muted); font-size: 11px; }
+  .call-body { color: var(--white); font-size: 14px; font-weight: 300; }
+  .call-body strong { font-weight: 500; }
+  .call-badge {
+    display: inline-block;
+    background: rgba(200,164,90,0.15);
+    color: var(--gold);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  .revenue-pill {
+    display: inline-block;
+    background: rgba(76,175,121,0.15);
+    color: #4CAF79;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* PAIN SECTION */
+  .pain {
+    background: var(--cream-dark);
+    padding: 100px 60px;
+    text-align: center;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .pain h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--navy);
+    max-width: 700px;
+    margin: 0 auto 24px;
+    line-height: 1.15;
+  }
+  .pain p {
+    color: #4A5E72;
+    font-size: 17px;
+    max-width: 580px;
+    margin: 0 auto 60px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-box {
+    background: var(--navy);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: var(--white);
+    padding: 100px 60px;
+  }
+  .how-header { text-align: center; margin-bottom: 70px; }
+  .how-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .how-header p {
+    color: #4A5E72;
+    font-size: 17px;
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .step {
+    background: var(--cream);
+    padding: 40px 32px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .step:hover { background: var(--cream-dark); }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: rgba(200,164,90,0.15);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .step h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .step p {
+    color: #4A5E72;
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .step-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(200,164,90,0.1);
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+
+  /* FEATURES */
+  .features {
+    background: var(--navy);
+    padding: 100px 60px;
+  }
+  .features-header { text-align: center; margin-bottom: 70px; }
+  .features-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .features-header p {
+    color: var(--text-muted);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .feature-card {
+    background: var(--navy-mid);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 36px 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(200,164,90,0.3);
+    transform: translateY(-3px);
+  }
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(200,164,90,0.12);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .feature-card p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* TESTIMONIAL / SOCIAL PROOF */
+  .proof {
+    background: var(--cream);
+    padding: 100px 60px;
+    text-align: center;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 100px;
+    color: var(--gold);
+    line-height: 0.6;
+    margin-bottom: 32px;
+    opacity: 0.4;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--navy);
+    max-width: 700px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .quote-author {
+    color: #4A5E72;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .proof-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 60px;
+  }
+  .proof-stat { text-align: center; }
+  .proof-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--gold);
+  }
+  .proof-label {
+    color: #4A5E72;
+    font-size: 13px;
+    font-weight: 300;
+    margin-top: 4px;
+  }
+
+  /* CTA FOOTER */
+  .cta-section {
+    background: var(--navy);
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 600px;
+    background: radial-gradient(circle, rgba(200,164,90,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    font-weight: 900;
+    color: var(--white);
+    max-width: 640px;
+    margin: 0 auto 24px;
+    line-height: 1.15;
+  }
+  .cta-section h2 em { font-style: normal; color: var(--gold); }
+  .cta-section p {
+    color: var(--text-muted);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .cta-form {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    max-width: 480px;
+    margin: 0 auto 16px;
+    flex-wrap: wrap;
+  }
+  .cta-input {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .cta-input::placeholder { color: var(--text-muted); }
+  .cta-input:focus { border-color: rgba(200,164,90,0.5); }
+  .cta-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { background: var(--gold-light); }
+  .cta-disclaimer {
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #080F18;
+    padding: 32px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .footer-note { color: var(--text-muted); font-size: 12px; font-weight: 300; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero h1 { font-size: 38px; }
+    .stat-row, .steps, .feature-grid { grid-template-columns: 1fr; }
+    nav { padding: 16px 24px; }
+    .pain, .how, .features, .proof, .cta-section { padding: 70px 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .proof-stats { flex-direction: column; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PatientRecovery</div>
+  <a href="#book" class="nav-cta">Book a Demo</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Powered by Patient Acquisition Hub</div>
+    <h1>Your clinic just missed another <em>patient call.</em></h1>
+    <p>Every unanswered call is a lost appointment — often worth hundreds or thousands of pounds. Our automated missed call recovery system ensures no patient ever slips through the cracks again.</p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book a Free Demo</a>
+      <a href="#how" class="btn-ghost">
+        See how it works
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="call-card">
+      <div class="call-card-header">
+        <span class="call-label label-missed">● Missed Call</span>
+        <span class="call-time">2 mins ago</span>
+      </div>
+      <div class="call-body"><strong>Sarah M.</strong> — called about dental implant consultation</div>
+      <div class="call-badge">⭐ High-value procedure</div>
+    </div>
+    <div class="call-card">
+      <div class="call-card-header">
+        <span class="call-label label-sent">● SMS Sent Automatically</span>
+        <span class="call-time">Just now</span>
+      </div>
+      <div class="call-body">"Hi Sarah, we missed your call! Book your consultation online in seconds:" <strong>[Book Now →]</strong></div>
+    </div>
+    <div class="call-card">
+      <div class="call-card-header">
+        <span class="call-label label-booked">● Appointment Booked</span>
+        <span class="call-time">4 mins later</span>
+      </div>
+      <div class="call-body"><strong>Sarah M.</strong> booked: Implant Consultation — Thursday 2pm</div>
+    </div>
+    <div class="call-card">
+      <div class="call-card-header">
+        <span class="call-label label-recovered">● Revenue Recovered</span>
+        <span class="call-time">Tracked</span>
+      </div>
+      <div class="call-body">Potential value: <strong>£2,400</strong> — attributed to missed call recovery</div>
+      <div class="revenue-pill">+£2,400 recovered</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="section-label">The Problem</div>
+  <h2>Busy clinics lose patients every single day</h2>
+  <p>Your staff are focused on patients in the chair. Voicemails go unheard. Patients call your competitor. Revenue walks out the door silently.</p>
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-number">62%</div>
+      <div class="stat-desc">of callers won't leave a voicemail and won't call back</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">£4k+</div>
+      <div class="stat-desc">average monthly revenue lost to unanswered calls</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-number">5 min</div>
+      <div class="stat-desc">is all it takes to lose a patient to your competitor</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="how-header">
+    <div class="section-label">The Solution</div>
+    <h2>How our recovery system works</h2>
+    <p>Fully automated. Built by Patient Acquisition Hub. Running 24/7 — even when your front desk can't.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Every call is captured</h3>
+      <p>The moment a call is missed, our system logs it as a new lead in your CRM. Voicemails are instantly transcribed so staff can read them, not wait to listen.</p>
+      <span class="step-tag">GHL Trigger + CRM</span>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Patients hear back instantly</h3>
+      <p>An SMS and email go out within minutes with a personalised message and a direct link to book online — no hold music, no waiting, no friction.</p>
+      <span class="step-tag">GHL Workflow + Calendar</span>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>High-value leads are prioritised</h3>
+      <p>Implants, cosmetic dentistry, and other premium procedures are automatically tagged and escalated — your team knows exactly who to chase first.</p>
+      <span class="step-tag">GHL Tags + Pipelines</span>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>No response? Staff are alerted</h3>
+      <p>If a patient doesn't engage after automated follow-ups, a manual callback task is created and assigned to your team — nothing falls through the cracks.</p>
+      <span class="step-tag">GHL Tasks</span>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <h3>Revenue is tracked and proven</h3>
+      <p>Every recovered appointment is attributed back to the missed call. You see exactly how much revenue our system is generating for your clinic each month.</p>
+      <span class="step-tag">GHL Reporting</span>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <h3>Your staff stay stress-free</h3>
+      <p>No more checking voicemail chaos or manually following up. The system handles it all — your team focuses on delivering exceptional patient care.</p>
+      <span class="step-tag">Fully Automated</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-header">
+    <div class="section-label">Premium Features</div>
+    <h2>Everything your clinic needs</h2>
+    <p>Purpose-built for dental and healthcare practices using GoHighLevel's full automation stack.</p>
+  </div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎙️</div>
+      <h3>Voicemail to Text</h3>
+      <p>Every voicemail is automatically transcribed. Staff read patient messages instantly — no more listening through a queue of recordings.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Revenue Attribution</h3>
+      <p>See exactly which missed calls turned into appointments and how much revenue was recovered. Your ROI is always visible and provable.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏷️</div>
+      <h3>Service Segmentation</h3>
+      <p>Implants, crowns, whitening — leads are automatically tagged by service type so high-value procedures always get priority attention.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <h3>Click-to-Book Links</h3>
+      <p>Every follow-up message includes a direct link to your booking calendar. Patients book without ever needing to call back.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Instant Automation</h3>
+      <p>SMS and email follow-ups triggered within minutes of a missed call — before the patient has had a chance to call your competitor.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h3>Staff Task Alerts</h3>
+      <p>Leads that don't respond to automated follow-ups automatically create manual callback tasks — assigned to the right team member.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="quote-mark">"</div>
+  <p class="quote-text">We were losing at least 8 to 10 patients a month to missed calls. Within 60 days of setting this up, we recovered over £12,000 in appointments we would have simply never known about.</p>
+  <div class="quote-author">Dr. James Whitfield — Principal Dentist, Whitfield Dental Group</div>
+  <div class="proof-stats">
+    <div class="proof-stat">
+      <div class="proof-num">£12k</div>
+      <div class="proof-label">recovered in first 60 days</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-num">94%</div>
+      <div class="proof-label">of missed calls now followed up</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-num">3×</div>
+      <div class="proof-label">average ROI in first month</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="book">
+  <h2>Turn every missed call into a <em>booked appointment</em></h2>
+  <p>Book a free 20-minute demo. We'll show you exactly how the system works and what it could recover for your clinic.</p>
+  <div class="cta-form">
+    <input type="text" class="cta-input" placeholder="Your name">
+    <input type="email" class="cta-input" placeholder="Your email">
+  </div>
+  <div style="display:flex;justify-content:center;margin-bottom:16px;">
+    <button class="cta-btn">Book My Free Demo →</button>
+  </div>
+  <p class="cta-disclaimer">No commitment. No pressure. 20 minutes — that's all it takes.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RecoverMD</div>
+  <div class="footer-note">Built by Patient Aquisition Hub · © 2026 · All rights reserved</div>
+</footer>
+
+</body>
+</html>

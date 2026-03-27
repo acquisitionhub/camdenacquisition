@@ -42,7 +42,6 @@
     overflow-x: hidden;
   }
 
-  /* Subtle grain overlay */
   body::after {
     content: '';
     position: fixed;
@@ -54,7 +53,6 @@
     background-size: 200px;
   }
 
-  /* Decorative teal band at top */
   .top-band {
     height: 4px;
     background: linear-gradient(90deg, var(--teal) 0%, var(--gold) 100%);
@@ -66,7 +64,6 @@
     padding: 0 24px 80px;
   }
 
-  /* ── Header ── */
   .site-header {
     padding: 52px 0 40px;
     text-align: center;
@@ -105,7 +102,6 @@
     line-height: 1.6;
   }
 
-  /* ── Stepper ── */
   .stepper {
     display: flex;
     align-items: center;
@@ -178,7 +174,6 @@
 
   .s-line.done { background: var(--teal); }
 
-  /* ── Panels ── */
   .panel { display: none; }
   .panel.on { display: block; animation: rise .4s var(--ease) both; }
 
@@ -187,7 +182,6 @@
     to   { opacity: 1; transform: translateY(0);    }
   }
 
-  /* ── Card ── */
   .card {
     background: #fff;
     border: 1px solid var(--paper3);
@@ -213,7 +207,6 @@
     margin-bottom: 26px;
   }
 
-  /* ── Fields ── */
   .field { margin-bottom: 20px; }
 
   .field label {
@@ -256,7 +249,6 @@
 
   .err.on { display: block; }
 
-  /* ── Slider section ── */
   .slider-big {
     font-family: var(--serif);
     font-size: 72px;
@@ -296,11 +288,6 @@
     transition: box-shadow .2s;
   }
 
-  input[type="range"]::-webkit-slider-thumb:hover {
-    box-shadow: 0 0 0 7px rgba(13,107,97,.18);
-  }
-
-  /* ── Live ticker ── */
   .ticker {
     display: flex;
     align-items: center;
@@ -327,7 +314,6 @@
     letter-spacing: -.01em;
   }
 
-  /* ── Buttons ── */
   .btn {
     display: block;
     width: 100%;
@@ -344,27 +330,10 @@
     letter-spacing: .01em;
   }
 
-  .btn-teal {
-    background: var(--teal);
-    color: #fff;
-  }
-
-  .btn-teal:hover {
-    background: var(--teal-l);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(13,107,97,.25);
-  }
-
-  .btn-gold {
-    background: var(--gold);
-    color: #fff;
-  }
-
-  .btn-gold:hover {
-    background: #b3751f;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(200,131,42,.3);
-  }
+  .btn-teal { background: var(--teal); color: #fff; }
+  .btn-teal:hover { background: var(--teal-l); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(13,107,97,.25); }
+  .btn-gold { background: var(--gold); color: #fff; }
+  .btn-gold:hover { background: #b3751f; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,131,42,.3); }
 
   .btn:disabled {
     opacity: .6;
@@ -373,7 +342,6 @@
     box-shadow: none;
   }
 
-  /* ── Results ── */
   .result-header {
     text-align: center;
     padding-bottom: 28px;
@@ -399,45 +367,13 @@
     margin-bottom: 8px;
   }
 
-  .result-annual {
-    font-size: 16px;
-    color: var(--ink3);
-  }
+  .result-annual { font-size: 16px; color: var(--ink3); }
+  .result-annual strong { color: var(--gold); font-weight: 600; }
 
-  .result-annual strong {
-    color: var(--gold);
-    font-weight: 600;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .stat {
-    background: var(--paper);
-    border: 1px solid var(--paper3);
-    border-radius: 12px;
-    padding: 18px;
-    text-align: center;
-  }
-
-  .stat-v {
-    font-family: var(--serif);
-    font-size: 26px;
-    color: var(--teal);
-    line-height: 1.1;
-    margin-bottom: 4px;
-  }
-
-  .stat-lbl {
-    font-size: 11.5px;
-    color: var(--ink3);
-    font-weight: 500;
-    letter-spacing: .04em;
-  }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+  .stat { background: var(--paper); border: 1px solid var(--paper3); border-radius: 12px; padding: 18px; text-align: center; }
+  .stat-v { font-family: var(--serif); font-size: 26px; color: var(--teal); line-height: 1.1; margin-bottom: 4px; }
+  .stat-lbl { font-size: 11.5px; color: var(--ink3); font-weight: 500; letter-spacing: .04em; }
 
   .insight {
     background: var(--gold-ll);
@@ -450,7 +386,6 @@
     margin-bottom: 0;
   }
 
-  /* ── CTA block ── */
   .cta-wrap {
     background: #fff;
     border: 1px solid var(--paper3);
@@ -471,19 +406,8 @@
     background: linear-gradient(90deg, var(--gold), var(--teal));
   }
 
-  .cta-title {
-    font-family: var(--serif);
-    font-size: 22px;
-    margin-bottom: 8px;
-    color: var(--ink);
-  }
-
-  .cta-sub {
-    font-size: 14px;
-    color: var(--ink3);
-    margin-bottom: 22px;
-    line-height: 1.6;
-  }
+  .cta-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; color: var(--ink); }
+  .cta-sub { font-size: 14px; color: var(--ink3); margin-bottom: 22px; line-height: 1.6; }
 
   .recalc {
     display: block;
@@ -492,17 +416,12 @@
     color: var(--ink3);
     font-size: 13px;
     text-decoration: underline;
-    text-underline-offset: 3px;
     cursor: pointer;
-    font-weight: 500;
     background: none;
     border: none;
     width: 100%;
   }
 
-  .recalc:hover { color: var(--ink); }
-
-  /* ── Spinner ── */
   .spinner {
     display: inline-block;
     width: 16px; height: 16px;
@@ -519,9 +438,7 @@
 </head>
 
 <body>
-
 <div class="top-band"></div>
-
 <div class="page">
 
   <header class="site-header">
@@ -530,7 +447,6 @@
     <p class="hero-sub">Fill in two numbers. Get your answer in under a minute.</p>
   </header>
 
-  <!-- Stepper -->
   <nav class="stepper">
     <div class="s-node">
       <div class="s-dot active" id="c1"><span>1</span></div>
@@ -548,29 +464,27 @@
     </div>
   </nav>
 
-  <!-- Step 1: Details -->
   <div class="panel on" id="p1">
     <div class="card">
       <h2 class="card-title">Your practice details</h2>
       <div class="field">
         <label for="fname">Your name</label>
-        <input type="text" id="fname" placeholder="Dr. Sarah Jones" autocomplete="name">
+        <input type="text" id="fname" placeholder="Dr. Sarah Jones">
         <span class="err" id="err-name">Please enter your name.</span>
       </div>
       <div class="field">
         <label for="email">Email address</label>
-        <input type="email" id="email" placeholder="sarah@practice.co.uk" autocomplete="email">
+        <input type="email" id="email" placeholder="sarah@practice.co.uk">
         <span class="err" id="err-email">Please enter a valid email address.</span>
       </div>
       <div class="field">
-        <label for="pname">Practice name <span style="font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-        <input type="text" id="pname" placeholder="Smile Dental" autocomplete="organization">
+        <label for="pname">Practice name <span style="font-weight:400;text-transform:none">(optional)</span></label>
+        <input type="text" id="pname" placeholder="Smile Dental">
       </div>
     </div>
     <button class="btn btn-teal" id="btn1" onclick="next1()">Continue to Calculator →</button>
   </div>
 
-  <!-- Step 2: Sliders -->
   <div class="panel" id="p2">
     <div class="card">
       <div class="field">
@@ -581,7 +495,7 @@
       </div>
       <div class="field" style="margin-top:28px">
         <label for="pval">Average patient value (£)</label>
-        <input type="number" id="pval" value="250" min="1" step="1" oninput="onValue()">
+        <input type="number" id="pval" value="250" min="1" oninput="onValue()">
         <span class="err" id="err-val">Please enter a patient value.</span>
       </div>
       <div class="ticker">
@@ -592,7 +506,6 @@
     <button class="btn btn-teal" id="btn2" onclick="calc()">Calculate My Results →</button>
   </div>
 
-  <!-- Step 3: Results -->
   <div class="panel" id="p3">
     <div class="card">
       <div class="result-header">
@@ -610,35 +523,26 @@
           <div class="stat-lbl">Per patient value</div>
         </div>
       </div>
-      <div class="insight">
-        Most of this revenue is already within reach — it just needs someone to answer the phone.
-      </div>
+      <div class="insight">Most of this revenue is already within reach — it just needs someone to answer the phone.</div>
     </div>
-
     <div class="cta-wrap">
       <h3 class="cta-title">Ready to recover this revenue?</h3>
-      <p class="cta-sub">See how practices like yours are capturing missed calls and turning them into booked appointments — automatically.</p>
+      <p class="cta-sub">See how practices like yours are capturing missed calls automatically.</p>
       <button class="btn btn-gold" onclick="demo()">See How It Works →</button>
       <button class="recalc" onclick="location.reload()">Start over</button>
     </div>
   </div>
-
-</div><!-- /page -->
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-  /* ── EmailJS init ── */
   emailjs.init({ publicKey: "Q2eKuuLp_3c7mdLC6" });
 
-  /* ── State ── */
-  let missed  = 5;
-  let patVal  = 250;
-  let leadName, leadEmail, leadPractice;
+  let missed = 5;
+  let patVal = 250;
 
-  /* ── Helpers ── */
   function fmt(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
-
   function showErr(id) { document.getElementById(id).classList.add('on'); }
   function hideErr(id) { document.getElementById(id).classList.remove('on'); }
 
@@ -654,21 +558,15 @@
     }
   }
 
-  /* ── Step 1 ── */
   function next1() {
-    leadName     = document.getElementById('fname').value.trim();
-    leadEmail    = document.getElementById('email').value.trim();
-    leadPractice = document.getElementById('pname').value.trim() || 'Not provided';
-
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
     let ok = true;
-    if (!leadName)                          { showErr('err-name');  ok = false; } else hideErr('err-name');
-    if (!leadEmail || !leadEmail.includes('@')) { showErr('err-email'); ok = false; } else hideErr('err-email');
-    if (!ok) return;
-
-    go(2);
+    if (!name) { showErr('err-name'); ok = false; } else hideErr('err-name');
+    if (!email || !email.includes('@')) { showErr('err-email'); ok = false; } else hideErr('err-email');
+    if (ok) go(2);
   }
 
-  /* ── Step 2 sliders ── */
   function onSlide(el) {
     missed = parseInt(el.value, 10);
     document.getElementById('snum').textContent = missed;
@@ -684,10 +582,13 @@
     document.getElementById('live').textContent = fmt(missed * patVal * 30);
   }
 
-  /* ── Step 2 → 3: send email + show results ── */
   async function calc() {
-    const pv  = parseFloat(document.getElementById('pval').value);
-    if (!pv || pv <= 0) { showErr('err-val'); return; }
+    const finalName = document.getElementById('fname').value.trim();
+    const finalEmail = document.getElementById('email').value.trim();
+    const finalPractice = document.getElementById('pname').value.trim() || 'Not provided';
+    const pv = parseFloat(document.getElementById('pval').value) || 0;
+
+    if (pv <= 0) { showErr('err-val'); return; }
     hideErr('err-val');
 
     const mo = Math.round(missed * pv * 30);
@@ -696,64 +597,49 @@
     setLoading('btn2', true);
 
     try {
-      const result = await emailjs.send(
+      await emailjs.send(
         'service_s6stsxi',
         'template_tu7pr0j',
         {
-          to_name:       leadName,
-          to_email:      leadEmail,
-          practice_name: leadPractice,
-          missed_per_day: missed,
-          patient_value:  fmt(pv),
-          monthly_loss:   fmt(mo),
-          annual_loss:    fmt(yr)
+          to_name: finalName,
+          to_email: finalEmail, // Matches your dashboard {{to_email}}
+          practice_name: finalPractice,
+          miss_day: missed,
+          patient_val: fmt(pv),
+          monthly_loss: fmt(mo),
+          annual_loss: fmt(yr)
         }
       );
-      console.log('EmailJS success:', result.status, result.text);
     } catch (err) {
-      console.error('EmailJS error:', err);
-      /* Don't block the user — show results regardless */
+      console.error('Email Error:', err);
     } finally {
       setLoading('btn2', false);
     }
 
-    /* Update results panel */
     document.getElementById('r-monthly').textContent = fmt(mo);
-    document.getElementById('r-annual').textContent  = fmt(yr);
-    document.getElementById('s-calls').textContent   = (missed * 30).toLocaleString('en-GB');
-    document.getElementById('s-pv').textContent      = fmt(pv);
-
+    document.getElementById('r-annual').textContent = fmt(yr);
+    document.getElementById('s-calls').textContent = (missed * 30).toLocaleString('en-GB');
+    document.getElementById('s-pv').textContent = fmt(pv);
     go(3);
   }
 
-  /* ── Stepper navigation ── */
   function go(n) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
     document.getElementById('p' + n).classList.add('on');
-
-    /* Activate current step */
     document.getElementById('c' + n).classList.add('active');
     document.getElementById('l' + n).classList.add('active');
-
-    /* Mark previous steps done */
-    if (n > 1) {
-      document.getElementById('c1').classList.remove('active');
-      document.getElementById('c1').classList.add('done');
-      document.getElementById('b1').classList.add('done');
+    if (n > 1) { 
+        document.getElementById('c1').classList.replace('active','done'); 
+        document.getElementById('b1').classList.add('done'); 
     }
-    if (n > 2) {
-      document.getElementById('c2').classList.remove('active');
-      document.getElementById('c2').classList.add('done');
-      document.getElementById('b2').classList.add('done');
+    if (n > 2) { 
+        document.getElementById('c2').classList.replace('active','done'); 
+        document.getElementById('b2').classList.add('done'); 
     }
-
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* ── CTA ── */
-  function demo() {
-    window.open('https://patientacquisitionhub.com/missed-call.html', '_blank');
-  }
+  function demo() { window.open('https://patientacquisitionhub.com/missed-call.html', '_blank'); }
 </script>
 </body>
 </html>

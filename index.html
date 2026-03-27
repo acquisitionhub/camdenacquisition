@@ -105,10 +105,14 @@
     <button class="btn btn-gold" onclick="window.location.href='https://patientacquisitionhub.com/missed-call.html'">See How it works</button>
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  (function() { emailjs.init("Q2eKuuLp_3c7mdLC6"); })();
+  // 1. Initialize immediately with your Public Key
+  (function() {
+    emailjs.init({
+      publicKey: "Q2eKuuLp_3c7mdLC6",
+    });
+  })();
 
   function fmt(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
 
@@ -121,8 +125,10 @@
 
   function go(n) {
     if (n === 2) {
-      if (!document.getElementById('fname').value) { document.getElementById('err-name').classList.add('on'); return; }
-      if (!document.getElementById('email').value.includes('@')) { document.getElementById('err-email').classList.add('on'); return; }
+      const name = document.getElementById('fname').value;
+      const email = document.getElementById('email').value;
+      if (!name) { document.getElementById('err-name').classList.add('on'); return; }
+      if (!email || !email.includes('@')) { document.getElementById('err-email').classList.add('on'); return; }
     }
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
     document.getElementById('p' + n).classList.add('on');
@@ -131,9 +137,11 @@
 
   async function sendResults() {
     const btn = document.getElementById('calc-btn');
-    const email = document.getElementById('email').value;
-    const name = document.getElementById('fname').value;
-    const practice = document.getElementById('pname').value || "Not provided";
+    
+    // Capture fresh values
+    const uEmail = document.getElementById('email').value.trim();
+    const uName = document.getElementById('fname').value.trim();
+    const uPrac = document.getElementById('pname').value.trim() || "Not provided";
     const m = document.getElementById('miss-slider').value;
     const v = document.getElementById('pval').value;
     
@@ -143,27 +151,35 @@
     btn.disabled = true;
     btn.textContent = "Sending...";
 
-    try {
-      await emailjs.send("service_s6stsxi", "template_tu7pr0j", {
-        to_name: name,
-        to_email: email,
-        practice_name: practice,
+    // This object matches your dashboard {{tags}}
+    const templateParams = {
+        to_name: uName,
+        to_email: uEmail,
+        practice_name: uPrac,
         missed_calls: m,
         patient_value: fmt(v),
         monthly_loss: fmt(moLoss),
         annual_loss: fmt(yrLoss)
-      });
+    };
+
+    try {
+      // 2. The Actual Send Command
+      const response = await emailjs.send("service_s6stsxi", "template_tu7pr0j", templateParams);
+      console.log('SUCCESS!', response.status, response.text);
       
-      // Update Step 3 Display
+      // Update Step 3 Result Display
       document.getElementById('res-mo').textContent = fmt(moLoss);
       document.getElementById('res-yr').textContent = fmt(yrLoss);
-      document.getElementById('res-miss').textContent = (m * 30);
+      document.getElementById('res-miss').textContent = (m * 30).toLocaleString();
       document.getElementById('res-val').textContent = fmt(v);
       
       go(3);
     } catch (err) {
-      alert("Error sending email. Please check your connection.");
-      console.error(err);
+      // 3. This will tell us the EXACT reason for failure in an alert
+      console.error('FAILED...', err);
+      const errorMsg = err?.text || err?.message || "Unknown Error";
+      alert("EmailJS Error: " + errorMsg);
+      
       btn.disabled = false;
       btn.textContent = "Calculate Results →";
     }

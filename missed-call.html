@@ -744,7 +744,58 @@
   </div>
   <p class="cta-disclaimer">No commitment. No pressure. 20 minutes — that's all it takes.</p>
 </section>
+<section class="cta-section" id="book">
+  <h2>Turn every missed call into a <em>booked appointment</em></h2>
+  <p>Book a free 20-minute demo. We'll show you exactly how the system works and what it could recover for your clinic.</p>
+  
+  <div class="cta-form">
+    <input type="text" id="demo-name" class="cta-input" placeholder="Your name">
+    <input type="email" id="demo-email" class="cta-input" placeholder="Your email">
+    
+    <div style="width: 100%; margin-top: 15px; display: flex; align-items: flex-start; gap: 10px; text-align: left;">
+      <input type="checkbox" id="consent-check" style="margin-top: 4px; cursor: pointer;">
+      <label for="consent-check" class="cta-disclaimer" style="cursor: pointer;">
+        I consent to having this website store my information to respond to my booking request. 
+        Read our <a href="#" style="color: var(--gold); text-decoration: none;">Privacy Policy</a>.
+      </label>
+    </div>
+  </div>
 
+  <div style="display:flex;justify-content:center;margin-top: 24px; margin-bottom:16px;">
+    <button class="cta-btn" onclick="sendWhatsAppBooking()">Book My Free Demo via WhatsApp →</button>
+  </div>
+  
+  <p class="cta-disclaimer">Instant notification sent to our team. 20 minutes — that's all it takes.</p>
+</section>
+
+<script>
+function sendWhatsAppBooking() {
+  // 1. CHANGE YOUR PHONE NUMBER HERE (Country code + Number, no + or spaces)
+  const phoneNumber = "441234567890"; 
+  
+  // 2. Get form values
+  const name = document.getElementById('demo-name').value;
+  const email = document.getElementById('demo-email').value;
+  const consent = document.getElementById('consent-check').checked;
+  
+  // 3. Simple Validation
+  if(!name || !email) {
+    alert("Please enter your name and email.");
+    return;
+  }
+  
+  if(!consent) {
+    alert("Please agree to the Privacy Policy to proceed.");
+    return;
+  }
+
+  // 4. Create the WhatsApp message
+  const message = `Hi! I'd like to book a demo for the Patient Recovery system.%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Consent:* Agreed to Privacy Policy.`;
+  
+  // 5. Open WhatsApp link
+  window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+}
+</script>
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Patient Recovery</div>

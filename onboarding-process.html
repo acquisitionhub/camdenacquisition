@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Onboarding — Patient Acquisition Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b3e;
+    --navy-mid: #1a3a6b;
+    --teal: #1D9E75;
+    --teal-dark: #0F6E56;
+    --teal-deep: #085041;
+    --teal-light: #E1F5EE;
+    --teal-pale: #f0faf6;
+    --gold: #f0c040;
+    --white: #ffffff;
+    --off-white: #f8f9fc;
+    --text: #0d1b3e;
+    --text-mid: #4a5568;
+    --text-light: #8898b0;
+    --border: rgba(13,27,62,0.12);
+    --border-mid: rgba(13,27,62,0.2);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(13,27,62,0.08);
+    --shadow-lg: 0 12px 48px rgba(13,27,62,0.14);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 4rem;
+  }
+
+  /* ── Top brand bar ── */
+  .brand-bar {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .brand-logo .dot {
+    width: 32px; height: 32px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand-logo .dot svg { width: 16px; height: 16px; }
+  .brand-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .brand-tag {
+    font-size: 12px;
+    color: var(--text-light);
+    background: white;
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── Card ── */
+  .card {
+    width: 100%;
+    max-width: 680px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  .card-header {
+    background: var(--navy);
+    padding: 2rem 2.5rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.15);
+  }
+  .card-header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: 60px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .step-counter {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .step-badge {
+    background: rgba(29,158,117,0.25);
+    color: #5DCAA5;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(29,158,117,0.3);
+  }
+  .card-header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 6px;
+    font-weight: 400;
+    position: relative;
+  }
+  .card-header h1 em {
+    font-style: normal;
+    color: #5DCAA5;
+  }
+  .card-header p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    position: relative;
+  }
+
+  /* ── Progress ── */
+  .progress-track {
+    display: flex;
+    gap: 4px;
+    padding: 0 2.5rem;
+    background: var(--navy);
+    padding-bottom: 0;
+  }
+  .prog-seg {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    transition: background 0.4s ease;
+    margin-bottom: 0;
+  }
+  .prog-seg.done { background: var(--teal); }
+  .prog-seg.active { background: rgba(29,158,117,0.5); }
+
+  /* ── Step labels ── */
+  .step-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .step-nav::-webkit-scrollbar { display: none; }
+  .step-tab {
+    flex: 1;
+    min-width: 100px;
+    padding: 14px 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .step-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .step-tab.done { color: var(--text-mid); }
+  .step-tab .tab-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--border);
+    font-size: 10px;
+    margin-right: 5px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .step-tab.active .tab-num { background: var(--teal); color: white; }
+  .step-tab.done .tab-num { background: var(--teal-light); color: var(--teal-dark); }
+
+  /* ── Step body ── */
+  .step-body { display: none; padding: 2rem 2.5rem; }
+  .step-body.active { display: block; animation: fadeUp 0.3s ease; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Form elements ── */
+  .field { margin-bottom: 1.1rem; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border-mid);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    appearance: none;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+  }
+  .field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238898b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* ── Info box ── */
+  .info-box {
+    background: var(--teal-pale);
+    border: 1px solid rgba(29,158,117,0.2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-bottom: 1.1rem;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .info-box .icon { color: var(--teal); font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+  .info-box p { font-size: 13px; color: var(--teal-deep); line-height: 1.55; }
+
+  /* ── Section heading ── */
+  .section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 1.5rem 0 0.75rem;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  /* ── Toggle rows ── */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    transition: border-color 0.2s;
+  }
+  .toggle-row:hover { border-color: var(--border-mid); }
+  .toggle-row .tl { flex: 1; }
+  .toggle-row .tl strong { font-size: 14px; font-weight: 500; display: block; color: var(--text); }
+  .toggle-row .tl small { font-size: 12px; color: var(--text-light); }
+  .toggle { position: relative; width: 38px; height: 22px; flex-shrink: 0; margin-left: 12px; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .slider {
+    position: absolute; cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #d1d9e6;
+    border-radius: 22px;
+    transition: 0.3s;
+  }
+  .slider::before {
+    content: '';
+    position: absolute;
+    width: 16px; height: 16px;
+    left: 3px; bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  input:checked + .slider { background: var(--teal); }
+  input:checked + .slider::before { transform: translateX(16px); }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .checklist li:hover { border-color: var(--teal); }
+  .checklist li.checked { border-color: var(--teal); background: var(--teal-pale); }
+  .check-circle {
+    width: 22px; height: 22px; min-width: 22px;
+    border-radius: 50%;
+    border: 1.5px solid #d1d9e6;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .checked .check-circle {
+    background: var(--teal);
+    border-color: var(--teal);
+  }
+  .check-circle svg { display: none; }
+  .checked .check-circle svg { display: block; }
+  .check-info strong { font-size: 14px; font-weight: 500; display: block; color: var(--text); }
+  .check-info span { font-size: 12px; color: var(--text-light); margin-top: 2px; display: block; }
+
+  /* ── Option cards ── */
+  .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .option-card {
+    padding: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+  .option-card:hover { border-color: var(--teal); }
+  .option-card.selected { border-color: var(--teal); background: var(--teal-pale); }
+  .option-card .oc-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+  .option-card strong { font-size: 13px; font-weight: 600; display: block; color: var(--text); }
+  .option-card p { font-size: 12px; color: var(--text-light); margin-top: 3px; line-height: 1.4; }
+
+  /* ── Buttons ── */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 11px 22px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    border: 1.5px solid var(--border-mid);
+    background: white;
+    color: var(--text-mid);
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--off-white); border-color: var(--border-mid); }
+  .btn-primary {
+    background: var(--navy);
+    color: white;
+    border-color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+  .btn-teal {
+    background: var(--teal);
+    color: white;
+    border-color: var(--teal);
+  }
+  .btn-teal:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
+
+  /* ── Summary / Step 5 ── */
+  .success-wrap { text-align: center; margin-bottom: 2rem; }
+  .success-ring {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    border: 3px solid rgba(29,158,117,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+  .success-ring svg { width: 32px; height: 32px; }
+  .success-wrap h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .success-wrap p { font-size: 14px; color: var(--text-mid); line-height: 1.6; max-width: 400px; margin: 0 auto; }
+
+  .summary-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .summary-card h4 {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+  .sum-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .sum-row:last-child { border-bottom: none; }
+  .sum-row .sk { color: var(--text-light); }
+  .sum-row .sv { color: var(--navy); font-weight: 500; }
+  .sum-row .sv.teal { color: var(--teal-dark); }
+
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .t-row { display: flex; gap: 16px; }
+  .t-line-col { display: flex; flex-direction: column; align-items: center; }
+  .t-dot { width: 12px; height: 12px; min-height: 12px; border-radius: 50%; background: var(--teal); border: 2px solid white; box-shadow: 0 0 0 2px var(--teal); margin-top: 3px; }
+  .t-connector { width: 2px; background: var(--border); flex: 1; margin: 4px 0; min-height: 12px; }
+  .t-row:last-child .t-connector { display: none; }
+  .t-text { padding-bottom: 18px; }
+  .t-text strong { font-size: 13px; font-weight: 600; color: var(--navy); display: block; }
+  .t-text .t-day { font-size: 11px; font-weight: 600; color: var(--teal); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+  .t-text span { font-size: 12px; color: var(--text-light); line-height: 1.5; display: block; }
+
+  /* ── Footer ── */
+  .footer {
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .footer a { color: var(--teal-dark); text-decoration: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.75rem 3rem; }
+    .card-header { padding: 1.5rem 1.5rem 1.25rem; }
+    .step-body { padding: 1.5rem 1.5rem; }
+    .grid-2 { grid-template-columns: 1fr; gap: 0; }
+    .option-grid { grid-template-columns: 1fr 1fr; }
+    .card-header h1 { font-size: 21px; }
+    .progress-track { padding: 0 1.5rem; }
+    .step-tab { min-width: 80px; font-size: 11px; padding: 12px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="brand-bar">
+  <a class="brand-logo" href="https://patientacquisitionhub.com" target="_blank">
+    <div class="dot">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="8" r="5" stroke="#1D9E75" stroke-width="2"/>
+        <path d="M8 5v3l2 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span class="brand-name">Patient Acquisition Hub</span>
+  </a>
+  <span class="brand-tag">New client onboarding</span>
+</div>
+
+<div class="card">
+
+  <!-- Header (dynamic) -->
+  <div class="card-header">
+    <div class="header-top">
+      <span class="step-counter" id="step-counter">Step 1 of 5</span>
+      <span class="step-badge" id="step-badge">Practice details</span>
+    </div>
+    <h1 id="header-title">Welcome — let's get your practice <em>set up</em></h1>
+    <p id="header-sub">We'll have your review &amp; reactivation system live within days. Start by telling us about your practice.</p>
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-track">
+    <div class="prog-seg active" id="ps0"></div>
+    <div class="prog-seg" id="ps1"></div>
+    <div class="prog-seg" id="ps2"></div>
+    <div class="prog-seg" id="ps3"></div>
+    <div class="prog-seg" id="ps4"></div>
+  </div>
+
+  <!-- Step tabs -->
+  <div class="step-nav">
+    <div class="step-tab active" id="tab0"><span class="tab-num">1</span>Practice</div>
+    <div class="step-tab" id="tab1"><span class="tab-num">2</span>Reviews</div>
+    <div class="step-tab" id="tab2"><span class="tab-num">3</span>Reactivation</div>
+    <div class="step-tab" id="tab3"><span class="tab-num">4</span>Setup</div>
+    <div class="step-tab" id="tab4"><span class="tab-num">5</span>Summary</div>
+  </div>
+
+  <!-- ── STEP 1: Practice Details ── -->
+  <div class="step-body active" id="step-0">
+    <div class="grid-2">
+      <div class="field">
+        <label>Practice name</label>
+        <input type="text" placeholder="e.g. Smile Studio London" id="f-name">
+      </div>
+      <div class="field">
+        <label>Principal dentist</label>
+        <input type="text" placeholder="Dr. Jane Smith" id="f-dentist">
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Practice email</label>
+        <input type="email" placeholder="hello@practice.co.uk" id="f-email">
+      </div>
+      <div class="field">
+        <label>Reception phone</label>
+        <input type="tel" placeholder="+44 20 1234 5678" id="f-phone">
+      </div>
+    </div>
+    <div class="field">
+      <label>Practice address</label>
+      <input type="text" placeholder="123 High Street, London, EC1A 1BB" id="f-address">
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Practice type</label>
+        <select id="f-type">
+          <option value="">Select type...</option>
+          <option>NHS practice</option>
+          <option>Private practice</option>
+          <option>Mixed NHS &amp; private</option>
+          <option>Cosmetic / specialist</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Monthly appointments (approx.)</label>
+        <select id="f-vol">
+          <option value="">Select volume...</option>
+          <option>Under 100</option>
+          <option>100 – 300</option>
+          <option>300 – 600</option>
+          <option>600+</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Google Reviews ── -->
+  <div class="step-body" id="step-1">
+    <div class="section-title">Google Business Profile</div>
+    <div class="field">
+      <label>Your Google Business Profile review link</label>
+      <input type="url" placeholder="https://g.page/your-practice/review" id="f-gbp">
+    </div>
+    <div class="info-box">
+      <span class="icon">ℹ</span>
+      <p>Not sure of your URL? Open Google Maps, search your practice name, click "Write a review" — then copy the URL from your browser. We'll verify this before going live.</p>
+    </div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Current Google rating</label>
+        <select id="f-rating">
+          <option value="">Select rating...</option>
+          <option>No reviews yet</option>
+          <option>Below 4.0 ★</option>
+          <option>4.0 – 4.4 ★</option>
+          <option>4.5 – 4.7 ★</option>
+          <option>4.8 – 5.0 ★</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Total reviews currently</label>
+        <select id="f-revcount">
+          <option value="">Select range...</option>
+          <option>0 – 10</option>
+          <option>11 – 30</option>
+          <option>31 – 80</option>
+          <option>81 – 150</option>
+          <option>150+</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-title">Review request preferences</div>
+    <div class="toggle-row">
+      <div class="tl"><strong>Send via SMS</strong><small>Personalised text after each appointment — highest open rates</small></div>
+      <label class="toggle"><input type="checkbox" checked><span class="slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="tl"><strong>Send via email</strong><small>Branded email follow-up as backup channel</small></div>
+      <label class="toggle"><input type="checkbox" checked><span class="slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="tl"><strong>Private routing for unhappy patients</strong><small>Low scores go private first — protecting your public reputation</small></div>
+      <label class="toggle"><input type="checkbox" checked><span class="slider"></span></label>
+    </div>
+    <div class="toggle-row">
+      <div class="tl"><strong>Auto-respond to new reviews</strong><small>Professional responses drafted and posted on your behalf</small></div>
+      <label class="toggle"><input type="checkbox"><span class="slider"></span></label>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Reactivation ── -->
+  <div class="step-body" id="step-2">
+    <div class="section-title">Reactivation window</div>
+    <div class="field">
+      <label>Define "lapsed" patient as someone who hasn't visited in...</label>
+      <select id="f-lapsed">
+        <option>6 months</option>
+        <option selected>12 months</option>
+        <option>18 months</option>
+        <option>24 months</option>
+      </select>
+    </div>
+
+    <div class="section-title">Outreach channels</div>
+    <ul class="checklist" id="channel-list">
+      <li class="checked" onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>SMS message</strong><span>Personalised text with booking link — highest engagement</span></div>
+      </li>
+      <li class="checked" onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>Email campaign</strong><span>Branded recall email with appointment link</span></div>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>WhatsApp message</strong><span>High open rates for recall outreach</span></div>
+      </li>
+    </ul>
+
+    <div class="section-title">Recall incentive</div>
+    <div class="field">
+      <label>Include an incentive in your reactivation message?</label>
+      <select id="f-incentive">
+        <option>None — reminder only</option>
+        <option>Free check-up with hygienist booking</option>
+        <option>10% off next treatment</option>
+        <option>Complimentary whitening consultation</option>
+        <option>Custom (we'll agree this on your onboarding call)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Anything specific about your patient base?</label>
+      <textarea placeholder="e.g. Mostly private patients, high interest in Invisalign, lots of families — helps us tailor the message tone." id="f-notes"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Technical setup ── -->
+  <div class="step-body" id="step-3">
+    <div class="section-title">Practice management software</div>
+    <div class="field">
+      <label>Which system do you use?</label>
+      <select id="f-pms">
+        <option value="">Select your software...</option>
+        <option>Dentally</option>
+        <option>SOE / Exact</option>
+        <option>Carestream Dental</option>
+        <option>R4 Software</option>
+        <option>Nookal</option>
+        <option>Acuro</option>
+        <option>Soeasy</option>
+        <option>Other / not sure</option>
+      </select>
+    </div>
+
+    <div class="section-title">Alert &amp; report contacts</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Primary contact name</label>
+        <input type="text" placeholder="Practice manager name">
+      </div>
+      <div class="field">
+        <label>Contact email</label>
+        <input type="email" placeholder="manager@practice.co.uk">
+      </div>
+    </div>
+    <div class="field">
+      <label>Preferred reporting frequency</label>
+      <select>
+        <option>Weekly summary email</option>
+        <option>Fortnightly summary email</option>
+        <option>Monthly summary email</option>
+      </select>
+    </div>
+
+    <div class="section-title">Go-live checklist</div>
+    <ul class="checklist">
+      <li class="checked" onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>Google Business Profile access granted</strong><span>We need manager access to monitor &amp; respond to reviews</span></div>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>Patient GDPR consent confirmed</strong><span>Opt-in collected at reception or via booking forms</span></div>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>SMS sender name approved</strong><span>e.g. "Smile Studio" — this is what patients see on texts</span></div>
+      </li>
+      <li onclick="toggleCheck(this)">
+        <div class="check-circle"><svg viewBox="0 0 12 10" fill="none"><path d="M1 5l3.5 3.5L11 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="check-info"><strong>Test SMS received &amp; approved</strong><span>We'll send a live test before activating for patients</span></div>
+      </li>
+    </ul>
+    <div class="btn-row">
+      <button class="btn" onclick="prevStep()">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep()">View summary &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: Summary ── -->
+  <div class="step-body" id="step-4">
+    <div class="success-wrap">
+      <div class="success-ring">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" fill="#E1F5EE"/>
+          <path d="M9 16.5l4.5 4.5 9.5-9.5" stroke="#1D9E75" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2>You're all set!</h2>
+      <p>Julien will review your setup and reach out within one business day to confirm your go-live date.</p>
+    </div>
+
+    <div class="summary-card">
+      <h4>Setup overview</h4>
+      <div class="sum-row"><span class="sk">Google review requests</span><span class="sv teal">SMS + Email ✓</span></div>
+      <div class="sum-row"><span class="sk">Unhappy patient routing</span><span class="sv teal">Private first ✓</span></div>
+      <div class="sum-row"><span class="sk">Reactivation window</span><span class="sv">12 months lapsed</span></div>
+      <div class="sum-row"><span class="sk">Outreach channels</span><span class="sv">SMS + Email</span></div>
+      <div class="sum-row"><span class="sk">GDPR compliance</span><span class="sv teal">UK GDPR ✓</span></div>
+      <div class="sum-row"><span class="sk">Estimated go-live</span><span class="sv">Within 5 days</span></div>
+    </div>
+
+    <div class="section-title" style="margin-top:0;">What happens next</div>
+    <div class="timeline">
+      <div class="t-row">
+        <div class="t-line-col"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-text"><div class="t-day">Day 1</div><strong>Confirmation call</strong><span>Julien reviews your setup and confirms integration details</span></div>
+      </div>
+      <div class="t-row">
+        <div class="t-line-col"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-text"><div class="t-day">Days 2 – 3</div><strong>Technical setup</strong><span>We connect to your practice management software and configure messages</span></div>
+      </div>
+      <div class="t-row">
+        <div class="t-line-col"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-text"><div class="t-day">Day 4</div><strong>Test &amp; approve</strong><span>You receive a test SMS and sign off on your message templates</span></div>
+      </div>
+      <div class="t-row">
+        <div class="t-line-col"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-text"><div class="t-day">Day 5</div><strong>Go live</strong><span>Review requests and reactivation campaigns launch automatically</span></div>
+      </div>
+      <div class="t-row">
+        <div class="t-line-col"><div class="t-dot"></div><div class="t-connector"></div></div>
+        <div class="t-text"><div class="t-day">Day 30</div><strong>First results review</strong><span>We report on new reviews gained, patients reactivated, and opportunities</span></div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="justify-content: space-between;">
+      <button class="btn" onclick="prevStep()">&larr; Back</button>
+      <a href="https://calendly.com/patientacquisitionhub/30min" target="_blank" class="btn btn-teal" style="text-decoration:none;">Book go-live call &rarr;</a>
+    </div>
+  </div>
+
+</div><!-- /card -->
+
+<div class="footer">
+  <p>&copy; 2026 Patient Acquisition Hub &middot; Milestone Marketing Ltd &middot; Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR</p>
+  <p style="margin-top:6px;"><a href="mailto:Julien@patientacquisitionhub.com">Julien@patientacquisitionhub.com</a> &middot; <a href="https://patientacquisitionhub.com" target="_blank">patientacquisitionhub.com</a></p>
+</div>
+
+<script>
+  let current = 0;
+  const total = 5;
+
+  const headers = [
+    { badge: 'Practice details', title: 'Welcome — let\'s get your practice <em>set up</em>', sub: 'We\'ll have your review &amp; reactivation system live within days. Start by telling us about your practice.' },
+    { badge: 'Google Reviews', title: 'Set up your <em>review engine</em>', sub: 'Connect your Google Business Profile and choose how review requests are sent to patients after each appointment.' },
+    { badge: 'Reactivation', title: 'Win back <em>lapsed patients</em>', sub: 'Configure your reactivation campaign — who we target, how we reach them, and what we say.' },
+    { badge: 'Technical setup', title: 'Connect &amp; <em>go live</em>', sub: 'Link your practice management software and confirm the final go-live checklist items.' },
+    { badge: 'Complete', title: 'You\'re <em>all set!</em>', sub: 'Onboarding complete. Here\'s a summary of your setup and what happens next.' }
+  ];
+
+  function updateHeader() {
+    const h = headers[current];
+    document.getElementById('step-counter').textContent = 'Step ' + (current + 1) + ' of ' + total;
+    document.getElementById('step-badge').textContent = h.badge;
+    document.getElementById('header-title').innerHTML = h.title;
+    document.getElementById('header-sub').innerHTML = h.sub;
+
+    for (let i = 0; i < total; i++) {
+      const seg = document.getElementById('ps' + i);
+      seg.className = 'prog-seg';
+      if (i < current) seg.classList.add('done');
+      else if (i === current) seg.classList.add('active');
+
+      const tab = document.getElementById('tab' + i);
+      tab.className = 'step-tab';
+      if (i === current) tab.classList.add('active');
+      else if (i < current) tab.classList.add('done');
+    }
+  }
+
+  function nextStep() {
+    if (current < total - 1) {
+      document.getElementById('step-' + current).classList.remove('active');
+      current++;
+      document.getElementById('step-' + current).classList.add('active');
+      updateHeader();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function prevStep() {
+    if (current > 0) {
+      document.getElementById('step-' + current).classList.remove('active');
+      current--;
+      document.getElementById('step-' + current).classList.add('active');
+      updateHeader();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+</script>
+</body>
+</html>

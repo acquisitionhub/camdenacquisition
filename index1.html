@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Google Review Audit | Patient Acquisition Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0f1e;
+    --navy-mid: #111827;
+    --navy-card: #162033;
+    --navy-border: #1e2d45;
+    --teal: #00c6a7;
+    --teal-dark: #00a88e;
+    --teal-glow: rgba(0,198,167,0.15);
+    --teal-glow-soft: rgba(0,198,167,0.07);
+    --white: #ffffff;
+    --text-muted: #8899b4;
+    --text-dim: #4f637e;
+    --red: #f04e55;
+    --red-bg: rgba(240,78,85,0.12);
+    --amber: #f5a623;
+    --amber-bg: rgba(245,166,35,0.12);
+    --green: #00c6a7;
+    --green-bg: rgba(0,198,167,0.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2rem;
+    border-bottom: 1px solid var(--navy-border);
+    background: rgba(10,15,30,0.95);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .nav-cta {
+    background: var(--teal);
+    color: var(--navy);
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--teal-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 4rem 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0,198,167,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal-glow);
+    border: 1px solid rgba(0,198,167,0.3);
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 400;
+    line-height: 1.2;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    color: var(--white);
+  }
+
+  .hero h1 span { color: var(--teal); }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 0.5rem;
+  }
+
+  .hero-slots {
+    font-size: 13px;
+    color: var(--red);
+    font-weight: 500;
+    margin-top: 0.8rem;
+  }
+
+  /* ── MAIN CARD ── */
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  .audit-card {
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .audit-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.8rem;
+  }
+
+  .prog-step {
+    flex: 1;
+    height: 3px;
+    background: var(--navy-border);
+    border-radius: 2px;
+    transition: background 0.4s;
+  }
+
+  .prog-step.active { background: var(--teal); }
+
+  /* ── STEPS ── */
+  .step { display: none; }
+  .step.visible { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── FORM ELEMENTS ── */
+  .field { margin-bottom: 1rem; }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 11px 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .field input::placeholder { color: var(--text-dim); }
+
+  .field input:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(0,198,167,0.1);
+  }
+
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238899b4' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+
+  .field select option {
+    background: var(--navy-mid);
+    color: var(--white);
+  }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ── OPTION TILES (review count / rating selection) ── */
+  .tile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+
+  .tile {
+    background: var(--navy-mid);
+    border: 1px solid var(--navy-border);
+    border-radius: var(--radius-sm);
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+  }
+
+  .tile:hover { border-color: var(--text-dim); }
+  .tile.selected { border-color: var(--teal); background: var(--teal-glow-soft); }
+
+  .tile-icon { font-size: 22px; margin-bottom: 5px; }
+  .tile-label { font-size: 13px; font-weight: 500; color: var(--white); }
+  .tile-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── BUTTONS ── */
+  .btn-primary {
+    width: 100%;
+    background: var(--teal);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { background: var(--teal-dark); }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 8px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--white); }
+
+  /* ── RESULT ── */
+  .score-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 1.2rem;
+    background: var(--navy-mid);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--navy-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .score-ring {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .score-ring svg { width: 80px; height: 80px; transform: rotate(-90deg); }
+  .score-ring-bg { fill: none; stroke: var(--navy-border); stroke-width: 6; }
+  .score-ring-fill { fill: none; stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+
+  .score-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-num { font-size: 22px; font-weight: 700; }
+  .score-denom { font-size: 11px; color: var(--text-muted); }
+
+  .score-info { flex: 1; }
+  .score-grade { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .score-msg { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+  /* ── GAP ITEMS ── */
+  .gaps { margin-bottom: 1.5rem; }
+
+  .gap-item {
+    display: flex;
+    gap: 12px;
+    padding: 13px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    border: 1px solid transparent;
+  }
+
+  .gap-item.sev-r { background: var(--red-bg); border-color: rgba(240,78,85,0.2); }
+  .gap-item.sev-a { background: var(--amber-bg); border-color: rgba(245,166,35,0.2); }
+  .gap-item.sev-g { background: var(--green-bg); border-color: rgba(0,198,167,0.2); }
+
+  .gap-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .sev-r .gap-dot { background: var(--red); }
+  .sev-a .gap-dot { background: var(--amber); }
+  .sev-g .gap-dot { background: var(--green); }
+
+  .gap-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .gap-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* ── CTA BOX ── */
+  .cta-box {
+    background: linear-gradient(135deg, rgba(0,198,167,0.1), rgba(0,198,167,0.03));
+    border: 1px solid rgba(0,198,167,0.25);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .cta-title { font-size: 18px; font-weight: 700; margin-bottom: 0.4rem; }
+  .cta-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.5; }
+
+  .cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-feat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .btn-book {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 13px 32px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .btn-book:hover { background: var(--teal-dark); }
+
+  .urgency {
+    font-size: 12px;
+    color: var(--red);
+    margin-top: 0.8rem;
+    font-weight: 500;
+  }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: 2rem 1.5rem;
+    border-top: 1px solid var(--navy-border);
+    border-bottom: 1px solid var(--navy-border);
+    margin-top: 2rem;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .trust-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--teal-glow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  footer a { color: var(--text-muted); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+
+  /* ── VALIDATION ── */
+  .field.error input,
+  .field.error select {
+    border-color: var(--red);
+  }
+
+  .error-msg {
+    font-size: 11px;
+    color: var(--red);
+    margin-top: 4px;
+    display: none;
+  }
+
+  .field.error .error-msg { display: block; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--navy-card);
+    border: 1px solid var(--navy-border);
+    color: var(--white);
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 1fr; }
+    .tile-grid { grid-template-columns: 1fr 1fr; }
+    .score-header { flex-direction: column; text-align: center; }
+    nav { padding: 1rem; }
+    .nav-cta { display: none; }
+    .cta-features { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="https://patientacquisitionhub.com/patient-acquisition-hub.html">
+    <div class="logo-mark">P</div>
+    <div>
+      <div class="logo-text">Patient Acquisition Hub</div>
+      <div class="logo-sub">For UK Dental Practices</div>
+    </div>
+  </a>
+  <a class="nav-cta" href="https://calendly.com/patientacquisitionhub/30min" target="_blank">Book a Demo</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">⭐ Free Google Review Audit</div>
+  <h1>Discover How Much Revenue Your <span>Google Reviews</span> Are Costing You</h1>
+  <p class="hero-sub">Takes 60 seconds. Get a personalised reputation score with specific action steps for your practice.</p>
+  <p class="hero-slots" id="slot-counter">⚠ Only 4 free audit slots remaining this week</p>
+</div>
+
+<!-- MAIN FORM CARD -->
+<div class="container">
+  <div class="audit-card">
+
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="prog-step active" id="prog1"></div>
+      <div class="prog-step" id="prog2"></div>
+      <div class="prog-step" id="prog3"></div>
+      <div class="prog-step" id="prog4"></div>
+    </div>
+
+    <!-- STEP 1: Practice details -->
+    <div class="step visible" id="step1">
+      <div class="step-label">Step 1 of 3 — Your practice</div>
+      <div class="step-title">Tell us about your clinic</div>
+      <div class="step-desc">We'll use this to tailor your audit results.</div>
+
+      <div class="field" id="f-clinic">
+        <label>Clinic name</label>
+        <input type="text" id="clinic" placeholder="e.g. Smile Studio Dental">
+        <div class="error-msg">Please enter your clinic name</div>
+      </div>
+
+      <div class="row">
+        <div class="field" id="f-city">
+          <label>City / Town</label>
+          <input type="text" id="city" placeholder="e.g. London">
+          <div class="error-msg">Required</div>
+        </div>
+        <div class="field" id="f-type">
+          <label>Practice type</label>
+          <select id="type">
+            <option value="">Select…</option>
+            <option value="private">Private only</option>
+            <option value="mixed">Mixed NHS & private</option>
+            <option value="nhs">NHS only</option>
+            <option value="cosmetic">Cosmetic / implants</option>
+          </select>
+          <div class="error-msg">Required</div>
+        </div>
+      </div>
+
+      <button class="btn-primary" onclick="nextStep(1)">Continue →</button>
+    </div>
+
+    <!-- STEP 2: Google presence -->
+    <div class="step" id="step2">
+      <div class="step-label">Step 2 of 3 — Your Google presence</div>
+      <div class="step-title">How are your reviews looking?</div>
+      <div class="step-desc">Be honest — this only helps us give you accurate insights.</div>
+
+      <div class="field" id="f-reviews">
+        <label>How many Google reviews do you have?</label>
+        <div class="tile-grid">
+          <div class="tile" onclick="selectTile('reviews','0',this)">
+            <div class="tile-icon">😬</div>
+            <div class="tile-label">0–10</div>
+            <div class="tile-sub">Very low</div>
+          </div>
+          <div class="tile" onclick="selectTile('reviews','1',this)">
+            <div class="tile-icon">😐</div>
+            <div class="tile-label">11–30</div>
+            <div class="tile-sub">Below average</div>
+          </div>
+          <div class="tile" onclick="selectTile('reviews','2',this)">
+            <div class="tile-icon">🙂</div>
+            <div class="tile-label">31–60</div>
+            <div class="tile-sub">Getting there</div>
+          </div>
+          <div class="tile" onclick="selectTile('reviews','3',this)">
+            <div class="tile-icon">😄</div>
+            <div class="tile-label">60+</div>
+            <div class="tile-sub">Strong</div>
+          </div>
+        </div>
+        <div class="error-msg">Please select your review count</div>
+      </div>
+
+      <div class="field" id="f-rating">
+        <label>Your average star rating</label>
+        <div class="tile-grid">
+          <div class="tile" onclick="selectTile('rating','0',this)">
+            <div class="tile-icon">⭐</div>
+            <div class="tile-label">Below 3.5★</div>
+            <div class="tile-sub">Critical issue</div>
+          </div>
+          <div class="tile" onclick="selectTile('rating','1',this)">
+            <div class="tile-icon">⭐⭐</div>
+            <div class="tile-label">3.5 – 4.0★</div>
+            <div class="tile-sub">Needs work</div>
+          </div>
+          <div class="tile" onclick="selectTile('rating','2',this)">
+            <div class="tile-icon">⭐⭐⭐</div>
+            <div class="tile-label">4.1 – 4.5★</div>
+            <div class="tile-sub">Good</div>
+          </div>
+          <div class="tile" onclick="selectTile('rating','3',this)">
+            <div class="tile-icon">🌟</div>
+            <div class="tile-label">4.6 – 5.0★</div>
+            <div class="tile-sub">Excellent</div>
+          </div>
+        </div>
+        <div class="error-msg">Please select your rating</div>
+      </div>
+
+      <div class="field" id="f-replies">
+        <label>Do you reply to Google reviews?</label>
+        <select id="replies">
+          <option value="">Select…</option>
+          <option value="0">Never — no replies at all</option>
+          <option value="1">Sometimes — a few here and there</option>
+          <option value="2">Always — every review gets a response</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <div class="field" id="f-recency">
+        <label>When was your last Google review received?</label>
+        <select id="recency">
+          <option value="">Select…</option>
+          <option value="0">More than 3 months ago</option>
+          <option value="1">1–3 months ago</option>
+          <option value="2">Within the last month</option>
+          <option value="3">Within the last week</option>
+        </select>
+        <div class="error-msg">Required</div>
+      </div>
+
+      <button class="btn-primary" onclick="nextStep(2)">Continue →</button>
+      <button class="btn-secondary" onclick="prevStep(2)">← Back</button>
+    </div>
+
+    <!-- STEP 3: Lead capture -->
+    <div class="step" id="step3">
+      <div class="step-label">Step 3 of 3 — Get your results</div>
+      <div class="step-title">Where shall we send your audit?</div>
+      <div class="step-desc">Your personalised reputation score and action plan will appear instantly.</div>
+
+      <div class="row">
+        <div class="field" id="f-name">
+          <label>Your name</label>
+          <input type="text" id="name" placeholder="First name">
+          <div class="error-msg">Required</div>
+        </div>
+        <div class="field" id="f-role">
+          <label>Your role</label>
+          <select id="role">
+            <option value="">Select…</option>
+            <option value="owner">Practice owner</option>
+            <option value="dentist">Principal dentist</option>
+            <option value="manager">Practice manager</option>
+            <option value="marketing">Marketing lead</option>
+          </select>
+          <div class="error-msg">Required</div>
+        </div>
+      </div>
+
+      <div class="field" id="f-email">
+        <label>Email address</label>
+        <input type="email" id="email" placeholder="you@yourclinic.co.uk">
+        <div class="error-msg">Please enter a valid email</div>
+      </div>
+
+      <div class="field" id="f-phone">
+        <label>Phone number <span style="color:var(--text-dim);font-weight:400">(optional — for callback)</span></label>
+        <input type="tel" id="phone" placeholder="+44 7700 000000">
+      </div>
+
+      <button class="btn-primary" onclick="runAudit()" id="run-btn">Run my free audit ↗</button>
+      <button class="btn-secondary" onclick="prevStep(3)">← Back</button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="step" id="step-result">
+      <div class="step-label">Your audit results</div>
+      <div class="step-title" id="result-clinic-name">Reputation Score</div>
+      <div class="step-desc" style="margin-bottom:1.2rem" id="result-city"></div>
+
+      <!-- Score ring -->
+      <div class="score-header">
+        <div class="score-ring">
+          <svg viewBox="0 0 80 80">
+            <circle class="score-ring-bg" cx="40" cy="40" r="32"/>
+            <circle class="score-ring-fill" id="ring-fill" cx="40" cy="40" r="32"
+              stroke-dasharray="201"
+              stroke-dashoffset="201"/>
+          </svg>
+          <div class="score-inner">
+            <span class="score-num" id="res-score">0</span>
+            <span class="score-denom">/100</span>
+          </div>
+        </div>
+        <div class="score-info">
+          <div class="score-grade" id="res-grade"></div>
+          <div class="score-msg" id="res-msg"></div>
+        </div>
+      </div>
+
+      <!-- Gaps -->
+      <div class="gaps" id="gaps-list"></div>
+
+      <!-- CTA -->
+      <div class="cta-box">
+        <div class="cta-title">Ready to fix this — fast?</div>
+        <div class="cta-sub">We help UK dental clinics grow their Google reviews on autopilot. No extra work for your team. Results in 30 days.</div>
+        <div class="cta-features">
+          <div class="cta-feat">✓ Automated review requests</div>
+          <div class="cta-feat">✓ Missed call recovery</div>
+          <div class="cta-feat">✓ UK-based support</div>
+        </div>
+        <a class="btn-book" href="https://calendly.com/patientacquisitionhub/30min" target="_blank">
+          Book a Free Strategy Call with Julien
+        </a>
+        <div class="urgency" id="cta-urgency"></div>
+      </div>
+
+      <button class="btn-secondary" style="margin-top:1.2rem" onclick="restartAudit()">Start a new audit</button>
+    </div>
+
+  </div><!-- /audit-card -->
+
+  <!-- Trust strip -->
+  <div class="trust-strip">
+    <div class="trust-item"><div class="trust-icon">🔒</div> 100% private — no data sold</div>
+    <div class="trust-item"><div class="trust-icon">🇬🇧</div> Built for UK dental practices</div>
+    <div class="trust-item"><div class="trust-icon">⚡</div> Instant results, no waiting</div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p style="margin-bottom:6px">
+    <a href="https://patientacquisitionhub.com/patient-acquisition-hub.html">Patient Acquisition Hub</a> &nbsp;·&nbsp;
+    Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR &nbsp;·&nbsp;
+    <a href="mailto:Julien@patientacquisitionhub.com">Julien@patientacquisitionhub.com</a>
+  </p>
+  <p>© 2026 Milestone Marketing Ltd &nbsp;·&nbsp; <a href="https://www.patientacquisitionhub.com/private-policy/private-policy.pdf" target="_blank">Privacy Policy</a></p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── State ──
+  var data = { reviews: null, rating: null };
+  var currentStep = 1;
+
+  // ── Slot counter (fake urgency, randomised) ──
+  (function(){
+    var slots = Math.floor(Math.random() * 3) + 2;
+    document.getElementById('slot-counter').textContent = '⚠ Only ' + slots + ' free audit slots remaining this week';
+  })();
+
+  // ── Tile selection ──
+  function selectTile(key, val, el) {
+    data[key] = val;
+    var grid = el.closest('.tile-grid');
+    grid.querySelectorAll('.tile').forEach(function(t){ t.classList.remove('selected'); });
+    el.classList.add('selected');
+    var field = el.closest('.field');
+    if(field) field.classList.remove('error');
+  }
+
+  // ── Navigation ──
+  function nextStep(from) {
+    if(!validateStep(from)) return;
+    showStep(from + 1);
+  }
+
+  function prevStep(from) {
+    showStep(from - 1);
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('visible'); });
+    var target = n === 'result' ? document.getElementById('step-result') : document.getElementById('step' + n);
+    if(target) { target.classList.add('visible'); currentStep = n; }
+    updateProgress(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress(n) {
+    for(var i = 1; i <= 4; i++){
+      var el = document.getElementById('prog' + i);
+      if(el) el.classList.toggle('active', i <= n);
+    }
+  }
+
+  // ── Validation ──
+  function validateStep(step) {
+    var valid = true;
+
+    function checkField(fieldId, inputId, isTile) {
+      var field = document.getElementById(fieldId);
+      if(!field) return;
+      if(isTile) {
+        if(data[inputId] === null || data[inputId] === undefined) {
+          field.classList.add('error');
+          valid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      } else {
+        var input = document.getElementById(inputId);
+        if(!input) return;
+        if(!input.value.trim() || (input.tagName === 'SELECT' && !input.value)) {
+          field.classList.add('error');
+          valid = false;
+        } else {
+          field.classList.remove('error');
+        }
+      }
+    }
+
+    if(step === 1) {
+      checkField('f-clinic', 'clinic', false);
+      checkField('f-city', 'city', false);
+      checkField('f-type', 'type', false);
+    }
+    if(step === 2) {
+      checkField('f-reviews', 'reviews', true);
+      checkField('f-rating', 'rating', true);
+      checkField('f-replies', 'replies', false);
+      checkField('f-recency', 'recency', false);
+    }
+    if(step === 3) {
+      checkField('f-name', 'name', false);
+      checkField('f-role', 'role', false);
+      checkField('f-email', 'email', false);
+      // validate email format
+      var emailEl = document.getElementById('email');
+      if(emailEl && emailEl.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+        document.getElementById('f-email').classList.add('error');
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
+  // ── Audit logic ──
+  function runAudit() {
+    if(!validateStep(3)) return;
+
+    var btn = document.getElementById('run-btn');
+    btn.textContent = 'Generating your audit…';
+    btn.disabled = true;
+
+    setTimeout(function(){
+      generateResults();
+      showStep('result');
+      updateProgress(4);
+      btn.textContent = 'Run my free audit ↗';
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  function generateResults() {
+    var reviews  = parseInt(data.reviews);
+    var rating   = parseInt(data.rating);
+    var replies  = parseInt(document.getElementById('replies').value);
+    var recency  = parseInt(document.getElementById('recency').value);
+    var clinic   = document.getElementById('clinic').value.trim();
+    var city     = document.getElementById('city').value.trim();
+
+    // Score calculation (out of 100)
+    var score = 0;
+    score += [0, 12, 22, 30][reviews];
+    score += [0, 14, 24, 30][rating];
+    score += [0, 12, 20][replies];
+    score += [0, 5, 15, 20][recency];
+    score = Math.min(score, 100);
+
+    // Animate ring
+    var circumference = 201;
+    var offset = circumference - (score / 100) * circumference;
+    var ringEl = document.getElementById('ring-fill');
+    var col = score <= 35 ? '#f04e55' : score <= 60 ? '#f5a623' : '#00c6a7';
+    ringEl.style.stroke = col;
+    setTimeout(function(){ ringEl.style.strokeDashoffset = offset; }, 100);
+
+    // Animate number
+    var numEl = document.getElementById('res-score');
+    numEl.style.color = col;
+    var count = 0;
+    var interval = setInterval(function(){
+      count += Math.ceil(score / 20);
+      if(count >= score){ count = score; clearInterval(interval); }
+      numEl.textContent = count;
+    }, 40);
+
+    // Grade + message
+    var grade, msg;
+    if(score <= 30) {
+      grade = '🔴 Reputation risk';
+      msg = 'Critical gaps are costing your clinic new patients every week. Competitors are winning bookings you should be getting.';
+    } else if(score <= 55) {
+      grade = '🟡 Significant opportunity';
+      msg = 'You have a foundation, but key weaknesses are limiting how many patients choose you over nearby competitors.';
+    } else if(score <= 75) {
+      grade = '🟢 Good — room to grow';
+      msg = 'Your reputation is competitive, but targeted improvements could significantly increase your new patient flow.';
+    } else {
+      grade = '✅ Strong reputation';
+      msg = 'You\'re performing well online. The priority now is maintaining momentum and scaling what\'s working.';
+    }
+
+    document.getElementById('res-grade').textContent = grade;
+    document.getElementById('res-msg').textContent = msg;
+    document.getElementById('result-clinic-name').textContent = clinic + ' — Reputation Report';
+    document.getElementById('result-city').textContent = 'Local market analysis for ' + city;
+
+    // Gap items
+    var gaps = [];
+
+    // Review volume
+    if(reviews === 0) gaps.push({ sev:'r', title:'Critical: dangerously low review volume', desc:'Clinics with under 10 reviews are nearly invisible in Google\'s local pack. Patients trust volume — most choose a clinic with 50+ reviews over one with 5, even if the rating is similar.' });
+    else if(reviews === 1) gaps.push({ sev:'a', title:'Low review count — below area average', desc:'You likely have fewer reviews than your top 3 local competitors. Every week without growing your reviews widens that gap and hands patients to rivals.' });
+    else if(reviews === 2) gaps.push({ sev:'a', title:'Moderate volume — accelerate to dominate', desc:'31–60 reviews is decent, but practices with 100+ reviews dominate the local pack in most UK cities. You\'re close — a structured review strategy can close this gap in 60–90 days.' });
+    else gaps.push({ sev:'g', title:'Strong review volume — protect it', desc:'60+ reviews puts you ahead of most local competitors. The focus now is maintaining recency and velocity to stay ranked.' });
+
+    // Rating
+    if(rating === 0) gaps.push({ sev:'r', title:'Critical: sub-4.0 rating — patients will not book', desc:'94% of patients won\'t choose a dentist with under 4.0 stars. A rating below 3.5 is actively driving new patients to your competitors every day this goes unaddressed.' });
+    else if(rating === 1) gaps.push({ sev:'a', title:'Rating below 4.1 — a meaningful conversion barrier', desc:'Moving from 3.5–4.0 to 4.5+ can increase booking conversion from Google Maps by 20–35%. Most patients filter by rating before they even read a review.' });
+    else if(rating === 2) gaps.push({ sev:'a', title:'Good rating — one push from excellent', desc:'4.1–4.5 is competitive but 4.6+ is where you trigger the instinctive trust response. Pushing into that range typically requires 8–12 targeted reviews from happy patients.' });
+    else gaps.push({ sev:'g', title:'Excellent rating — keep it protected', desc:'4.6+ is your strongest asset for converting profile visitors into bookings. Guard it by proactively collecting reviews from every satisfied patient.' });
+
+    // Replies
+    if(replies === 0) gaps.push({ sev:'r', title:'No review responses — a ranking and trust signal gap', desc:'Google\'s algorithm actively favours businesses that engage with reviews. Zero replies also signals to prospective patients that you\'re unresponsive — exactly the opposite of what a healthcare provider should project.' });
+    else if(replies === 1) gaps.push({ sev:'a', title:'Inconsistent replies — fix this quickly', desc:'Sporadic responses leave gaps that patients notice. A consistent reply strategy (even templated) improves your local SEO trust signal and shows patients you care about every experience.' });
+    else gaps.push({ sev:'g', title:'Replying consistently — great habit', desc:'You\'re doing what most practices don\'t. This is a measurable ranking signal and it visibly differentiates you from competitors who ignore their reviews.' });
+
+    // Recency
+    if(recency === 0) gaps.push({ sev:'r', title:'Reviews stale — Google may de-prioritise your listing', desc:'Google\'s algorithm weighs recency heavily. A 3-month gap in reviews signals low activity and can cause your ranking to slip. Patients also filter by "newest" and won\'t see your best reviews.' });
+    else if(recency === 1) gaps.push({ sev:'a', title:'Review recency fading — needs consistent flow', desc:'1–3 months since your last review is borderline. You need a steady drip — ideally 2–4 new reviews per month — to stay competitive in local search rankings.' });
+    else gaps.push({ sev:'g', title:'Recent reviews — good velocity', desc:'Fresh reviews signal an active, trustworthy practice to both Google and prospective patients. Keep this momentum going with a systematic collection process.' });
+
+    var html = '';
+    gaps.forEach(function(g){
+      html += '<div class="gap-item sev-' + g.sev + '"><div class="gap-dot"></div><div><div class="gap-title">' + g.title + '</div><div class="gap-desc">' + g.desc + '</div></div></div>';
+    });
+    document.getElementById('gaps-list').innerHTML = html;
+
+    // Urgency
+    var slots = Math.floor(Math.random() * 3) + 2;
+    document.getElementById('cta-urgency').textContent = '⚠ Only ' + slots + ' free strategy call slots remaining this week for ' + city + ' practices.';
+  }
+
+  function restartAudit() {
+    data = { reviews: null, rating: null };
+    // Reset tiles
+    document.querySelectorAll('.tile').forEach(function(t){ t.classList.remove('selected'); });
+    // Reset selects
+    ['type','replies','recency','role'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.value = '';
+    });
+    // Reset inputs
+    ['clinic','city','name','email','phone'].forEach(function(id){
+      var el = document.getElementById(id); if(el) el.value = '';
+    });
+    // Clear errors
+    document.querySelectorAll('.field').forEach(function(f){ f.classList.remove('error'); });
+    showStep(1);
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 3000);
+  }
+
+  // Live validation on input
+  document.addEventListener('input', function(e){
+    var field = e.target.closest('.field');
+    if(field && field.classList.contains('error') && e.target.value.trim()) {
+      field.classList.remove('error');
+    }
+  });
+</script>
+
+</body>
+</html>

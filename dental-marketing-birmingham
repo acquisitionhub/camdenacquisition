@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Marketing Birmingham | Google Reviews & Missed Call Recovery | Patient Acquisition Hub</title>
+  <meta name="description" content="Help your Birmingham dental practice dominate Google Maps. Automated Google review collection, missed call recovery, and reputation management for Birmingham dentists. Results in 30 days." />
+  <meta name="keywords" content="dental marketing Birmingham, Google reviews dental practice Birmingham, missed call recovery dentist Birmingham, dental reputation management Birmingham, patient acquisition Birmingham dentist" />
+  <link rel="canonical" href="https://www.patientacquisitionhub.com/dental-marketing-birmingham" />
+
+  <meta property="og:title" content="Dental Marketing Birmingham | Patient Acquisition Hub" />
+  <meta property="og:description" content="Birmingham dental practices: automate Google reviews, recover missed calls, and dominate local search. Results in 30 days." />
+  <meta property="og:url" content="https://www.patientacquisitionhub.com/dental-marketing-birmingham" />
+  <meta property="og:type" content="website" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Patient Acquisition Hub",
+    "description": "Dental marketing, Google review automation and missed call recovery for Birmingham dental practices",
+    "url": "https://www.patientacquisitionhub.com/dental-marketing-birmingham",
+    "email": "Julien@patientacquisitionhub.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Suite G04, 1 Quality Court, Chancery Lane",
+      "addressLocality": "London",
+      "postalCode": "WC2A 1HR",
+      "addressCountry": "GB"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Birmingham"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do Birmingham dental practices get more Google reviews?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our automated system sends patients an SMS review request immediately after their appointment, with a direct link to your Google Business Profile. Birmingham practices typically see a 4–8x increase in monthly review volume within 90 days."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How competitive is dental SEO in Birmingham?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Birmingham is the UK's second largest city with a highly competitive dental market. City centre practices often need 100–200+ reviews to rank in the Google Maps top 3. In suburbs like Solihull, Sutton Coldfield and Edgbaston, 60–120 reviews with a high star rating can be competitive."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #0d7377;
+      --teal-dark: #0a5a5e;
+      --teal-light: #14a8ad;
+      --teal-pale: #e8f5f5;
+      --amber: #e8a020;
+      --dark: #111827;
+      --dark-mid: #1f2937;
+      --off-white: #f6f8f7;
+      --white: #ffffff;
+      --text-body: #374151;
+      --text-muted: #6b7280;
+      --border: rgba(13,115,119,0.15);
+      --border-light: rgba(0,0,0,0.07);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--off-white); color: var(--text-body); line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Fraunces', serif;
+      color: var(--teal-dark);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--white);
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-light); }
+
+    /* HERO */
+    .hero {
+      background: var(--teal-dark);
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 2rem 6rem;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: var(--off-white);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+    .hero-badge::before { content: '📍'; font-size: 0.9rem; }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.4rem;
+    }
+    h1 em { font-style: italic; color: var(--amber); }
+    .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto 2.5rem; font-weight: 300; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--amber);
+      color: var(--dark);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #f0b040; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,160,32,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
+
+    /* METRICS ROW */
+    .metrics-row {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .metric-item {
+      flex: 1;
+      min-width: 150px;
+      max-width: 220px;
+      text-align: center;
+      padding: 1rem 1.5rem;
+      border-right: 1px solid var(--border-light);
+    }
+    .metric-item:last-child { border-right: none; }
+    .metric-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .metric-num span { color: var(--amber); }
+    .metric-label { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* SECTION */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      color: var(--dark);
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+    h2 em { font-style: italic; color: var(--teal); }
+    .lead { font-size: 1rem; color: var(--text-muted); max-width: 620px; margin-bottom: 2.5rem; }
+
+    /* BIRMINGHAM INFO */
+    .bham-section { background: var(--white); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+    .info-block { margin-bottom: 2rem; }
+    .info-block h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 0.5rem; }
+    .info-block p { font-size: 0.92rem; color: var(--text-muted); }
+    .bham-areas { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .bham-area {
+      background: var(--teal-pale);
+      border: 1px solid rgba(13,115,119,0.2);
+      color: var(--teal-dark);
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+    }
+    .insight-card {
+      background: var(--off-white);
+      border-left: 3px solid var(--teal);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1rem;
+    }
+    .insight-card .insight-title { font-weight: 700; color: var(--dark); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .insight-card p { font-size: 0.88rem; color: var(--text-muted); }
+
+    /* SERVICES */
+    .services { background: var(--off-white); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 2.2rem 2rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 10px 40px rgba(13,115,119,0.1); transform: translateY(-3px); }
+    .service-icon { width: 48px; height: 48px; background: var(--teal-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.2rem; }
+    .service-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--dark); margin-bottom: 0.6rem; }
+    .service-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.2rem; }
+    .service-card ul { list-style: none; }
+    .service-card ul li { font-size: 0.88rem; color: var(--text-body); padding: 0.3rem 0 0.3rem 1.4rem; position: relative; border-bottom: 1px solid var(--border-light); }
+    .service-card ul li:last-child { border-bottom: none; }
+    .service-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--teal-dark); }
+    .testimonials h2 { color: var(--white); }
+    .testimonials .lead { color: rgba(255,255,255,0.55); }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+    .stars { color: var(--amber); margin-bottom: 0.8rem; font-size: 0.9rem; }
+    .testimonial-card p { font-size: 0.92rem; color: rgba(255,255,255,0.8); margin-bottom: 1.2rem; font-style: italic; }
+    .testimonial-author { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+    .testimonial-role { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+    /* FAQ */
+    .faq { background: var(--white); }
+    .faq-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 760px; }
+    .faq-item { border: 1px solid var(--border-light); border-radius: 8px; overflow: hidden; background: var(--off-white); }
+    .faq-question {
+      width: 100%; background: none; border: none; padding: 1.2rem 1.5rem;
+      text-align: left; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem;
+      font-weight: 600; color: var(--dark); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .faq-question .chevron { color: var(--teal); font-size: 1rem; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-answer { display: none; padding: 0 1.5rem 1.2rem; font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .chevron { transform: rotate(180deg); }
+    .faq-item.open { border-color: var(--teal); }
+
+    /* CTA */
+    .cta-section {
+      background: var(--off-white);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta-box {
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 4rem 3rem;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    }
+    .cta-box h2 { margin-bottom: 1rem; }
+    .cta-box p { color: var(--text-muted); margin-bottom: 2rem; }
+    .cta-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin-bottom: 2rem; }
+    .cta-feature {
+      background: var(--teal-pale);
+      color: var(--teal-dark);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+    }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.82rem; }
+    footer a { color: var(--teal-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://www.patientacquisitionhub.com" class="nav-logo">Patient Acquisition Hub</a>
+    <a href="https://calendly.com/patientacquisitionhub/30min" class="nav-cta">📅 Book Free Demo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">Birmingham Dental Practices</div>
+      <h1>Your Birmingham Dental Practice<br>Deserves to Be Found <em>First.</em></h1>
+      <p class="hero-sub">Automated Google review collection, missed call recovery, and reputation management — helping Birmingham dentists dominate local search and attract more private patients.</p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/patientacquisitionhub/30min" class="btn-primary">📅 Book a Free Demo</a>
+        <a href="https://www.patientacquisitionhub.com/" class="btn-outline">Free Google Review Audit →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <div class="metrics-row">
+    <div class="metric-item">
+      <div class="metric-num">4<span>–8×</span></div>
+      <div class="metric-label">More Google reviews in 90 days</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num">95<span>%</span></div>
+      <div class="metric-label">SMS open rate for review requests</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num"><span>£</span>2k<span>+</span></div>
+      <div class="metric-label">Average monthly revenue recovered</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num">30</div>
+      <div class="metric-label">Days to measurable results</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-num">24<span>/7</span></div>
+      <div class="metric-label">Automated — no team effort needed</div>
+    </div>
+  </div>
+
+  <!-- BIRMINGHAM INFO -->
+  <section class="bham-section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-label">The Birmingham Dental Market</div>
+          <h2>The UK's Second Largest City.<br><em>A Huge Opportunity.</em></h2>
+          <p class="lead">Birmingham's dental market is growing fast, with a young, diverse population and rising demand for private and cosmetic dentistry. The practices winning online aren't necessarily the best — they're the ones with the strongest Google presence.</p>
+          <div class="info-block">
+            <h3>NHS & Private Practices Both Benefit</h3>
+            <p>Whether you serve an NHS list or focus on high-value private treatments — Invisalign, implants, cosmetic veneers — our system works for every patient journey type across Birmingham.</p>
+          </div>
+          <div class="info-block">
+            <h3>Areas We Serve Across Birmingham</h3>
+            <div class="bham-areas">
+              <span class="bham-area">City Centre</span>
+              <span class="bham-area">Edgbaston</span>
+              <span class="bham-area">Solihull</span>
+              <span class="bham-area">Sutton Coldfield</span>
+              <span class="bham-area">Moseley</span>
+              <span class="bham-area">Harborne</span>
+              <span class="bham-area">Kings Heath</span>
+              <span class="bham-area">Erdington</span>
+              <span class="bham-area">Handsworth</span>
+              <span class="bham-area">Northfield</span>
+              <span class="bham-area">Walsall</span>
+              <span class="bham-area">Wolverhampton</span>
+              <span class="bham-area">Coventry</span>
+              <span class="bham-area">Dudley</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">What Wins in Birmingham</div>
+          <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem;">What the Top 3 Birmingham<br>Dental Practices Have in Common</h2>
+          <div class="insight-card">
+            <div class="insight-title">📊 More Reviews Than Competitors</div>
+            <p>City centre Birmingham practices typically need 100–200+ reviews to rank in the Google Maps top 3. In suburbs like Solihull and Sutton Coldfield, 60–120 reviews can be competitive.</p>
+          </div>
+          <div class="insight-card">
+            <div class="insight-title">⭐ High and Consistent Star Rating</div>
+            <p>A rating below 4.5★ is a significant disadvantage in Birmingham. Top-ranking practices maintain 4.7–5.0★ by ensuring happy patients leave reviews consistently.</p>
+          </div>
+          <div class="insight-card">
+            <div class="insight-title">🕐 Recent Reviews Every Week</div>
+            <p>Google prioritises recency. A practice with 50 reviews posted this month outperforms a practice with 500 reviews from two years ago in the algorithm.</p>
+          </div>
+          <div class="insight-card">
+            <div class="insight-title">📱 No Missed Patient Enquiries</div>
+            <p>Birmingham practices typically miss 15–25% of inbound calls. Each missed call is a patient worth £500–£3,000 who will book elsewhere instead.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+      <div class="section-label">Our Systems</div>
+      <h2>Built to Grow Birmingham<br><em>Dental Practices</em></h2>
+      <p class="lead">Two automated systems that run quietly in the background — capturing every patient enquiry and building your reputation without any extra work for your team.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📞</div>
+          <h3>Missed Call Recovery</h3>
+          <p>Birmingham practices lose thousands each month to unanswered calls. Our system ensures every missed caller gets a personalised response within seconds.</p>
+          <ul>
+            <li>Instant personalised SMS to missed callers</li>
+            <li>Online booking link in every message</li>
+            <li>Patients self-book 24/7, including weekends</li>
+            <li>Full dashboard visibility over recovered patients</li>
+            <li>No manual follow-up needed from your team</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⭐</div>
+          <h3>Google Review Automation</h3>
+          <p>Birmingham patients read reviews before booking. Our automated system grows your Google review count — typically 4–8× more reviews within 90 days.</p>
+          <ul>
+            <li>Automated SMS & email after each appointment</li>
+            <li>Direct link to your Google Business Profile</li>
+            <li>Unhappy patients routed to internal feedback</li>
+            <li>Improves your Google Maps ranking directly</li>
+            <li>GDPR-compliant across all communications</li>
+          </ul>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛡️</div>
+          <h3>Reputation Management</h3>
+          <p>Your reputation is your most powerful marketing asset in Birmingham's competitive dental market. We protect and grow it around the clock.</p>
+          <ul>
+            <li>24/7 monitoring across all review platforms</li>
+            <li>Instant alerts for every new review posted</li>
+            <li>Professional negative review guidance</li>
+            <li>Strategy to raise your overall star rating</li>
+            <li>Monthly reputation performance reports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-label" style="color: rgba(255,255,255,0.5);">Results</div>
+      <h2>What UK Dental Practices Are Achieving</h2>
+      <p class="lead">Real results from practices using Patient Acquisition Hub — including cosmetic dentists like Dr. Priya K. in Birmingham.</p>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"The combination of review automation and missed call recovery has transformed how we acquire patients. Our Google profile now does the marketing for us. Julien and the team are incredibly responsive."</p>
+          <div class="testimonial-author">Dr. Priya K.</div>
+          <div class="testimonial-role">Cosmetic Dentist, Birmingham</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"We went from 12 Google reviews to over 140 in three months. The automated SMS system is brilliant — patients genuinely appreciate being asked. Our Google Maps ranking has jumped significantly."</p>
+          <div class="testimonial-author">Dr. Sarah H.</div>
+          <div class="testimonial-role">Principal Dentist, UK</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>"Before Patient Acquisition Hub, we were losing at least five enquiries a week to missed calls. Now every missed call gets a text back instantly. We've recovered patients we'd never have seen otherwise."</p>
+          <div class="testimonial-author">James M.</div>
+          <div class="testimonial-role">Practice Manager, UK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-label">FAQ</div>
+      <h2>Questions from Birmingham<br><em>Dental Practices</em></h2>
+      <p class="lead" style="margin-bottom: 2rem;">The most common questions we hear from Birmingham dentists before they get started.</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How competitive is dental SEO in Birmingham?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Birmingham is the UK's second largest city with a highly active dental market. City centre practices typically need 100–200+ reviews to rank in the Google Maps top 3. In suburbs like Solihull, Sutton Coldfield and Edgbaston, 60–120 high-rated reviews can be very competitive. Our system is designed to build that volume quickly.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How do Birmingham dental practices get more Google reviews?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Our automated system sends an SMS to every patient shortly after their appointment with a direct link to your Google Business Profile review page. Because the process is so easy for patients, response rates are dramatically higher than manual asking. Birmingham practices typically see a 4–8× increase in monthly review volume within 90 days.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Does missed call recovery work for Birmingham practices?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Absolutely. The moment a call goes unanswered at your Birmingham practice, our system sends a personalised SMS with your booking link. Patients self-book within minutes — including evenings and weekends when your reception isn't available. Most Birmingham practices recover their first missed-call patient within 48 hours of going live.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do you work with NHS practices in Birmingham?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Yes. We work with NHS, private, cosmetic and mixed practices across Birmingham and the West Midlands. Everything is customised for your specific practice type and patient journey — from the SMS branding to the booking links we include.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How quickly will my Birmingham practice see results?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Most Birmingham practices recover their first missed-call patients within 24–48 hours of going live. Review volume typically starts climbing within the first week. Improvements in Google Maps ranking become visible within 4–8 weeks as your review velocity improves.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is the system GDPR compliant for UK dental practices?
+            <span class="chevron">▾</span>
+          </button>
+          <div class="faq-answer">Yes. All SMS and email communications are fully compliant with UK GDPR. We provide complete guidance on consent collection and data handling as part of your onboarding. Your patient data is never sold or shared with third parties.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-box">
+      <div class="section-label" style="text-align: center; margin-bottom: 0.5rem;">Get Started Today</div>
+      <h2>Ready to Grow Your<br><em>Birmingham Practice?</em></h2>
+      <p>Book a free 30-minute strategy call with Julien. We'll audit your current Google presence, review profile and missed call situation — then show you exactly what your practice could achieve.</p>
+      <div class="cta-features">
+        <span class="cta-feature">✓ Free Google Audit</span>
+        <span class="cta-feature">✓ No Commitment</span>
+        <span class="cta-feature">✓ Results in 30 Days</span>
+        <span class="cta-feature">✓ UK-Based Support</span>
+      </div>
+      <a href="https://calendly.com/patientacquisitionhub/30min" class="btn-primary" style="font-size: 1.05rem; padding: 1rem 2.5rem; border-radius: 50px;">📅 Book Your Free Demo →</a>
+      <p style="margin-top: 1.2rem; font-size: 0.82rem; color: var(--text-muted);">No hard sell. Just a clear picture of what your Birmingham practice could achieve.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      <a href="https://www.patientacquisitionhub.com">Patient Acquisition Hub</a> · Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR ·
+      <a href="mailto:Julien@patientacquisitionhub.com">Julien@patientacquisitionhub.com</a>
+    </p>
+    <p style="margin-top: 0.5rem;">© 2026 Milestone Marketing Ltd · <a href="https://www.patientacquisitionhub.com/private-policy/private-policy.pdf">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>

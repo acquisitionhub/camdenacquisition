@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Much Are Missed Calls Costing Your London Dental Practice? | Patient Acquisition Hub</title>
+<meta name="description" content="The average London dental practice misses around 5 calls per week. At £500–£3,000 per patient, that adds up fast. Here's how to stop the leak — automatically.">
+<style>/* Patient Acquisition Hub — Shared Design System */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0a1628;
+  --navy-mid: #142240;
+  --blue: #1a56db;
+  --blue-light: #3b82f6;
+  --teal: #0d9488;
+  --gold: #f59e0b;
+  --white: #ffffff;
+  --off-white: #f8fafc;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(10,22,40,0.10);
+  --shadow-lg: 0 12px 48px rgba(10,22,40,0.18);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Fraunces', serif;
+  line-height: 1.2;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* NAV */
+nav {
+  background: var(--navy);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.nav-cta {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: #fbbf24; text-decoration: none; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a6b 100%);
+  color: var(--white);
+  padding: 80px 5% 80px;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.4);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  max-width: 800px;
+  margin: 0 auto 20px;
+  color: var(--white);
+}
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 620px;
+  margin: 0 auto 36px;
+}
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.btn-primary:hover { background: #fbbf24; text-decoration: none; }
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.18); text-decoration: none; }
+
+/* TRUST BAR */
+.trust-bar {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 5%;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.trust-bar span { display: flex; align-items: center; gap: 6px; }
+
+/* SECTIONS */
+section { padding: 72px 5%; }
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  margin-bottom: 16px;
+  max-width: 700px;
+}
+.section-title em { color: var(--blue); font-style: italic; }
+.section-sub {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+/* STATS */
+.stats-row {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.stat-box {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+}
+.stat-box strong { display: block; font-size: 2rem; font-family: 'Fraunces', serif; color: var(--navy); }
+.stat-box span { font-size: 0.85rem; color: var(--text-muted); }
+
+/* FEATURE CARDS */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.card ul { padding-left: 18px; color: var(--text-muted); font-size: 0.95rem; }
+.card ul li { margin-bottom: 6px; }
+
+/* PROCESS */
+.process { display: flex; flex-direction: column; gap: 24px; max-width: 700px; }
+.step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.step-num {
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-body h4 { font-size: 1.05rem; margin-bottom: 4px; }
+.step-body p { color: var(--text-muted); font-size: 0.95rem; }
+
+/* FAQ */
+.faq { max-width: 720px; }
+details {
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0;
+}
+summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+}
+summary::after { content: '▾'; color: var(--blue); font-size: 1.1rem; }
+details[open] summary::after { content: '▴'; }
+details p { margin-top: 12px; color: var(--text-muted); font-size: 0.96rem; line-height: 1.7; }
+
+/* CTA BAND */
+.cta-band {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 72px 5%;
+}
+.cta-band h2 { font-size: clamp(1.8rem,4vw,2.6rem); margin-bottom: 16px; }
+.cta-band h2 em { color: var(--gold); font-style: italic; }
+.cta-band p { color: rgba(255,255,255,0.75); margin-bottom: 32px; font-size: 1.05rem; }
+
+/* FOOTER */
+footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+  padding: 32px 5%;
+  text-align: center;
+  line-height: 1.8;
+}
+footer a { color: rgba(255,255,255,0.6); }
+
+/* BLOG */
+.blog-meta { color: var(--text-muted); font-size: 0.88rem; margin-bottom: 32px; }
+.blog-body { max-width: 720px; margin: 0 auto; }
+.blog-body h2 { font-size: 1.7rem; margin: 48px 0 16px; }
+.blog-body h3 { font-size: 1.25rem; margin: 32px 0 12px; }
+.blog-body p { margin-bottom: 18px; color: var(--text); line-height: 1.8; }
+.blog-body ul { padding-left: 22px; margin-bottom: 18px; }
+.blog-body ul li { margin-bottom: 8px; line-height: 1.7; color: var(--text); }
+.callout {
+  background: #eff6ff;
+  border-left: 4px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin: 28px 0;
+  font-size: 0.97rem;
+}
+
+/* BOROUGH */
+.borough-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+.borough-chip {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .stats-row { gap: 12px; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .trust-bar { gap: 14px; }
+}</style>
+<style>
+  .blog-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: var(--white); padding: 64px 5%; }
+  .blog-hero .hero-badge { display: inline-block; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: var(--gold); font-size: 0.8rem; font-weight: 600; padding: 6px 16px; border-radius: 999px; margin-bottom: 20px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .blog-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); max-width: 760px; margin-bottom: 16px; }
+  .blog-hero h1 em { color: var(--gold); font-style: italic; }
+  .blog-hero p { color: rgba(255,255,255,0.75); max-width: 620px; font-size: 1.05rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--blue); font-size: 0.9rem; font-weight: 500; margin-bottom: 32px; }
+  .calc-box { background: var(--off-white); border: 2px solid var(--border); border-radius: var(--radius); padding: 32px; margin: 32px 0; }
+  .calc-box h3 { margin-bottom: 20px; }
+  .calc-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.97rem; }
+  .calc-row:last-child { border-bottom: none; font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="https://www.patientacquisitionhub.com">Patient Acquisition Hub</a>
+  <a class="nav-cta" href="https://calendly.com/patientacquisitionhub/30min">📅 Book Free Demo</a>
+</nav>
+<div class="blog-hero">
+  <div class="hero-badge">📖 London Dental Marketing Blog</div>
+  <h1>How Much Are Missed Calls <em>Really</em> Costing Your London Dental Practice?</h1>
+  <p>Most practices assume it's not that many. The reality is usually a shock — and the fix is simpler than you'd think.</p>
+  <p class="blog-meta" style="margin-top:16px; color:rgba(255,255,255,0.5)">By the Patient Acquisition Hub team · Updated April 2026 · 6 min read</p>
+</div>
+
+<section>
+  <div class="blog-body">
+    <a class="back-link" href="https://www.patientacquisitionhub.com">← Back to Patient Acquisition Hub</a>
+
+    <p>If you asked most dental practice managers how many calls they miss in a week, they'd probably say "not many." In reality, when we look at the data from London practices we work with, the typical answer is around five missed calls per week — sometimes more.</p>
+    <p>At first that doesn't sound catastrophic. But let's look at what that actually means for your practice.</p>
+
+    <div class="calc-box">
+      <h3>📊 The Real Cost of Missed Calls (Conservative Estimate)</h3>
+      <div class="calc-row"><span>Missed calls per week</span><span>~5</span></div>
+      <div class="calc-row"><span>% that were new patient enquiries</span><span>~50%</span></div>
+      <div class="calc-row"><span>New patient enquiries missed per week</span><span>~2.5</span></div>
+      <div class="calc-row"><span>% that would have booked if reached</span><span>~60%</span></div>
+      <div class="calc-row"><span>Bookings lost per week</span><span>~1.5</span></div>
+      <div class="calc-row"><span>Average private patient value</span><span>£1,000+</span></div>
+      <div class="calc-row"><span>💷 Revenue lost per month</span><span>~£6,000+</span></div>
+    </div>
+
+    <p>That's a conservative estimate. For practices with higher treatment values — implants, Invisalign, full mouth rehabilitation — the number can be significantly higher. And that's just one month. Over a year, you're potentially looking at £70,000+ in lost revenue from calls that nobody answered.</p>
+
+    <h2>Why London Practices Miss So Many Calls</h2>
+    <p>This isn't a staffing problem — it's a structural one. London dental receptions are genuinely busy. Here's when most calls get missed:</p>
+    <ul>
+      <li><strong>During treatments:</strong> The receptionist is assisting or the room is being cleared.</li>
+      <li><strong>During lunch:</strong> Reduced cover means calls pile up.</li>
+      <li><strong>First thing in the morning:</strong> High call volume while the team is getting set up.</li>
+      <li><strong>After 5:30pm:</strong> Reception has closed, but patients are calling when they finish work.</li>
+      <li><strong>Weekends:</strong> Many practices are closed, but patients are available.</li>
+    </ul>
+    <p>The evening and weekend problem is particularly significant in London, where many patients are commuters with long working hours. They can't call at 11am on a Tuesday — they call at 7pm on a Thursday or on Saturday morning. And if nobody answers, they move on to the next practice on Google.</p>
+
+    <h2>What Happens When a Patient Gets No Answer?</h2>
+    <p>Here's the uncomfortable truth about missed calls: patients rarely call back. Research on consumer behaviour consistently shows that if someone calls a business and gets no answer, fewer than 30% will try again. The rest — the majority — simply move on.</p>
+    <p>In a competitive market like London, with dozens of nearby alternatives just a Google search away, those patients aren't going to wait around. They'll call the next practice on the list, get an answer, and book. You've lost them without ever knowing they called.</p>
+    <div class="callout">
+      <strong>The patient's perspective:</strong> They searched "dentist near me," saw your practice, clicked your number, and called. That's high intent — they wanted to book with you. All they needed was someone to answer.
+    </div>
+
+    <h2>The Simple Fix: Instant SMS Recovery</h2>
+    <p>The good news is that this problem is almost entirely solvable, and the solution doesn't require extra staff, a new phone system, or any changes to how your reception works.</p>
+    <p>Missed call recovery works like this: the moment a call goes unanswered, an automated SMS is sent to the caller — within 60 seconds — with a friendly message from your practice and a direct link to your online booking page. The patient gets a response immediately, and most of them book right then, even at 10pm.</p>
+    <p>The SMS feels personal because it's branded with your practice name and written in a warm, human tone. Patients respond well to it — better, often, than a call back the next morning when they're in a meeting and can't talk.</p>
+
+    <h2>How Quickly Does It Work?</h2>
+    <p>Most London practices using our missed call recovery system recover their first patient within 24–48 hours of going live. From there, the bookings come in steadily — often without the reception team even realising a call was missed, because the patient has already self-booked online.</p>
+    <p>The system also gives you a clear dashboard showing every missed call, every SMS sent, and every booking that resulted — so you can see exactly what it's recovering for you.</p>
+
+    <h2>Is It Worth It?</h2>
+    <p>Let's go back to our earlier numbers. If your practice is recovering even 2 extra new patients per month through missed call recovery, and each is worth £1,000 in treatment value, that's £2,000 per month — likely more than the cost of the system several times over. For practices with higher average treatment values, the ROI is even more striking.</p>
+    <p>The more useful question is: can you afford not to have it?</p>
+
+    <div class="callout">
+      <strong>Want to find out how many calls your practice is missing?</strong> Book a free demo and we'll look at your call data together — no commitment required. <a href="https://calendly.com/patientacquisitionhub/30min">Book your free demo →</a>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2>Stop Losing Patients to <em>Unanswered Calls</em></h2>
+  <p>Our missed call recovery system is live in days and starts working immediately. Book a free demo to see it in action.</p>
+  <div class="hero-btns">
+    <a class="btn-primary" href="https://calendly.com/patientacquisitionhub/30min">📅 Book Your Free Demo</a>
+    <a class="btn-secondary" href="https://patientacquisitionhub.com/pricing.html">See Pricing →</a>
+  </div>
+</div>
+<footer>
+  <p><strong style="color:#fff">Patient Acquisition Hub</strong></p>
+  <p>Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR</p>
+  <p><a href="mailto:Julien@patientacquisitionhub.com">Julien@patientacquisitionhub.com</a></p>
+  <p style="margin-top:12px">© 2026 Milestone Marketing Ltd · <a href="/private-policy/private-policy.pdf">Privacy Policy</a></p>
+</footer>
+</body>
+</html>

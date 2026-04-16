@@ -1,22 +1,23 @@
 <!-- ============================================================
      PATIENT ACQUISITION HUB — TIERED PRICING SECTION
-     Paste this block into your index.html wherever you want
-     the pricing section to appear.
+     Restyled to match patientacquisitionhub.com
+     Paste into your pricing.html or index.html
      ============================================================ -->
 
 <style>
   .pah-pricing-section {
-    --navy: #0a1628;
-    --navy-card: #0f2040;
-    --navy-highlight: #162a50;
-    --gold: #d4a843;
-    --gold-light: #e8c070;
-    --gold-muted: #a07830;
-    --text-primary: #f0f4ff;
-    --text-secondary: #9ab0cc;
-    --text-muted: #6a85a8;
-    --border-subtle: rgba(212,168,67,0.15);
-    --border-gold: rgba(212,168,67,0.5);
+    --ink: #0d0f14;
+    --ink-mid: #1a1f2e;
+    --teal: #1a6b6b;
+    --teal-light: #2a9d9d;
+    --teal-pale: #e8f4f4;
+    --cream: #f7f5f0;
+    --white: #ffffff;
+    --text-body: #2e2e3a;
+    --text-muted: #6a6a7a;
+    --border: rgba(26,107,107,0.18);
+    --border-light: rgba(26,107,107,0.1);
+    --border-strong: rgba(26,107,107,0.35);
   }
 
   .pah-pricing-section *,
@@ -28,57 +29,95 @@
   }
 
   .pah-pricing-section {
-    background: var(--navy);
-    padding: 72px 24px;
-    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: var(--ink);
+    padding: 80px 24px;
+    font-family: 'Outfit', 'Trebuchet MS', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle watermark like other dark sections on the site */
+  .pah-pricing-section::before {
+    content: 'NW1';
+    position: absolute;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(10rem, 20vw, 20rem);
+    font-weight: 700;
+    color: rgba(26,107,107,0.05);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pah-pricing-inner {
+    position: relative;
   }
 
   .pah-eyebrow {
     text-align: center;
-    font-size: 11px;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
+    color: var(--teal-light);
+    margin-bottom: 0.7rem;
   }
 
   .pah-heading {
     text-align: center;
-    font-size: clamp(24px, 3vw, 38px);
-    color: var(--text-primary);
-    font-weight: 400;
-    font-family: Georgia, serif;
-    margin-bottom: 10px;
-    line-height: 1.25;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: #ffffff;
+    font-weight: 700;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    margin-bottom: 0.8rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
   }
 
   .pah-heading em {
-    color: var(--gold);
+    color: var(--teal-light);
     font-style: italic;
   }
 
   .pah-subhead {
     text-align: center;
-    font-size: 15px;
-    color: var(--text-secondary);
+    font-size: 1.02rem;
+    color: rgba(255,255,255,0.55);
     max-width: 520px;
-    margin: 0 auto 48px;
-    line-height: 1.6;
+    margin: 0 auto 0.5rem;
+    line-height: 1.75;
+    font-weight: 300;
   }
 
+  .pah-setup {
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 3rem;
+    letter-spacing: 0.03em;
+  }
+
+  .pah-setup span {
+    color: var(--teal-light);
+    font-weight: 600;
+  }
+
+  /* TABLE */
   .pah-table {
     max-width: 1100px;
     margin: 0 auto;
-    border-radius: 14px;
+    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-strong);
   }
 
   .pah-row {
     display: grid;
     grid-template-columns: 180px 1fr 1fr 1fr;
-    border-bottom: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border);
   }
 
   .pah-row:last-child {
@@ -86,25 +125,25 @@
   }
 
   .pah-rlabel {
-    background: var(--navy);
+    background: var(--ink);
     padding: 16px 20px;
     display: flex;
     align-items: center;
-    border-right: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border);
   }
 
   .pah-rlabel-text {
-    font-size: 11px;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.3);
   }
 
   .pah-cell {
-    background: var(--navy-card);
+    background: #111827;
     padding: 16px 22px;
-    border-right: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border);
     display: flex;
     align-items: center;
   }
@@ -114,10 +153,10 @@
   }
 
   .pah-cell.featured {
-    background: var(--navy-highlight);
+    background: #0f2318;
   }
 
-  /* Header row */
+  /* HEADER ROW */
   .pah-row.header-row .pah-cell {
     flex-direction: column;
     align-items: flex-start;
@@ -130,45 +169,48 @@
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: var(--teal);
   }
 
   .pah-badge {
     display: inline-block;
-    background: var(--gold);
-    color: var(--navy);
-    font-size: 9px;
+    background: var(--teal);
+    color: #ffffff;
+    font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 4px 10px;
-    border-radius: 20px;
-    margin-bottom: 8px;
+    border-radius: 2px;
+    margin-bottom: 10px;
   }
 
   .pah-plan-num {
-    font-size: 10px;
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold-muted);
+    color: var(--teal-light);
     margin-bottom: 4px;
+    opacity: 0.7;
   }
 
   .pah-plan-name {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
     margin-bottom: 2px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
   }
 
   .pah-plan-tag {
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
     font-style: italic;
   }
 
-  /* Price row */
+  /* PRICE ROW */
   .pah-row.price-row .pah-cell {
     flex-direction: column;
     align-items: flex-start;
@@ -182,65 +224,68 @@
   }
 
   .pah-curr {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--teal-light);
     line-height: 1;
     align-self: flex-start;
-    padding-top: 6px;
+    padding-top: 8px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
   .pah-amt {
-    font-size: 44px;
+    font-size: 2.8rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ffffff;
     line-height: 1;
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
   .pah-per {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 3px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
   }
 
   .pah-range {
-    font-size: 11px;
-    color: var(--gold-muted);
+    font-size: 0.75rem;
+    color: var(--teal-light);
     font-style: italic;
-    margin-top: 2px;
+    margin-top: 3px;
     min-height: 16px;
+    opacity: 0.8;
   }
 
-  /* Best-for row */
+  /* BEST FOR ROW */
   .pah-row.bestfor-row .pah-cell {
     align-items: flex-start;
     padding: 14px 22px;
   }
 
   .pah-bf {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    border-left: 2px solid var(--gold-muted);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.55;
+    border-left: 2px solid var(--teal);
     padding-left: 10px;
   }
 
-  /* Feature rows */
+  /* FEATURE ROWS */
   .pah-row.feat-row .pah-cell {
     padding: 12px 22px;
   }
 
   .pah-row.feat-row.alt .pah-cell {
-    background: rgba(255,255,255,0.02);
+    background: rgba(255,255,255,0.018);
   }
 
   .pah-row.feat-row.alt .pah-cell.featured {
-    background: rgba(255,255,255,0.04);
+    background: rgba(26,107,107,0.06);
   }
 
   .pah-feat {
-    font-size: 13px;
-    color: var(--text-secondary);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
     line-height: 1.4;
     display: flex;
     align-items: flex-start;
@@ -255,12 +300,11 @@
   }
 
   .pah-na {
-    font-size: 13px;
-    color: var(--text-muted);
-    opacity: 0.35;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.15);
   }
 
-  /* CTA row */
+  /* CTA ROW */
   .pah-row.cta-row .pah-cell {
     padding: 20px 22px;
     justify-content: center;
@@ -271,228 +315,233 @@
     width: 100%;
     text-align: center;
     padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 700;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: opacity 0.2s;
-    letter-spacing: 0.3px;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
     cursor: pointer;
+    font-family: 'Outfit', sans-serif;
   }
-
-  .pah-cta:hover { opacity: 0.82; }
 
   .pah-cta-outline {
     background: transparent;
-    border: 1.5px solid var(--gold-muted);
-    color: var(--gold-light);
+    border: 1px solid var(--border-strong);
+    color: rgba(255,255,255,0.7);
   }
 
-  .pah-cta-gold {
-    background: var(--gold);
-    color: var(--navy);
+  .pah-cta-outline:hover {
+    border-color: var(--teal-light);
+    color: var(--teal-light);
+  }
+
+  .pah-cta-teal {
+    background: var(--teal);
+    color: #ffffff;
     border: none;
+  }
+
+  .pah-cta-teal:hover {
+    background: var(--teal-light);
+    transform: translateY(-1px);
   }
 
   .pah-cta-bright {
     background: transparent;
-    border: 1.5px solid var(--gold);
-    color: var(--gold-light);
+    border: 1px solid var(--teal);
+    color: var(--teal-light);
+  }
+
+  .pah-cta-bright:hover {
+    background: rgba(26,107,107,0.15);
+    border-color: var(--teal-light);
   }
 
   .pah-footer {
     text-align: center;
-    margin-top: 36px;
-    font-size: 13px;
-    color: var(--text-muted);
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.25);
   }
 
   .pah-footer a {
-    color: var(--gold);
+    color: var(--teal-light);
     text-decoration: none;
   }
 
-  /* Responsive: stack on small screens */
+  .pah-footer a:hover {
+    color: #ffffff;
+  }
+
+  /* RESPONSIVE */
   @media (max-width: 700px) {
-    .pah-row {
-      grid-template-columns: 1fr;
-    }
-    .pah-rlabel {
-      border-right: none;
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 10px 16px;
-    }
-    .pah-cell {
-      border-right: none;
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 12px 16px;
-    }
-    .pah-cell:last-child {
-      border-bottom: none;
-    }
-    .pah-row.header-row .pah-cell {
-      padding: 20px 16px 16px;
-    }
-    .pah-table {
-      border-radius: 10px;
-    }
+    .pah-pricing-section::before { display: none; }
+    .pah-row { grid-template-columns: 1fr; }
+    .pah-rlabel { border-right: none; border-bottom: 1px solid var(--border); padding: 8px 16px; }
+    .pah-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    .pah-cell:last-child { border-bottom: none; }
+    .pah-row.header-row .pah-cell { padding: 20px 16px 16px; }
+    .pah-table { border-radius: 4px; }
+    .pah-amt { font-size: 2.2rem; }
   }
 </style>
 
 <section class="pah-pricing-section" id="pricing" aria-label="Tiered Pricing Plans">
+  <div class="pah-pricing-inner">
 
-  <p class="pah-eyebrow">Transparent Pricing</p>
-  <h2 class="pah-heading">Choose Your <em>Reputation Plan</em></h2>
-  <p class="pah-subhead">Three tiers built for London practices at every stage — from getting started to owning your local market.</p>
-<p class="pah-subhead">Setup Fees - £297</p>
+    <p class="pah-eyebrow">Transparent Pricing</p>
+    <h2 class="pah-heading">Choose Your <em>Reputation Plan</em></h2>
+    <p class="pah-subhead">Three tiers built for London practices at every stage — from getting started to owning your local market.</p>
+    <p class="pah-setup">One-time setup fee: <span>£297</span></p>
 
+    <div class="pah-table">
 
-  <div class="pah-table">
+      <!-- HEADER ROW -->
+      <div class="pah-row header-row">
+        <div class="pah-rlabel"></div>
 
-    <!-- HEADER ROW -->
-    <div class="pah-row header-row">
-      <div class="pah-rlabel"></div>
+        <div class="pah-cell">
+          <p class="pah-plan-num">Plan 01</p>
+          <p class="pah-plan-name">The Foundation</p>
+          <p class="pah-plan-tag">"The Starter"</p>
+        </div>
 
-      <div class="pah-cell">
-        <p class="pah-plan-num">Plan 01</p>
-        <p class="pah-plan-name">The Foundation</p>
-        <p class="pah-plan-tag">"The Starter"</p>
+        <div class="pah-cell featured header-top" style="position:relative;">
+          <span class="pah-badge">⭐ Most Popular</span>
+          <p class="pah-plan-num">Plan 02</p>
+          <p class="pah-plan-name">The Reputation Engine</p>
+          <p class="pah-plan-tag">"The Growth"</p>
+        </div>
+
+        <div class="pah-cell">
+          <p class="pah-plan-num">Plan 03</p>
+          <p class="pah-plan-name">Total Market Dominance</p>
+          <p class="pah-plan-tag">"The Authority"</p>
+        </div>
       </div>
 
-      <div class="pah-cell featured header-top" style="position:relative;">
-        <span class="pah-badge">⭐ Most Popular</span>
-        <p class="pah-plan-num">Plan 02</p>
-        <p class="pah-plan-name">The Reputation Engine</p>
-        <p class="pah-plan-tag">"The Growth"</p>
+      <!-- PRICE ROW -->
+      <div class="pah-row price-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Monthly Price</span></div>
+        <div class="pah-cell">
+          <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">97</span></div>
+          <p class="pah-per">per month</p>
+          <p class="pah-range"></p>
+        </div>
+        <div class="pah-cell featured">
+          <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">247</span></div>
+          <p class="pah-per">per month</p>
+          <p class="pah-range">Scales to £297/mo based on volume</p>
+        </div>
+        <div class="pah-cell">
+          <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">497</span></div>
+          <p class="pah-per">per month</p>
+          <p class="pah-range">+ custom quote for multi-location</p>
+        </div>
       </div>
 
-      <div class="pah-cell">
-        <p class="pah-plan-num">Plan 03</p>
-        <p class="pah-plan-name">Total Market Dominance</p>
-        <p class="pah-plan-tag">"The Authority"</p>
+      <!-- BEST FOR ROW -->
+      <div class="pah-row bestfor-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Best For</span></div>
+        <div class="pah-cell"><p class="pah-bf">Small local businesses — cafes, solo practitioners just getting started.</p></div>
+        <div class="pah-cell featured"><p class="pah-bf">Growing businesses — clinics, law firms, contractors wanting to dominate local search.</p></div>
+        <div class="pah-cell"><p class="pah-bf">High-ticket service providers or businesses in heavy competition.</p></div>
       </div>
-    </div>
 
-    <!-- PRICE ROW -->
-    <div class="pah-row price-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Monthly Price</span></div>
-      <div class="pah-cell">
-        <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">97</span></div>
-        <p class="pah-per">per month</p>
-        <p class="pah-range"></p>
+      <!-- Review Monitoring -->
+      <div class="pah-row feat-row alt">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Review Monitoring</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
       </div>
-      <div class="pah-cell featured">
-        <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">247</span></div>
-        <p class="pah-per">per month</p>
-        <p class="pah-range">Scales to £297/mo based on volume</p>
+
+      <!-- Review Requests -->
+      <div class="pah-row feat-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Review Requests</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>25 SMS / 50 Email per month</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>100 SMS / 250 Email per month</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited SMS &amp; Email</span></div>
       </div>
-      <div class="pah-cell">
-        <div class="pah-price-wrap"><span class="pah-curr">£</span><span class="pah-amt">497</span></div>
-        <p class="pah-per">per month</p>
-        <p class="pah-range">+ custom quote for multi-location</p>
+
+      <!-- Review Widget -->
+      <div class="pah-row feat-row alt">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Review Widget</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
       </div>
+
+      <!-- AI Reply -->
+      <div class="pah-row feat-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">AI Reply Assistant</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Draft responses for owner approval</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Full management — all replies within 24h</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Full management — all replies within 24h</span></div>
+      </div>
+
+      <!-- Negative Feedback -->
+      <div class="pah-row feat-row alt">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Negative Feedback Loop</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Private funnel catches unhappy customers first</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Private funnel catches unhappy customers first</span></div>
+      </div>
+
+      <!-- Local SEO -->
+      <div class="pah-row feat-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Local SEO Boost</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Business Profile optimised monthly</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Business Profile optimised monthly</span></div>
+      </div>
+
+      <!-- Monthly Report -->
+      <div class="pah-row feat-row alt">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Monthly Report</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Star-rating growth &amp; Map Pack ranking</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Star-rating + competitor benchmarking report</span></div>
+      </div>
+
+      <!-- Cross-Platform -->
+      <div class="pah-row feat-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Cross-Platform</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-na">—</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Facebook, Yelp, Houzz, Healthgrades &amp; more</span></div>
+      </div>
+
+      <!-- Spam Protection -->
+      <div class="pah-row feat-row alt">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Spam Protection</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-na">—</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Active fake &amp; spam review reporting to Google</span></div>
+      </div>
+
+      <!-- Video Testimonials -->
+      <div class="pah-row feat-row">
+        <div class="pah-rlabel"><span class="pah-rlabel-text">Video Testimonials</span></div>
+        <div class="pah-cell"><span class="pah-na">—</span></div>
+        <div class="pah-cell featured"><span class="pah-na">—</span></div>
+        <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Collect &amp; share video reviews from clients</span></div>
+      </div>
+
+      <!-- CTA ROW -->
+      <div class="pah-row cta-row">
+        <div class="pah-rlabel"></div>
+        <div class="pah-cell"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-outline">📅 Book a Free Demo</a></div>
+        <div class="pah-cell featured"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-teal">📅 Book a Free Demo</a></div>
+        <div class="pah-cell"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-bright">📅 Request a Quote</a></div>
+      </div>
+
     </div>
 
-    <!-- BEST FOR ROW -->
-    <div class="pah-row bestfor-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Best For</span></div>
-      <div class="pah-cell"><p class="pah-bf">Small local businesses — cafes, solo practitioners just getting started.</p></div>
-      <div class="pah-cell featured"><p class="pah-bf">Growing businesses — clinics, law firms, contractors wanting to dominate local search.</p></div>
-      <div class="pah-cell"><p class="pah-bf">High-ticket service providers or businesses in heavy competition.</p></div>
-    </div>
-
-    <!-- FEATURE: Review Monitoring -->
-    <div class="pah-row feat-row alt">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Review Monitoring</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time alerts for new reviews</span></div>
-    </div>
-
-    <!-- FEATURE: Review Requests -->
-    <div class="pah-row feat-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Review Requests</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>25 SMS / 50 Email per month</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>100 SMS / 250 Email per month</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Unlimited SMS &amp; Email</span></div>
-    </div>
-
-    <!-- FEATURE: Review Widget -->
-    <div class="pah-row feat-row alt">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Review Widget</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Embeddable 5-star social proof</span></div>
-    </div>
-
-    <!-- FEATURE: AI Reply -->
-    <div class="pah-row feat-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">AI Reply Assistant</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Draft responses for owner approval</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Full management — all replies within 24h</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Full management — all replies within 24h</span></div>
-    </div>
-
-    <!-- FEATURE: Negative Feedback -->
-    <div class="pah-row feat-row alt">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Negative Feedback Loop</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Private funnel catches unhappy customers first</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Private funnel catches unhappy customers first</span></div>
-    </div>
-
-    <!-- FEATURE: Local SEO -->
-    <div class="pah-row feat-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Local SEO Boost</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Business Profile optimised monthly</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Google Business Profile optimised monthly</span></div>
-    </div>
-
-    <!-- FEATURE: Monthly Report -->
-    <div class="pah-row feat-row alt">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Monthly Report</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Star-rating growth &amp; Map Pack ranking</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Star-rating + competitor benchmarking report</span></div>
-    </div>
-
-    <!-- FEATURE: Cross-Platform -->
-    <div class="pah-row feat-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Cross-Platform</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-na">—</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Facebook, Yelp, Houzz, Healthgrades &amp; more</span></div>
-    </div>
-
-    <!-- FEATURE: Spam Protection -->
-    <div class="pah-row feat-row alt">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Spam Protection</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-na">—</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Active fake &amp; spam review reporting to Google</span></div>
-    </div>
-
-    <!-- FEATURE: Video Testimonials -->
-    <div class="pah-row feat-row">
-      <div class="pah-rlabel"><span class="pah-rlabel-text">Video Testimonials</span></div>
-      <div class="pah-cell"><span class="pah-na">—</span></div>
-      <div class="pah-cell featured"><span class="pah-na">—</span></div>
-      <div class="pah-cell"><span class="pah-feat"><svg viewBox="0 0 16 16" fill="none"><polyline points="2,8 6,12 14,4" stroke="#d4a843" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Collect &amp; share video reviews from clients</span></div>
-    </div>
-
-    <!-- CTA ROW -->
-    <div class="pah-row cta-row">
-      <div class="pah-rlabel"></div>
-      <div class="pah-cell"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-outline">📅 Book a Free Demo</a></div>
-      <div class="pah-cell featured"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-gold">📅 Book a Free Demo</a></div>
-      <div class="pah-cell"><a href="https://calendly.com/patientacquisitionhub/30min" class="pah-cta pah-cta-bright">📅 Request a Quote</a></div>
-    </div>
+    <p class="pah-footer">All plans include GDPR-compliant setup and UK-based support · <a href="https://calendly.com/patientacquisitionhub/30min">Talk to Julien →</a></p>
 
   </div>
-
-  <p class="pah-footer">All plans include GDPR-compliant setup and UK-based support · <a href="https://calendly.com/patientacquisitionhub/30min">Talk to Julien →</a></p>
-
 </section>
 <!-- ============================================================
      END PRICING SECTION

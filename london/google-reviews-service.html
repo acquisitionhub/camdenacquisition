@@ -84,20 +84,17 @@
     h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:1rem;}
     h2 em{font-style:italic;color:var(--teal);}
     .lead{font-size:1.02rem;color:var(--text-muted);max-width:660px;margin-bottom:2.5rem;line-height:1.8;}
-    /* HOW IT WORKS STEPS */
     .steps-v{display:flex;flex-direction:column;gap:0;max-width:720px;}
     .step-v{display:grid;grid-template-columns:48px 1fr;gap:1.5rem;padding-bottom:2.5rem;position:relative;}
     .step-v:not(:last-child)::before{content:'';position:absolute;left:23px;top:48px;bottom:0;width:1px;background:var(--border);}
     .step-circle{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem;flex-shrink:0;}
     .step-v h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ink);font-weight:600;margin-bottom:0.5rem;padding-top:0.6rem;}
     .step-v p{font-size:0.92rem;color:var(--text-muted);line-height:1.75;}
-    /* STATS */
     .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;margin-top:2.5rem;}
     .stat-box{background:var(--white);border:1px solid var(--border-light);border-radius:4px;padding:1.8rem 1.5rem;text-align:center;position:relative;overflow:hidden;}
     .stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--teal);}
     .stat-n{font-family:'Cormorant Garamond',serif;font-size:2.6rem;font-weight:700;color:var(--teal);line-height:1;margin-bottom:0.4rem;}
     .stat-l{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
-    /* WHY IT MATTERS TABLE */
     .compare{background:var(--white);}
     table{width:100%;border-collapse:collapse;font-size:0.93rem;margin-top:2rem;}
     thead th{background:var(--ink);color:rgba(255,255,255,0.9);padding:0.9rem 1.2rem;text-align:left;font-weight:600;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;}
@@ -107,12 +104,10 @@
     tbody td:first-child{font-weight:600;color:var(--ink);font-size:0.85rem;}
     .td-bad{color:var(--text-muted);}
     .td-good{color:var(--teal);font-weight:600;}
-    /* GEO SIGNAL BOX */
     .geo-box{background:var(--ink);color:var(--white);border-radius:4px;padding:2.5rem;margin-top:2.5rem;}
     .geo-box h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--white);margin-bottom:0.8rem;font-weight:600;}
     .geo-box p{font-size:0.95rem;color:rgba(255,255,255,0.65);line-height:1.8;max-width:600px;}
     .geo-box .example{background:rgba(26,107,107,0.25);border:1px solid rgba(26,107,107,0.4);border-radius:3px;padding:1rem 1.2rem;margin-top:1.2rem;font-size:0.9rem;color:rgba(255,255,255,0.8);font-style:italic;line-height:1.7;}
-    /* FAQ */
     .faq-list{display:flex;flex-direction:column;gap:0.8rem;max-width:780px;}
     .faq-item{border:1px solid var(--border-light);border-radius:4px;overflow:hidden;background:var(--white);}
     .faq-q{width:100%;background:none;border:none;padding:1.2rem 1.4rem;text-align:left;font-family:'Outfit',sans-serif;font-size:0.95rem;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
@@ -125,11 +120,6 @@
     .cta-strip p{color:rgba(255,255,255,0.8);margin-bottom:1.8rem;font-size:0.97rem;}
     .btn-white{background:var(--white);color:var(--teal);padding:0.85rem 2rem;border-radius:3px;text-decoration:none;font-weight:700;font-size:0.97rem;display:inline-block;transition:all 0.2s;}
     .btn-white:hover{background:var(--teal-pale);}
-    footer{background:var(--ink);color:rgba(255,255,255,0.4);text-align:center;padding:2rem;font-size:0.83rem;border-top:1px solid rgba(26,107,107,0.2);}
-    footer a{color:var(--teal-light);text-decoration:none;}
-    .footer-links{margin-top:0.8rem;display:flex;justify-content:center;flex-wrap:wrap;gap:0.4rem 1rem;}
-    .footer-links a{color:rgba(255,255,255,0.45);font-size:0.8rem;}
-    .footer-links a:hover{color:var(--teal-light);}
   </style>
 </head>
 <body>
@@ -261,15 +251,116 @@
     </div>
   </div>
 
-  <footer>
-    
-    <p style="margin-top:0.5rem;">© 2026 Patient Acquisition Hub Ltd · Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR · <a href="/private-policy/private-policy.pdf">Privacy Policy</a></p>
-    <div class="footer-links">
-      <a href="/">Home</a>
-      <a href="/london/missed-call-recovery-service.html">Missed Call Recovery</a>
-      <a href="/london/reputation-management-service.html">Reputation Management</a>
-      <a href="/london/dental-marketing-camden-town.html">Camden Town</a>
+  <!-- PROFESSIONAL FOOTER — matches index.html exactly -->
+  <footer style="background:#0d0f14;border-top:1px solid rgba(26,107,107,0.25);padding:4rem 2rem 2rem;font-family:'Outfit',sans-serif;">
+    <div style="max-width:1060px;margin:0 auto;">
+
+      <!-- Top grid: 3 columns -->
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(26,107,107,0.2);">
+
+        <!-- Col 1: Brand -->
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;color:#2a9d9d;font-size:1.15rem;font-weight:700;letter-spacing:0.02em;margin-bottom:0.75rem;">
+            Patient Acquisition Hub
+          </div>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.8;margin:0 0 1.8rem;max-width:270px;">
+            The dental marketing agency built for Camden practices. Google reviews, missed call recovery, and NW1 local SEO — live in weeks.
+          </p>
+          <a href="https://calendly.com/patientacquisitionhub/30min"
+             style="display:inline-block;background:#1a6b6b;color:#ffffff;padding:0.62rem 1.4rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.87rem;"
+             onmouseover="this.style.background='#2a9d9d'" onmouseout="this.style.background='#1a6b6b'">
+            Book a free strategy call &rarr;
+          </a>
+        </div>
+
+        <!-- Col 2: Contact -->
+        <div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1.3rem;">
+            Contact
+          </div>
+
+          <a href="tel:02080507468"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+            020 8050 7468
+          </a>
+
+          <a href="mailto:julien@patientacquisitionhub.com"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            julien@patientacquisitionhub.com
+          </a>
+
+          <a href="https://www.instagram.com/patientacquisitionhub" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            Instagram
+          </a>
+
+          <div style="margin-top:1.3rem;padding-top:1.3rem;border-top:1px solid rgba(26,107,107,0.15);font-size:0.82rem;color:rgba(255,255,255,0.28);line-height:1.8;">
+            Suite G04, 1 Quality Court<br>
+            Chancery Lane<br>
+            London WC2A 1HR
+          </div>
+        </div>
+
+        <!-- Col 3: Nav links -->
+        <div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
+            Services
+          </div>
+          <ul style="list-style:none;padding:0;margin:0 0 1.8rem;">
+            <li style="margin-bottom:0.6rem;"><a href="/london/google-reviews-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Google Review Automation</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/missed-call-recovery-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Missed Call Recovery</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/reputation-management-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Reputation Management</a></li>
+          </ul>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
+            Areas
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-camden-town.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Camden Town</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-hampstead.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Hampstead</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-shoreditch.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Shoreditch</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-chelsea.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Chelsea</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;padding-top:1.8rem;">
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.22);margin:0;">
+          &copy; 2026 Patient Acquisition Hub Ltd
+        </p>
+        <a href="/private-policy/private-policy.pdf"
+           style="font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;"
+           onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">
+          Privacy Policy
+        </a>
+      </div>
+
     </div>
   </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
 </body>
 </html>

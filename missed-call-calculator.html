@@ -687,7 +687,16 @@
         <input type="text" id="practice" placeholder="Praxis am Park">
       </div>
 
-      <kr><kr><button class="btn btn-primary" onclick="goStep2()">Continue → See My Calculation</button>
+      <button
+  class="btn btn-primary"
+  onclick="goStep2()"
+  style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;padding:16px 20px;background:#e8f4f4;color:#085041;border:none;border-radius:12px;font-size:16px;font-weight:500;cursor:pointer;transition:background 0.2s;"
+  onmouseover="this.style.background='#d0e9e9'" onmouseout="this.style.background='#e8f4f4'">
+  Continue — See My Calculation
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="#085041" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
       <p class="privacy-note">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         Your data is private. We never share or sell it.

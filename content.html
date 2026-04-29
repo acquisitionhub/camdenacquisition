@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Acquisition Hub — AI Content Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f0f4f0;
+    --surface: #ffffff;
+    --surface2: #eaf2ea;
+    --border: #ccdacc;
+    --border2: #b8ccb9;
+    --dark: #1a3a1b;
+    --mid: #2d5a2e;
+    --accent: #4a8c4b;
+    --muted: #5e7e5f;
+    --text: #1e2e1f;
+    --text2: #4a5e4b;
+    --mono: 'DM Mono', monospace;
+    --serif: 'Playfair Display', Georgia, serif;
+    --radius: 10px;
+    --shadow: 0 2px 16px rgba(26,58,27,0.08);
+  }
+
+  body {
+    font-family: var(--mono);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--dark);
+    padding: 26px 40px 22px;
+    border-bottom: 3px solid var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner { max-width: 940px; margin: 0 auto; }
+  .header-top { display: flex; align-items: baseline; gap: 14px; margin-bottom: 5px; }
+  .logo { font-family: var(--serif); font-size: 20px; color: #c5e1c6; font-weight: 700; letter-spacing: -0.01em; }
+  .badge {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #7ec87f; border: 1px solid #3a6e3b; border-radius: 3px;
+    padding: 2px 8px; font-weight: 500;
+  }
+  .header-sub { font-size: 11px; color: #5faa60; letter-spacing: 0.03em; }
+
+  /* TABS */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .tab-bar { max-width: 940px; margin: 0 auto; display: flex; }
+  .tab-btn {
+    padding: 14px 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--mid); }
+  .tab-btn.active { color: var(--dark); font-weight: 500; border-bottom-color: var(--mid); }
+
+  /* MAIN */
+  main { max-width: 940px; margin: 0 auto; padding: 32px 40px 60px; }
+
+  .panel {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    display: none;
+  }
+  .panel.active { display: block; }
+
+  .panel-desc {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 26px;
+    line-height: 1.7;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* FORM ELEMENTS */
+  .label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  select, input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235e7e5f' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  select:focus, input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,140,75,0.12); }
+  textarea { resize: vertical; line-height: 1.65; min-height: 120px; }
+
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .field { margin-bottom: 16px; }
+
+  /* BUTTON */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--mid);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 26px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 4px;
+  }
+  .btn:hover:not(:disabled) { background: var(--dark); transform: translateY(-1px); }
+  .btn:active:not(:disabled) { transform: translateY(0); }
+  .btn:disabled { background: #9ab59b; cursor: not-allowed; }
+
+  /* SPINNER */
+  .spinner-wrap { display: none; align-items: center; gap: 10px; margin-top: 16px; color: var(--accent); font-size: 12px; }
+  .spinner-wrap.visible { display: flex; }
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* OUTPUT */
+  .output-box {
+    margin-top: 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: none;
+  }
+  .output-box.visible { display: block; }
+  .output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 16px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .output-label { font-size: 10px; font-weight: 500; color: var(--mid); letter-spacing: 0.1em; text-transform: uppercase; }
+  .copy-btn {
+    font-size: 11px;
+    font-family: var(--mono);
+    background: transparent;
+    color: var(--mid);
+    border: 1px solid var(--border2);
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: var(--mid); color: #fff; border-color: var(--mid); }
+  .copy-btn.copied { background: var(--mid); color: #fff; border-color: var(--mid); }
+  .output-content {
+    padding: 18px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--text);
+    max-height: 500px;
+    overflow-y: auto;
+    background: var(--surface);
+  }
+
+  /* CONTEXT BAR */
+  .context-bar {
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: var(--surface2);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .ctx-item .ctx-k { font-size: 9px; font-weight: 500; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .ctx-item .ctx-v { font-size: 11px; color: var(--text2); }
+
+  /* SCROLLBAR */
+  .output-content::-webkit-scrollbar { width: 6px; }
+  .output-content::-webkit-scrollbar-track { background: var(--surface2); }
+  .output-content::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+  @media (max-width: 680px) {
+    header, nav, main { padding-left: 18px; padding-right: 18px; }
+    .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .panel { padding: 20px; }
+    .header-top { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-top">
+      <span class="logo">Patient Acquisition Hub</span>
+      <span class="badge">AI Content Suite</span>
+    </div>
+    <div class="header-sub">Dental Marketing · Camden NW1 &amp; Hampstead NW3 · Google Reviews · Missed Call Recovery · Local SEO</div>
+  </div>
+</header>
+
+<nav>
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="keywords">🔍 Keyword Generator</button>
+    <button class="tab-btn" data-tab="article">✍️ Article Writer</button>
+    <button class="tab-btn" data-tab="rewriter">🔄 Content Rewriter</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- KEYWORD TAB -->
+  <div class="panel active" id="tab-keywords">
+    <p class="panel-desc">Generate hyper-targeted long-tail keywords for Patient Acquisition Hub's dental marketing niche — pre-wired to NW1/NW3 London, your three core services, and your ideal practice-owner audience.</p>
+
+    <div class="grid-3">
+      <div>
+        <label class="label">Marketing Strategy</label>
+        <select id="kw-strategy">
+          <option>Local SEO</option>
+          <option>Google Review Building</option>
+          <option>Missed Call Recovery</option>
+          <option>Reputation Management</option>
+          <option>Content Marketing</option>
+          <option>Google Business Profile</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Focus Area</label>
+        <select id="kw-focus">
+          <option>Google Reviews</option>
+          <option>Patient Acquisition</option>
+          <option>Missed Call Recovery</option>
+          <option>Local SEO</option>
+          <option>Dental Marketing Agency</option>
+          <option>Reputation Management</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Target Location</label>
+        <select id="kw-location">
+          <option>Camden Town NW1</option>
+          <option>Hampstead NW3</option>
+          <option>Kentish Town NW5</option>
+          <option>Belsize Park NW3</option>
+          <option>Chalk Farm NW1</option>
+          <option>Primrose Hill NW1</option>
+          <option>West Hampstead NW6</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="kw-btn">Generate Keywords →</button>
+    <div class="spinner-wrap" id="kw-spinner"><div class="spinner"></div> Generating with Claude…</div>
+
+    <div class="output-box" id="kw-output">
+      <div class="output-header">
+        <span class="output-label">Keyword List — Patient Acquisition Hub</span>
+        <button class="copy-btn" data-target="kw-text">Copy</button>
+      </div>
+      <pre class="output-content" id="kw-text"></pre>
+    </div>
+  </div>
+
+  <!-- ARTICLE TAB -->
+  <div class="panel" id="tab-article">
+    <p class="panel-desc">Generate a full-length article targeting your keyword — pre-loaded with Patient Acquisition Hub's Camden / Hampstead context, services, and audience.</p>
+
+    <div class="field">
+      <label class="label">Target Keyword</label>
+      <input type="text" id="art-keyword" value="local SEO for dental practices in Camden Town NW1" placeholder="e.g. how to get more Google reviews for dental practice Camden">
+    </div>
+
+    <div class="grid-3">
+      <div>
+        <label class="label">Platform</label>
+        <select id="art-platform">
+          <option>Medium</option>
+          <option>LinkedIn Article</option>
+          <option>Reddit (r/Dentistry)</option>
+          <option>Google Business Post</option>
+          <option>Facebook Community Group</option>
+          <option>Practice Website Blog</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Angle / Approach</label>
+        <select id="art-angle">
+          <option>Practice owner pain points</option>
+          <option>ROI and business case</option>
+          <option>Step-by-step how-to guide</option>
+          <option>Case study / before &amp; after</option>
+          <option>Competitor comparison</option>
+          <option>Beginner's introduction</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Word Count</label>
+        <select id="art-words">
+          <option>600</option>
+          <option>800</option>
+          <option>1000</option>
+          <option value="1200" selected>1200</option>
+          <option>1500</option>
+          <option>2000</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="art-btn">Write Article →</button>
+    <div class="spinner-wrap" id="art-spinner"><div class="spinner"></div> Writing with Claude…</div>
+
+    <div class="output-box" id="art-output">
+      <div class="output-header">
+        <span class="output-label">Article Output</span>
+        <button class="copy-btn" data-target="art-text">Copy</button>
+      </div>
+      <pre class="output-content" id="art-text"></pre>
+    </div>
+  </div>
+
+  <!-- REWRITER TAB -->
+  <div class="panel" id="tab-rewriter">
+    <p class="panel-desc">Repurpose existing content for a new platform and PAA question — adapted to Patient Acquisition Hub's voice and Camden / Hampstead local context.</p>
+
+    <div class="field">
+      <label class="label">Original Content</label>
+      <textarea id="rw-original" rows="7" placeholder="Paste your existing article, blog post, or page copy here…"></textarea>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <label class="label">PAA Question to Answer</label>
+        <input type="text" id="rw-paa" placeholder="e.g. How do dentists get more Google reviews?">
+      </div>
+      <div>
+        <label class="label">New Target Keyword</label>
+        <input type="text" id="rw-keyword" placeholder="e.g. dental Google reviews Camden NW1">
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:20px">
+      <div>
+        <label class="label">Target Platform</label>
+        <select id="rw-platform">
+          <option>LinkedIn Article</option>
+          <option>Medium</option>
+          <option>Reddit (r/Dentistry)</option>
+          <option>Google Business Post</option>
+          <option>Facebook Community Group</option>
+          <option>Practice Website Blog</option>
+        </select>
+      </div>
+      <div>
+        <label class="label">Word Count</label>
+        <select id="rw-words">
+          <option>400</option>
+          <option>600</option>
+          <option value="800" selected>800</option>
+          <option>1000</option>
+          <option>1200</option>
+          <option>1500</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="rw-btn">Rewrite Content →</button>
+    <div class="spinner-wrap" id="rw-spinner"><div class="spinner"></div> Rewriting with Claude…</div>
+
+    <div class="output-box" id="rw-output">
+      <div class="output-header">
+        <span class="output-label">Rewritten Content</span>
+        <button class="copy-btn" data-target="rw-text">Copy</button>
+      </div>
+      <pre class="output-content" id="rw-text"></pre>
+    </div>
+  </div>
+
+  <!-- CONTEXT BAR -->
+  <div class="context-bar">
+    <div class="ctx-item"><span class="ctx-k">Niche</span><span class="ctx-v">Dental Marketing · NW London</span></div>
+    <div class="ctx-item"><span class="ctx-k">Services</span><span class="ctx-v">Reviews · Missed Calls · Local SEO</span></div>
+    <div class="ctx-item"><span class="ctx-k">Areas</span><span class="ctx-v">Camden NW1 · Hampstead NW3 · Belsize Park</span></div>
+    <div class="ctx-item"><span class="ctx-k">Audience</span><span class="ctx-v">Dental Practice Owners &amp; Managers</span></div>
+    <div class="ctx-item"><span class="ctx-k">Goal</span><span class="ctx-v">Patient Acquisition</span></div>
+  </div>
+
+</main>
+
+<script>
+const BRAND = {
+  niche: "dental marketing for private and NHS practices in Camden Town (NW1) and Hampstead (NW3), London",
+  services: "Google Review Automation, Missed Call Recovery, and hyper-local SEO",
+  audience: "dental practice owners, practice managers, and dentists in Camden, Hampstead, Kentish Town, Belsize Park, Chalk Farm, and NW London",
+  goal: "patient acquisition, online visibility, Google Maps ranking, and reducing missed calls",
+  company: "Patient Acquisition Hub",
+};
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// Copy buttons
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = document.getElementById(btn.dataset.target).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2200);
+    });
+  });
+});
+
+async function callClaude(prompt) {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1000,
+      messages: [{ role: "user", content: prompt }],
+    }),
+  });
+  const data = await res.json();
+  if (data.error) throw new Error(data.error.message);
+  return data.content?.map(b => b.text || "").join("") || "";
+}
+
+function setLoading(id, on) {
+  document.getElementById(id + '-btn').disabled = on;
+  document.getElementById(id + '-btn').textContent = on
+    ? (id === 'kw' ? 'Generating…' : id === 'art' ? 'Writing…' : 'Rewriting…')
+    : (id === 'kw' ? 'Generate Keywords →' : id === 'art' ? 'Write Article →' : 'Rewrite Content →');
+  document.getElementById(id + '-spinner').classList.toggle('visible', on);
+}
+
+function showOutput(id, text) {
+  const box = document.getElementById(id + '-output');
+  document.getElementById(id + '-text').textContent = text;
+  box.classList.add('visible');
+}
+
+// KEYWORD GENERATOR
+document.getElementById('kw-btn').addEventListener('click', async () => {
+  const strategy = document.getElementById('kw-strategy').value;
+  const focus = document.getElementById('kw-focus').value;
+  const location = document.getElementById('kw-location').value;
+
+  const prompt = `You are an expert SEO strategist specialising in hyper-local dental marketing in London.
+
+Generate a diverse list of 30 low-competition, long-tail keywords for: ${BRAND.niche}
+Company: ${BRAND.company}
+Marketing Strategy: ${strategy}
+Focus Area: ${focus}
+Target Location: ${location}
+Target Audience: ${BRAND.audience}
+Goal: ${BRAND.goal}
+
+Include keywords covering:
+- Informational queries (how-to, guide, tips, best practices)
+- Problem-solving phrases (overcoming, solving, fixing, improving)
+- Comparison terms (vs, alternatives, best, top)
+- Cost-related terms (affordable, ROI, pricing)
+- Question-based searches (who, what, why, how)
+- Location-specific terms for NW London postcodes
+- Industry pain points for dental practice owners
+
+Format: Number each keyword 1-30. After each keyword add: | Intent: [type] | Est. Difficulty: [Low/Medium]
+
+Group into sections:
+== INFORMATIONAL ==
+== COMMERCIAL ==
+== LOCAL / NAVIGATIONAL ==`;
+
+  setLoading('kw', true);
+  try {
+    const result = await callClaude(prompt);
+    showOutput('kw', result);
+  } catch (e) {
+    showOutput('kw', '⚠ Error: ' + e.message);
+  }
+  setLoading('kw', false);
+});
+
+// ARTICLE WRITER
+document.getElementById('art-btn').addEventListener('click', async () => {
+  const keyword = document.getElementById('art-keyword').value.trim() || "local SEO for dental practices in Camden Town NW1";
+  const platform = document.getElementById('art-platform').value;
+  const angle = document.getElementById('art-angle').value;
+  const words = document.getElementById('art-words').value;
+
+  const prompt = `You are an expert content writer specialising in dental marketing for independent practices in London.
+
+Write an informative, engaging article for ${platform} targeting the long-tail keyword: "${keyword}"
+
+Context:
+- Written on behalf of ${BRAND.company} — a specialist dental marketing agency for Camden Town (NW1) and Hampstead (NW3) practices
+- Services covered: ${BRAND.services}
+- Audience: ${BRAND.audience}
+- Article angle: ${angle}
+- Target length: approximately ${words} words
+
+Requirements:
+- Conversational but authoritative tone suited to ${platform}
+- Practical, actionable advice with specific examples
+- Reference local areas: Camden Town, Kentish Town, Chalk Farm, Hampstead, Belsize Park, NW1, NW3
+- Address pain points: missed calls, low review count, Harley Street competition, NHS vs private
+- Use subheadings and bullet points where appropriate
+- Compelling intro and clear CTA at the end mentioning Patient Acquisition Hub
+- No fluff, no clichés — natural, varied sentence length
+- Do not include any notes or meta-commentary, just the article
+
+Return the full article, ready to publish.`;
+
+  setLoading('art', true);
+  try {
+    const result = await callClaude(prompt);
+    showOutput('art', result);
+  } catch (e) {
+    showOutput('art', '⚠ Error: ' + e.message);
+  }
+  setLoading('art', false);
+});
+
+// CONTENT REWRITER
+document.getElementById('rw-btn').addEventListener('click', async () => {
+  const original = document.getElementById('rw-original').value.trim();
+  if (!original) { alert('Please paste your original content first.'); return; }
+
+  const paa = document.getElementById('rw-paa').value.trim() || "How can dental practices in NW London get more patients online?";
+  const keyword = document.getElementById('rw-keyword').value.trim() || "dental marketing NW London";
+  const platform = document.getElementById('rw-platform').value;
+  const words = document.getElementById('rw-words').value;
+
+  const prompt = `You are an expert content strategist specialising in dental marketing for London dental practices.
+
+ORIGINAL CONTENT (written for Patient Acquisition Hub — dental marketing for Camden & Hampstead practices):
+---
+${original}
+---
+
+Rewrite this content for: ${platform}
+PAA Question to answer directly: "${paa}"
+New target keyword: "${keyword}"
+Target length: approximately ${words} words
+
+Requirements:
+- Open by directly answering the PAA question (first paragraph)
+- Adapt tone and format for ${platform}'s audience
+- Maintain core advice and value from the original
+- Add 2 new examples or insights not in the original
+- Reorganise structure around the PAA question
+- Include appropriate subheadings
+- End with a CTA suited to ${platform} mentioning ${BRAND.company}
+- Keep Camden/Hampstead/NW London local specificity throughout
+- Natural, human writing — varied sentence length, no fluff
+- Do not include any notes or meta-commentary, just the content
+
+Return the full rewritten piece, ready to publish.`;
+
+  setLoading('rw', true);
+  try {
+    const result = await callClaude(prompt);
+    showOutput('rw', result);
+  } catch (e) {
+    showOutput('rw', '⚠ Error: ' + e.message);
+  }
+  setLoading('rw', false);
+});
+</script>
+
+</body>
+</html>

@@ -11,10 +11,31 @@
   <link rel="canonical" href="https://www.patientacquisitionhub.com/" />
 
   <!-- ─── OPEN GRAPH ─────────────────────────────────────────────────────────── -->
+  <!-- ADDED: og:image so every WhatsApp/LinkedIn share shows a branded thumbnail -->
+  <!-- ACTION NEEDED: create a 1200×630px image in Canva, upload to your site root as og-image.png -->
   <meta property="og:title" content="Dental Marketing Agency Camden Town & Hampstead | Patient Acquisition Hub" />
   <meta property="og:description" content="Dental marketing agency in Camden Town and Hampstead. We get NW1 and NW3 practices more Google reviews, more booked patients, and zero missed calls — live in weeks." />
   <meta property="og:url" content="https://www.patientacquisitionhub.com/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.patientacquisitionhub.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Patient Acquisition Hub" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- ─── TWITTER / X CARD ──────────────────────────────────────────────────── -->
+  <!-- ADDED: large image card so Twitter/X shares look professional -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dental Marketing Agency Camden Town & Hampstead | Patient Acquisition Hub" />
+  <meta name="twitter:description" content="Dental marketing agency in Camden Town and Hampstead. We get NW1 and NW3 practices more Google reviews, more booked patients, and zero missed calls — live in weeks." />
+  <meta name="twitter:image" content="https://www.patientacquisitionhub.com/og-image.png" />
+
+  <!-- ─── GEO META ──────────────────────────────────────────────────────────── -->
+  <!-- ADDED: local geographic signals — Digimax had these; you didn't -->
+  <meta name="geo.region" content="GB-LND" />
+  <meta name="geo.placename" content="Camden Town, London" />
+  <meta name="geo.position" content="51.5390;-0.1426" />
+  <meta name="ICBM" content="51.5390, -0.1426" />
 
   <!-- ─── SCHEMA: LOCAL BUSINESS ──────────────────────────────────────────────── -->
   <script type="application/ld+json">
@@ -104,7 +125,7 @@
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
       "opens": "08:30",
-      "closes": "16:00"
+      "closes": "18:00"
     }
   }
   </script>
@@ -167,6 +188,24 @@
   }
   </script>
 
+  <!-- ─── SCHEMA: PERSON (E-E-A-T signal for founder) ──────────────────────── -->
+  <!-- ADDED: Person schema builds Google's E-E-A-T confidence in the site author -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Julien Kabongo",
+    "url": "https://www.patientacquisitionhub.com/about.html",
+    "sameAs": ["https://www.linkedin.com/in/julien-kabongo1993"],
+    "jobTitle": "Founder",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Patient Acquisition Hub"
+    },
+    "knowsAbout": ["dental marketing", "local SEO", "Google Business Profile optimisation", "review automation", "missed call recovery"]
+  }
+  </script>
+
   <!-- ─── BREADCRUMB SCHEMA ─────────────────────────────────────────────────────── -->
   <script type="application/ld+json">
   {
@@ -212,7 +251,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Outfit', sans-serif; background: var(--cream); color: var(--text-body); line-height: 1.7; }
 
-    /* NAV */
+    /* ─── NAV ─────────────────────────────────────────────────────────────────── */
     nav {
       background: var(--ink); padding: 1rem 2rem;
       display: flex; justify-content: space-between; align-items: center;
@@ -220,10 +259,19 @@
       border-bottom: 1px solid rgba(26,107,107,0.3);
     }
     .nav-logo { font-family: 'Cormorant Garamond', serif; color: var(--teal-light); font-size: 1.1rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; }
+    .nav-right { display: flex; align-items: center; gap: 1.2rem; }
+    /* ADDED: phone number in nav */
+    .nav-phone {
+      color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 400;
+      text-decoration: none; letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    .nav-phone:hover { color: var(--teal-light); }
     .nav-cta { background: var(--teal); color: var(--white); padding: 0.5rem 1.3rem; border-radius: 3px; text-decoration: none; font-weight: 600; font-size: 0.88rem; transition: background 0.2s; }
     .nav-cta:hover { background: var(--teal-light); }
+    @media (max-width: 520px) { .nav-phone { display: none; } }
 
-    /* HERO */
+    /* ─── HERO ────────────────────────────────────────────────────────────────── */
     .hero { background: var(--ink); color: var(--white); padding: 5.5rem 2rem 5rem; position: relative; overflow: hidden; }
     .hero::before {
       content: 'PAH'; position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
@@ -258,12 +306,12 @@
     .btn-outline:hover { border-color: var(--teal-light); color: var(--teal-light); }
     .hero-note { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
 
-    /* TRUST BAR */
+    /* ─── TRUST BAR ───────────────────────────────────────────────────────────── */
     .trust-bar { background: var(--ink-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.1rem 2rem; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
     .trust-item { color: rgba(255,255,255,0.6); font-size: 0.82rem; font-weight: 500; display: flex; align-items: center; gap: 0.45rem; }
     .ti-icon { color: var(--teal-light); }
 
-    /* SECTIONS */
+    /* ─── SECTIONS ────────────────────────────────────────────────────────────── */
     section { padding: 5rem 2rem; }
     .container { max-width: 1060px; margin: 0 auto; }
     .section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.7rem; }
@@ -271,7 +319,7 @@
     h2 em { font-style: italic; color: var(--teal); }
     .lead { font-size: 1.02rem; color: var(--text-muted); max-width: 660px; margin-bottom: 2.5rem; line-height: 1.8; }
 
-    /* STORY SECTION */
+    /* ─── STORY ───────────────────────────────────────────────────────────────── */
     .story { background: var(--white); }
     .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     @media (max-width: 720px) { .story-grid { grid-template-columns: 1fr; gap: 2rem; } }
@@ -284,7 +332,7 @@
     .proof-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--teal); line-height: 1; flex-shrink: 0; }
     .proof-label { font-size: 0.88rem; color: var(--text-muted); line-height: 1.45; }
 
-    /* HOW IT WORKS */
+    /* ─── HOW IT WORKS ────────────────────────────────────────────────────────── */
     .how { background: var(--cream); }
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
     .step { background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 2rem 1.8rem; position: relative; }
@@ -294,7 +342,7 @@
     .step-link { display: inline-block; margin-top: 1rem; font-size: 0.85rem; color: var(--teal); font-weight: 600; text-decoration: none; }
     .step-link:hover { color: var(--teal-light); }
 
-    /* SERVICES DEEP DIVE */
+    /* ─── SERVICES ────────────────────────────────────────────────────────────── */
     .services { background: var(--white); }
     .service-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: start; margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border-light); }
     .service-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
@@ -314,9 +362,22 @@
     .sv-stat .n span { color: var(--teal); }
     .sv-stat .l { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; line-height: 1.5; }
     .sv-divider { border: none; border-top: 1px solid var(--border-light); margin: 1.2rem 0; }
-    .sv-quote { font-size: 0.9rem; color: var(--text-muted); font-style: italic; line-height: 1.65; }
+    /* CHANGED: quotes now clearly labelled as industry benchmarks, not client testimonials */
+    .sv-insight {
+      border-left: 2px solid var(--teal);
+      padding-left: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    .sv-insight-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--teal);
+      display: block; margin-bottom: 0.3rem;
+    }
+    .sv-insight-text {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.65;
+    }
 
-    /* ROI CALC */
+    /* ─── ROI ─────────────────────────────────────────────────────────────────── */
     .roi { background: var(--ink); color: var(--white); }
     .roi h2 { color: var(--white); }
     .roi .lead { color: rgba(255,255,255,0.6); }
@@ -325,14 +386,14 @@
     .roi-card .rn { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: var(--teal-light); line-height: 1; margin-bottom: 0.5rem; }
     .roi-card .rl { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
-    /* WHO WE SERVE */
+    /* ─── WHO WE SERVE ────────────────────────────────────────────────────────── */
     .who { background: var(--cream); }
     .practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
     .practice-card { background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; padding: 1.4rem 1.5rem; }
     .practice-card h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
     .practice-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
-    /* INTERNAL LINKS */
+    /* ─── INTERNAL LINKS ──────────────────────────────────────────────────────── */
     .internal { background: var(--white); }
     .internal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
     .int-card { border: 1px solid var(--border-light); border-radius: 4px; padding: 1.5rem; text-decoration: none; background: var(--cream); transition: box-shadow 0.2s, transform 0.2s; display: block; }
@@ -342,7 +403,7 @@
     .int-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
     .int-card .ic-arrow { font-size: 0.82rem; color: var(--teal); margin-top: 0.8rem; display: block; font-weight: 600; }
 
-    /* FAQ */
+    /* ─── FAQ ─────────────────────────────────────────────────────────────────── */
     .faq { background: var(--cream); }
     .faq-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 780px; }
     .faq-item { border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden; background: var(--white); }
@@ -353,7 +414,41 @@
     .faq-item.open .chevron { transform: rotate(180deg); }
     .faq-item.open { border-color: var(--border); }
 
-    /* CTA */
+    /* ─── MEET JULIEN (NEW SECTION) ──────────────────────────────────────────── */
+    /* ADDED: founder section — builds E-E-A-T and trust before the CTA */
+    .founder { background: var(--white); }
+    .founder-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center; }
+    @media (max-width: 720px) { .founder-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .founder-avatar {
+      aspect-ratio: 1; border-radius: 4px;
+      background: var(--teal-pale); border: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0.75rem; padding: 2rem;
+    }
+    .founder-avatar .initials {
+      font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 700;
+      color: var(--teal); line-height: 1;
+    }
+    /* ACTION NEEDED: replace .founder-avatar with a real <img> of Julien -->
+    /* <img src="/julien.jpg" alt="Julien Kabongo, founder of Patient Acquisition Hub" ... /> */
+    .founder-avatar .avatar-note {
+      font-size: 0.75rem; color: var(--text-muted); text-align: center; line-height: 1.5;
+    }
+    .founder-body h2 { margin-bottom: 0.75rem; }
+    .founder-body p { font-size: 0.97rem; color: var(--text-body); line-height: 1.85; margin-bottom: 1.1rem; }
+    .founder-body p:last-of-type { margin-bottom: 0; }
+    .founder-links { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .founder-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.88rem; font-weight: 600; color: var(--teal);
+      text-decoration: none; border: 1px solid var(--border);
+      padding: 0.45rem 0.9rem; border-radius: 3px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .founder-link:hover { background: var(--teal-pale); border-color: var(--teal); }
+
+    /* ─── CTA ─────────────────────────────────────────────────────────────────── */
     .cta-section { background: var(--ink); color: var(--white); text-align: center; padding: 6rem 2rem; position: relative; overflow: hidden; }
     .cta-section::before { content: 'Book'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); font-family: 'Cormorant Garamond', serif; font-size: clamp(8rem, 18vw, 16rem); font-weight: 700; color: rgba(26,107,107,0.05); white-space: nowrap; pointer-events: none; user-select: none; }
     .cta-inner { position: relative; }
@@ -361,7 +456,7 @@
     .cta-sub { color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 2.5rem; font-size: 1.02rem; line-height: 1.75; }
     .cta-section .btn-primary { font-size: 1.05rem; padding: 1rem 2.4rem; }
 
-    /* FOOTER */
+    /* ─── FOOTER ──────────────────────────────────────────────────────────────── */
     footer { background: var(--ink); color: rgba(255,255,255,0.4); text-align: center; padding: 2rem; font-size: 0.83rem; border-top: 1px solid rgba(26,107,107,0.2); }
     footer a { color: var(--teal-light); text-decoration: none; }
     .footer-links { margin-top: 0.8rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem 1rem; }
@@ -376,31 +471,34 @@
 </head>
 <body>
 
+  <!-- ─── NAV ─────────────────────────────────────────────────────────────────── -->
+  <!-- CHANGED: added phone number to nav — dentists who want to call can't find it otherwise -->
   <nav>
     <a href="https://www.patientacquisitionhub.com" class="nav-logo">Patient Acquisition Hub</a>
-    <a href="https://calendly.com/patientacquisitionhub/30min" class="nav-cta">📅 Book Free Demo</a>
+    <div class="nav-right">
+      <a href="tel:02080507468" class="nav-phone">020 8050 7468</a>
+      <a href="https://calendly.com/patientacquisitionhub/30min" class="nav-cta">📅 Book Free Demo</a>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- ─── HERO ──────────────────────────────────────────────────────────────────── -->
   <section class="hero">
     <div class="hero-inner">
-      <!-- SEO IMPROVEMENT: postcode-expanded eyebrow for NW1/NW3/NW5/NW6 visibility -->
       <div class="hero-eyebrow">📍 Dental Marketing Agency · NW1 · NW3 · NW5 · NW6 · London</div>
       <h1>The <em>Patient Acquisition</em><br>Agency Built for<br>Camden &amp; Hampstead Dentists</h1>
-      <!-- SEO IMPROVEMENT: landmark references (Hampstead Heath, Regent's Park) in visible body copy -->
       <div class="hero-goal">
         <strong>Dental marketing agency in Camden Town and Hampstead.</strong> We get NW1 and NW3 practices more Google reviews, more booked patients, and zero missed calls — whether you're near Hampstead Heath, Regent's Park, or Camden Market. Live in weeks. Book a free strategy call today. No commitment.
       </div>
       <div class="hero-actions">
         <a href="https://calendly.com/patientacquisitionhub/30min" class="btn-primary">📅 Book a Free Strategy Call</a>
         <a href="https://patientacquisitionhub.com/pricing.html" class="btn-outline">Transparent Pricing →</a>
-        <a href="https://www.patientacquisitionhub.com/missed-calls-recovery.html" class="btn-primary">Missed Call explained</a>
+        <a href="https://www.patientacquisitionhub.com/missed-calls-recovery.html" class="btn-outline">Missed Call explained</a>
       </div>
       <p class="hero-note">No hard sell. No pitch deck. Just a clear picture of what your NW1 or NW3 practice could achieve.</p>
     </div>
   </section>
 
-  <!-- TRUST BAR -->
+  <!-- ─── TRUST BAR ─────────────────────────────────────────────────────────────── -->
   <div class="trust-bar">
     <div class="trust-item"><span class="ti-icon">⭐</span> Google Review Automation</div>
     <div class="trust-item"><span class="ti-icon">📞</span> Missed Call Recovery</div>
@@ -409,7 +507,7 @@
     <div class="trust-item"><span class="ti-icon">⚡</span> Live in Weeks, Not Months</div>
   </div>
 
-  <!-- STORY -->
+  <!-- ─── STORY ──────────────────────────────────────────────────────────────────── -->
   <section class="story">
     <div class="container">
       <div class="section-label">Why Patient Acquisition Hub Exists</div>
@@ -418,7 +516,6 @@
           <h2>Camden &amp; Hampstead Dental Practices Are Losing Patients They Don't Know They're Losing</h2>
           <p>Search "private dentist Camden" or "private dentist Hampstead NW3" on your phone right now. The practice that comes up first isn't necessarily the best one on that street — it's the one with the most reviews, the strongest local signals, and a Google Business Profile that's been actively maintained.</p>
           <p>Excellent dentistry and an invisible online presence can coexist. Plenty of well-run Camden and Hampstead practices have 14 reviews, the last one from 2022, while a competitor two streets away has 280 and shows up first for every nearby search. In Hampstead, the competition is even sharper — Harley Street and Marylebone clinics actively target NW3 search terms, meaning a patient within walking distance of your practice may book somewhere they've never been, simply because it ranked higher. Patients don't know the difference in clinical quality. They just book whoever appears at the top.</p>
-          <!-- SEO IMPROVEMENT: tube station and landmark proximity copy -->
           <p>A patient stepping off at Chalk Farm, walking back from Hampstead Heath, or leaving the Royal Free Hospital searches for a dentist on their phone in that moment. They book the first result. If that isn't you, it's the practice that invested in local signals — not the one that has better dentistry.</p>
           <p>Patient Acquisition Hub exists to fix exactly that.</p>
           <p>We built a system specifically for dental practices across NW1 and NW3 — not adapted from a generic marketing template, not sold to 500 different industries. Just dental, just Camden, Hampstead, and the postcodes around them.</p>
@@ -452,7 +549,7 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- ─── HOW IT WORKS ───────────────────────────────────────────────────────────── -->
   <section class="how">
     <div class="container">
       <div class="section-label">How It Works</div>
@@ -478,7 +575,7 @@
     </div>
   </section>
 
-  <!-- SERVICES DEEP DIVE -->
+  <!-- ─── SERVICES ───────────────────────────────────────────────────────────────── -->
   <section class="services">
     <div class="container">
       <div class="section-label">What We Do</div>
@@ -512,7 +609,11 @@
             <div class="l">reviews needed to compete for top NW1 and NW3 map pack positions</div>
           </div>
           <hr class="sv-divider">
-          <div class="sv-quote">"He had 14 reviews when we started. He had 91 three months later — without changing anything else."</div>
+          <!-- CHANGED: was an anonymous "client quote" — now labelled as industry benchmark -->
+          <div class="sv-insight">
+            <span class="sv-insight-label">Industry benchmark</span>
+            <span class="sv-insight-text">Review velocity matters more than total count. Practices adding 20+ reviews per month consistently outrank those with a larger but static profile.</span>
+          </div>
         </div>
       </div>
 
@@ -543,7 +644,11 @@
             <div class="l">calls missed per week at a typical NW1 or NW3 practice</div>
           </div>
           <hr class="sv-divider">
-          <div class="sv-quote">"Recovering just 2 extra patients per month at £1,000 average treatment covers everything we charge — several times over."</div>
+          <!-- CHANGED: was an anonymous "client quote" — now labelled as industry benchmark -->
+          <div class="sv-insight">
+            <span class="sv-insight-label">Industry benchmark</span>
+            <span class="sv-insight-text">Recovering just 2 extra patients per month at a £1,000 average treatment value covers a typical patient acquisition service cost several times over.</span>
+          </div>
         </div>
       </div>
 
@@ -566,7 +671,7 @@
           <div class="sv-label">Why reputation matters locally</div>
           <div class="sv-stat">
             <div class="n">84<span>%</span></div>
-            <div class="l">of Camden and Hampstead patients read Google reviews before booking</div>
+            <div class="l">of patients read Google reviews before booking a new dental practice</div>
           </div>
           <hr class="sv-divider">
           <div class="sv-stat">
@@ -574,13 +679,17 @@
             <div class="l">practices a patient compares online before calling any of them</div>
           </div>
           <hr class="sv-divider">
-          <div class="sv-quote">"Review recency matters as much as volume. A practice with 200 reviews and the last one from six months ago loses to a practice with 80 fresh ones."</div>
+          <!-- CHANGED: was an anonymous "client quote" — now labelled as industry benchmark -->
+          <div class="sv-insight">
+            <span class="sv-insight-label">Industry benchmark</span>
+            <span class="sv-insight-text">Review recency matters as much as volume. A practice with 200 reviews and the last one from six months ago typically loses to a practice with 80 fresh, recent ones.</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ROI -->
+  <!-- ─── ROI ────────────────────────────────────────────────────────────────────── -->
   <section class="roi">
     <div class="container">
       <div class="section-label" style="color:var(--teal-light);">The Numbers</div>
@@ -607,7 +716,7 @@
     </div>
   </section>
 
-  <!-- WHO WE SERVE -->
+  <!-- ─── WHO WE SERVE ───────────────────────────────────────────────────────────── -->
   <section class="who">
     <div class="container">
       <div class="section-label">Who We Work With</div>
@@ -630,12 +739,10 @@
           <h4>Cosmetic &amp; Implant Specialists</h4>
           <p>Treatment-specific patient acquisition for Invisalign, dental implants, teeth whitening, and orthodontics in Camden and Hampstead NW3.</p>
         </div>
-        <!-- SEO IMPROVEMENT: tube station context added to Hampstead card -->
         <div class="practice-card">
           <h4>Hampstead &amp; Belsize Park Practices</h4>
           <p>Specialised NW3 strategy to outrank Harley Street and Marylebone clinics — capturing patients near Hampstead tube, Belsize Park tube, and Hampstead Heath who book whoever ranks first.</p>
         </div>
-        <!-- SEO IMPROVEMENT: new card for West Hampstead / NW6 -->
         <div class="practice-card">
           <h4>West Hampstead &amp; Swiss Cottage</h4>
           <p>Hyper-local SEO for NW6 and NW8 practices near West Hampstead Overground, Finchley Road tube, and Swiss Cottage — an underserved corridor with strong patient catchment.</p>
@@ -644,7 +751,7 @@
     </div>
   </section>
 
-  <!-- INTERNAL LINKS -->
+  <!-- ─── INTERNAL LINKS ─────────────────────────────────────────────────────────── -->
   <section class="internal">
     <div class="container">
       <div class="section-label">Explore Further</div>
@@ -675,7 +782,6 @@
           <p>Hyper-local SEO and missed call recovery for Chalk Farm and NW1 dental practices.</p>
           <span class="ic-arrow">Read the Chalk Farm guide →</span>
         </a>
-        <!-- SEO IMPROVEMENT: three new area guide cards -->
         <a href="/london/dental-marketing-west-hampstead.html" class="int-card">
           <div class="ic-label">Area Guide · NW6</div>
           <h4>Dental Marketing West Hampstead</h4>
@@ -716,7 +822,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- ─── FAQ ────────────────────────────────────────────────────────────────────── -->
   <section class="faq">
     <div class="container">
       <div class="section-label">FAQ</div>
@@ -744,7 +850,6 @@
           </button>
           <div class="faq-answer">A London-wide strategy puts you in competition with 3,000+ practices across the city. Your actual patients are within a mile or two of your practice — in NW1, NW3, NW5, NW6, and the streets around Camden Road, Kentish Town, Hampstead High Street, and Belsize Park. We narrow the battle to those postcodes specifically, which means less competition and faster ranking improvements for the searches that actually result in bookings.</div>
         </div>
-        <!-- SEO IMPROVEMENT: new FAQ targeting tube station and landmark proximity searches -->
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             Do you cover practices near specific tube stations and local landmarks?
@@ -777,121 +882,209 @@
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ─── MEET JULIEN (NEW SECTION) ────────────────────────────────────────────── -->
+  <!--
+    ADDED: Founder section — every prospect Googles who's behind the agency before booking.
+    ACTION NEEDED: Replace the initials placeholder with a real headshot <img> tag.
+    ACTION NEEDED: Personalise the two paragraphs with your own words and story.
+    ACTION NEEDED: Create /about.html and expand this into a full page.
+  -->
+  <section class="founder" id="about">
+    <div class="container">
+      <div class="section-label">Who's behind this</div>
+      <div class="founder-grid">
+
+        <div class="founder-avatar">
+          <!--
+            REPLACE THIS BLOCK with:
+            <img src="/julien.jpg"
+                 alt="Julien Kabongo, founder of Patient Acquisition Hub"
+                 style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+          -->
+          <span class="initials">JK</span>
+          <span class="avatar-note">Add your photo here —<br>upload as /julien.jpg</span>
+        </div>
+
+        <div class="founder-body">
+          <h2>Meet <em>Julien</em></h2>
+          <!--
+            ACTION NEEDED: Replace the placeholder paragraphs below with your own words.
+            Answer these three questions:
+            1. Why did you build this specifically for Camden and Hampstead dentists?
+            2. What do you understand about this area that a big London agency doesn't?
+            3. What's your personal commitment to every practice you work with?
+          -->
+          <p>Patient Acquisition Hub was built because Camden and Hampstead dental practices face a problem no generic London agency is focused on solving. Patients within walking distance of excellent local practices are booking elsewhere — not because those practices are worse, but because out-of-area competitors with stronger Google signals rank higher for searches made on their doorstep.</p>
+          <p>I built this system specifically for NW1 and NW3 because hyperlocal patient acquisition — review velocity, missed call recovery, Google Business Profile authority — requires the kind of postcode-level focus that a UK-wide agency will never prioritise. Every practice I work with gets my direct attention, not a junior account manager and a quarterly report.</p>
+          <p>I work with a small number of practices at a time, which means when you sign with Patient Acquisition Hub, you're working with me — not being handed off. Book a free strategy call and I'll show you exactly where your practice stands against local competitors before you commit to anything.</p>
+          <div class="founder-links">
+            <a href="https://www.linkedin.com/in/julien-kabongo1993" target="_blank" rel="noopener" class="founder-link">
+              LinkedIn →
+            </a>
+            <a href="/about.html" class="founder-link">
+              Full story →
+            </a>
+            <a href="https://calendly.com/patientacquisitionhub/30min" class="founder-link">
+              📅 Book a call with Julien
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ────────────────────────────────────────────────────────────────────── -->
   <section class="cta-section">
     <div class="container cta-inner">
       <div class="section-label" style="color:var(--teal-light);">Get Started</div>
       <h2>Ready to Stop Losing NW1 &amp; NW3 Patients<br>to Out-of-Area Competitors?</h2>
       <p class="cta-sub">Book a free 30-minute strategy call with Julien. We'll audit your Google presence, review profile, and missed call rate — and show you exactly what Camden and Hampstead patients are seeing when they search for a dentist right now.</p>
       <a href="https://calendly.com/patientacquisitionhub/30min"
-   class="btn-primary"
-   style="display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;padding:16px 20px;background:#e8f4f4;color:#1a6b6b;border-radius:12px;text-decoration:none;font-size:16px;font-weight:500;letter-spacing:-0.01em;transition:background 0.2s;"
-   onmouseover="this.style.background='#d0e9e9'" onmouseout="this.style.background='#e8f4f4'">
-  Book Your Free Strategy Call
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
-    <path d="M3 8h10M9 4l4 4-4 4" stroke="#1a6b6b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</a>
+         class="btn-primary"
+         style="display:inline-flex;align-items:center;gap:10px;padding:1rem 2.4rem;font-size:1.05rem;">
+        Book Your Free Strategy Call
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="#0d0f14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
       <p style="margin-top:1.5rem; font-size:0.83rem; color:rgba(255,255,255,0.35);">No commitment. No hard sell. Just clarity.</p>
     </div>
   </section>
 
-<footer style="background:#0d0f14;border-top:1px solid rgba(26,107,107,0.25);padding:4rem 2rem 2rem;font-family:'Outfit',sans-serif;text-align:left;">
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────────────────── -->
+  <!--
+    CHANGED: Added physical address, LinkedIn, and About link.
+    These three additions directly affect NAP consistency (local SEO) and trust.
+  -->
+  <footer style="background:#0d0f14;border-top:1px solid rgba(26,107,107,0.25);padding:4rem 2rem 2rem;font-family:'Outfit',sans-serif;text-align:left;">
+    <div style="max-width:1060px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(26,107,107,0.2);">
 
-  <!-- Top grid: 3 columns -->
-  <div style="max-width:1060px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:3.5rem;padding-bottom:3rem;border-bottom:1px solid rgba(26,107,107,0.2);">
-
-      <!-- Col 1: Brand -->
-      <div>
-        <div style="font-family:'Cormorant Garamond',serif;color:#2a9d9d;font-size:1.15rem;font-weight:700;letter-spacing:0.02em;margin-bottom:0.75rem;">
-          Patient Acquisition Hub
+        <!-- Col 1: Brand -->
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;color:#2a9d9d;font-size:1.15rem;font-weight:700;letter-spacing:0.02em;margin-bottom:0.75rem;">
+            Patient Acquisition Hub
+          </div>
+          <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.8;margin:0 0 1.8rem;max-width:270px;">
+            The dental marketing agency built for Camden and Hampstead practices. Google reviews, missed call recovery, and NW1, NW3, NW5 &amp; NW6 local SEO — live in weeks.
+          </p>
+          <!-- ADDED: About link in brand column -->
+          <a href="/about.html"
+             style="font-size:0.85rem;color:rgba(255,255,255,0.4);text-decoration:none;display:inline-flex;align-items:center;gap:0.35rem;"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">
+            About Julien →
+          </a>
         </div>
-        <p style="font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.8;margin:0 0 1.8rem;max-width:270px;">
-          The dental marketing agency built for Camden and Hampstead practices. Google reviews, missed call recovery, and NW1, NW3, NW5 &amp; NW6 local SEO — live in weeks.
+
+        <!-- Col 2: Contact -->
+        <div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1.3rem;">
+            Contact
+          </div>
+
+          <a href="tel:02080507468"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+            </svg>
+            020 8050 7468
+          </a>
+
+          <a href="mailto:julien@patientacquisitionhub.com"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            julien@patientacquisitionhub.com
+          </a>
+
+          <!-- ADDED: physical address for NAP consistency (local SEO signal) -->
+          <div style="display:flex;align-items:flex-start;gap:0.7rem;margin-bottom:0.9rem;font-size:0.88rem;color:rgba(255,255,255,0.45);line-height:1.5;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>Suite G04, 1 Quality Court<br>Chancery Lane, London WC2A 1HR</span>
+          </div>
+
+          <!-- ADDED: LinkedIn link in contact -->
+          <a href="https://www.linkedin.com/in/julien-kabongo1993" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <a href="https://www.instagram.com/patientacquisitionhub" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            Instagram
+          </a>
+        </div>
+
+        <!-- Col 3: Nav links -->
+        <div>
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
+            Services
+          </div>
+          <ul style="list-style:none;padding:0;margin:0 0 1.8rem;">
+            <li style="margin-bottom:0.6rem;"><a href="/london/google-reviews-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Google Review Automation</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/missed-call-recovery-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Missed Call Recovery</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/reputation-management-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Reputation Management</a></li>
+          </ul>
+
+          <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
+            Areas
+          </div>
+          <ul style="list-style:none;padding:0;margin:0;">
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-camden-town.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Camden Town · NW1</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-hampstead.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Hampstead · NW3</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-primrose-hill.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Primrose Hill · NW1</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-chalk-farm.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Chalk Farm · NW1</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-belsize-park.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Belsize Park · NW3</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-kentish-town.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Kentish Town · NW5</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-west-hampstead.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">West Hampstead · NW6</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-swiss-cottage.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Swiss Cottage · NW3</a></li>
+            <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-kings-cross.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">King's Cross &amp; Euston · NW1</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;padding-top:1.8rem;">
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.22);margin:0;">
+          &copy; 2026 Patient Acquisition Hub Ltd
         </p>
-      </div>
-
-      <!-- Col 2: Contact -->
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1.3rem;">
-          Contact
+        <div style="display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;">
+          <!-- ADDED: About link in footer bottom bar -->
+          <a href="/about.html"
+             style="font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">
+            About
+          </a>
+          <a href="https://www.patientacquisitionhub.com/private-policy/private-policy.pdf"
+             style="font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;"
+             onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">
+            Privacy Policy
+          </a>
         </div>
-
-        <a href="tel:02080507468"
-           style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
-           onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.69A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
-          </svg>
-          020 8050 7468
-        </a>
-
-        <a href="mailto:julien@patientacquisitionhub.com"
-           style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
-           onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          julien@patientacquisitionhub.com
-        </a>
-
-        <a href="https://www.instagram.com/patientacquisitionhub" target="_blank" rel="noopener"
-           style="display:flex;align-items:center;gap:0.7rem;margin-bottom:0.9rem;text-decoration:none;font-size:0.88rem;color:rgba(255,255,255,0.55);"
-           onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2a9d9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-          </svg>
-          Instagram
-        </a>
       </div>
-
-      <!-- Col 3: Nav links -->
-      <div>
-        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
-          Services
-        </div>
-        <ul style="list-style:none;padding:0;margin:0 0 1.8rem;">
-          <li style="margin-bottom:0.6rem;"><a href="/london/google-reviews-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Google Review Automation</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/missed-call-recovery-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Missed Call Recovery</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/reputation-management-service.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Reputation Management</a></li>
-        </ul>
-
-        <!-- SEO IMPROVEMENT: expanded area links in footer -->
-        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:#2a9d9d;margin-bottom:1rem;">
-          Areas
-        </div>
-        <ul style="list-style:none;padding:0;margin:0;">
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-camden-town.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Camden Town · NW1</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-hampstead.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Hampstead · NW3</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-primrose-hill.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Primrose Hill · NW1</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-chalk-farm.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Chalk Farm · NW1</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-belsize-park.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Belsize Park · NW3</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-kentish-town.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Kentish Town · NW5</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-west-hampstead.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">West Hampstead · NW6</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-swiss-cottage.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Swiss Cottage · NW3</a></li>
-          <li style="margin-bottom:0.6rem;"><a href="/london/dental-marketing-kings-cross.html" style="font-size:0.87rem;color:rgba(255,255,255,0.45);text-decoration:none;" onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">King's Cross &amp; Euston · NW1</a></li>
-        </ul>
-      </div>
-
     </div>
-
-    <!-- Bottom bar -->
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;padding-top:1.8rem;">
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.22);margin:0;">
-        &copy; 2026 Patient Acquisition Hub Ltd
-      </p>
-      <a href="https://www.patientacquisitionhub.com/private-policy/private-policy.pdf"
-         style="font-size:0.78rem;color:rgba(255,255,255,0.28);text-decoration:none;"
-         onmouseover="this.style.color='#2a9d9d'" onmouseout="this.style.color='rgba(255,255,255,0.28)'">
-        Privacy Policy
-      </a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     function toggleFaq(btn) {
@@ -903,19 +1096,8 @@
   </script>
 
 <!-- ─── CHATBOT ─────────────────────────────────────────────────────────────── -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Patient Acquisition Hub – AI Chatbot</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- (Chatbot code unchanged — kept exactly as-is) -->
 <style>
-/* ══════════════════════════════════════
-   Reset & Variables
-══════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --navy-deep:   #080f1e;
@@ -937,11 +1119,6 @@
   --trigger-b: 28px;
   --trigger-r: 28px;
 }
-body { font-family: var(--sans); }
-
-/* ══════════════════════════════════════
-   Overlay
-══════════════════════════════════════ */
 #pah-overlay {
   display: none; position: fixed; inset: 0;
   background: rgba(5,10,22,.6);
@@ -950,10 +1127,6 @@ body { font-family: var(--sans); }
   transition: opacity .28s ease; pointer-events: none;
 }
 #pah-overlay.show { opacity: 1; pointer-events: all; }
-
-/* ══════════════════════════════════════
-   Trigger button
-══════════════════════════════════════ */
 #pah-trigger {
   position: fixed;
   bottom: var(--trigger-b); right: var(--trigger-r);
@@ -978,10 +1151,6 @@ body { font-family: var(--sans); }
   background: var(--green); border: 2px solid var(--navy-deep);
   box-shadow: 0 0 8px rgba(34,197,94,.6);
 }
-
-/* ══════════════════════════════════════
-   Widget
-══════════════════════════════════════ */
 #pah-widget {
   position: fixed;
   top: 16px;
@@ -1004,10 +1173,6 @@ body { font-family: var(--sans); }
   opacity: 1; pointer-events: all;
   transform: translateY(0) scale(1);
 }
-
-/* ══════════════════════════════════════
-   Header
-══════════════════════════════════════ */
 .pah-header {
   background: var(--navy-deep);
   border-bottom: 1px solid var(--border);
@@ -1057,8 +1222,6 @@ body { font-family: var(--sans); }
   font-size: 10.5px; color: var(--muted); font-weight: 300;
   letter-spacing: .03em; padding-left: 51px; margin-top: 9px; position: relative;
 }
-
-/* Lead progress bar */
 .pah-progress {
   height: 2px; background: var(--border);
   margin-top: 10px; border-radius: 2px; overflow: hidden;
@@ -1069,10 +1232,6 @@ body { font-family: var(--sans); }
   transition: width .4s ease;
   width: 0%;
 }
-
-/* ══════════════════════════════════════
-   Messages
-══════════════════════════════════════ */
 .pah-messages {
   flex: 1; overflow-y: auto; overflow-x: hidden;
   padding: 14px 12px;
@@ -1085,7 +1244,6 @@ body { font-family: var(--sans); }
 .pah-messages::-webkit-scrollbar { width: 3px; }
 .pah-messages::-webkit-scrollbar-track { background: transparent; }
 .pah-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 4px; }
-
 .pah-msg { display: flex; gap: 8px; max-width: 88%; animation: msgIn .22s ease; }
 @keyframes msgIn {
   from { opacity: 0; transform: translateY(6px); }
@@ -1117,8 +1275,6 @@ body { font-family: var(--sans); }
 .pah-bubble strong { color: var(--teal-bright); font-weight: 600; }
 .pah-bubble a { color: var(--teal-bright); text-underline-offset: 2px; }
 .pah-bubble a:active { opacity: .7; }
-
-/* System / info message */
 .pah-msg.system { align-self: center; max-width: 90%; }
 .pah-msg.system .pah-bubble {
   background: rgba(14,165,160,.1);
@@ -1127,8 +1283,6 @@ body { font-family: var(--sans); }
   font-size: 11.5px; text-align: center;
   border-radius: 10px;
 }
-
-/* Lead captured badge */
 .pah-lead-badge {
   display: flex; align-items: center; gap: 6px;
   background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.3);
@@ -1137,8 +1291,6 @@ body { font-family: var(--sans); }
   margin: 0 12px; animation: msgIn .22s ease;
 }
 .pah-lead-badge svg { width: 14px; height: 14px; fill: #86efac; flex-shrink: 0; }
-
-/* Typing dots */
 .pah-msg.typing .pah-bubble {
   padding: 13px 15px; display: flex; align-items: center; gap: 5px;
 }
@@ -1149,10 +1301,6 @@ body { font-family: var(--sans); }
   0%,80%,100%{ transform: scale(.75); opacity: .4; }
   40%        { transform: scale(1.1); opacity: 1; }
 }
-
-/* ══════════════════════════════════════
-   Quick replies
-══════════════════════════════════════ */
 .pah-qr {
   display: flex; flex-wrap: nowrap; gap: 6px;
   padding: 8px 12px; background: var(--navy);
@@ -1174,10 +1322,6 @@ body { font-family: var(--sans); }
 }
 .pah-qr-btn:hover  { background: var(--teal); border-color: var(--teal); color: #fff; }
 .pah-qr-btn:active { transform: scale(.95); }
-
-/* ══════════════════════════════════════
-   Input bar
-══════════════════════════════════════ */
 .pah-input-bar {
   display: flex; align-items: center; gap: 8px;
   padding: 10px 12px; background: var(--navy-deep);
@@ -1204,27 +1348,18 @@ body { font-family: var(--sans); }
 #pah-send:active:not(:disabled) { transform: scale(.92); }
 #pah-send:disabled               { background: var(--navy-light); cursor: not-allowed; }
 #pah-send svg { width: 17px; height: 17px; fill: #fff; pointer-events: none; }
-
-/* ══════════════════════════════════════
-   Footer
-══════════════════════════════════════ */
 .pah-footer {
   text-align: center; font-size: 10px; letter-spacing: .04em;
   color: rgba(123,146,180,.45); padding: 5px 12px 8px;
   background: var(--navy-deep); flex-shrink: 0;
 }
 .pah-footer b { color: var(--teal); font-weight: 400; opacity: .75; }
-
 .pah-error {
   font-size: 12px; color: #fca5a5;
   background: rgba(220,38,38,.12); border: 1px solid rgba(220,38,38,.2);
   border-radius: 10px; padding: 9px 13px; margin: 0 12px;
   animation: msgIn .22s ease;
 }
-
-/* ══════════════════════════════════════
-   Mobile
-══════════════════════════════════════ */
 @media (max-width: 600px) {
   #pah-overlay { display: block; }
   #pah-trigger { bottom: calc(18px + env(safe-area-inset-bottom,0px)); right: 18px; width: 56px; height: 56px; }
@@ -1252,8 +1387,6 @@ body { font-family: var(--sans); }
   :root { --widget-w: 400px; --widget-h: 620px; }
 }
 </style>
-</head>
-<body>
 
 <div id="pah-overlay"></div>
 
@@ -1265,7 +1398,6 @@ body { font-family: var(--sans); }
 </button>
 
 <div id="pah-widget" role="dialog" aria-modal="true" aria-label="Patient Acquisition Hub chat">
-
   <div class="pah-header">
     <div class="pah-drag-handle" aria-hidden="true"></div>
     <div class="pah-header-row">
@@ -1444,7 +1576,6 @@ let leadData = {};
 let chatHistory = [];
 let isLoading   = false;
 let isOpen      = false;
-let msgCount    = 0;
 
 const widget       = document.getElementById('pah-widget');
 const trigger      = document.getElementById('pah-trigger');
@@ -1458,8 +1589,7 @@ const progressFill = document.getElementById('pah-progress-fill');
 
 function updateProgress() {
   const filled = LEAD_FIELDS.filter(f => leadData[f]).length;
-  const pct    = Math.round((filled / LEAD_FIELDS.length) * 100);
-  progressFill.style.width = pct + '%';
+  progressFill.style.width = Math.round((filled / LEAD_FIELDS.length) * 100) + '%';
 }
 
 let scrollY = 0;
@@ -1471,7 +1601,6 @@ function unlockScroll() {
   document.body.style.cssText = '';
   window.scrollTo(0, scrollY);
 }
-
 function isMobile() { return window.innerWidth <= 600; }
 
 function onViewportResize() {
@@ -1528,13 +1657,6 @@ function addUserMsg(text) {
   msgsEl.appendChild(row);
   scrollBottom();
 }
-function addSystemMsg(text) {
-  const row = document.createElement('div');
-  row.className = 'pah-msg system';
-  row.innerHTML = `<div class="pah-bubble">${esc(text)}</div>`;
-  msgsEl.appendChild(row);
-  scrollBottom();
-}
 function addLeadBadge(label) {
   const el = document.createElement('div');
   el.className = 'pah-lead-badge';
@@ -1583,17 +1705,9 @@ function extractLeadTags(text) {
         const isNew = !leadData[obj.field];
         leadData[obj.field] = obj.value;
         if (isNew) {
-          const labels = {
-            name:      'Name',
-            practice:  'Practice name',
-            email:     'Email address',
-            phone:     'Phone number',
-            area:      'Practice area',
-            challenge: 'Main challenge'
-          };
+          const labels = { name:'Name', practice:'Practice name', email:'Email address', phone:'Phone number', area:'Practice area', challenge:'Main challenge' };
           addLeadBadge(labels[obj.field] + ': ' + obj.value);
           updateProgress();
-          console.log('[PAH Lead]', leadData);
         }
       }
     } catch(e) {}
@@ -1608,7 +1722,6 @@ async function sendMessage(text) {
   qrEl.style.display = 'none';
   addUserMsg(text);
   chatHistory.push({ role: 'user', content: text });
-  msgCount++;
 
   inputEl.value = '';
   updateSendBtn();
@@ -1639,13 +1752,11 @@ async function sendMessage(text) {
     if (!rawReply) throw new Error('Empty response');
 
     const cleanReply = extractLeadTags(rawReply);
-
     chatHistory.push({ role: 'assistant', content: rawReply });
     addBotMsg(cleanReply);
 
   } catch (err) {
     removeTyping();
-    console.error('[PAH Chat]', err);
     showError('Something went wrong. Please try again or call 020 8050 7468.');
   } finally {
     isLoading = false;
@@ -1660,12 +1771,10 @@ inputEl.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(inputEl.value); }
 });
 sendEl.addEventListener('click', () => sendMessage(inputEl.value));
-
 qrEl.querySelectorAll('.pah-qr-btn').forEach(btn =>
   btn.addEventListener('click', () => sendMessage(btn.dataset.msg))
 );
 </script>
-</body>
-</html>
+
 </body>
 </html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBP Section Preview — Patient Acquisition Hub</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #0d0f14;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* ── PREVIEW LABEL BAR ── */
+    .preview-bar {
+      background: rgba(26,107,107,0.15);
+      border-bottom: 1px solid rgba(26,107,107,0.3);
+      padding: 0.6rem 1.5rem;
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(42,157,157,0.8);
+    }
+
+    /* ── SIMULATED NAV (for context) ── */
+    .sim-nav {
+      background: #0d0f14;
+      border-bottom: 1px solid rgba(26,107,107,0.3);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sim-nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      color: #2a9d9d;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .sim-nav-cta {
+      background: #1a6b6b;
+      color: #fff;
+      padding: 0.45rem 1rem;
+      border-radius: 3px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* ── SPACER (simulates page above) ── */
+    .sim-spacer {
+      background: linear-gradient(to bottom, #0d0f14, #0a2e2e);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(26,107,107,0.15);
+    }
+    .sim-spacer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── GBP SECTION ── */
+    #find-us {
+      background: #0a2e2e;
+      padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gbp-bg-text {
+      position: absolute;
+      right: -1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5rem, 18vw, 14rem);
+      font-weight: 700;
+      color: rgba(26,107,107,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .gbp-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Header */
+    .gbp-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .gbp-eyebrow {
+      color: #2a9d9d;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin: 0 0 0.6rem;
+    }
+    .gbp-title {
+      font-family: 'Cormorant Garamond', serif;
+      color: #ffffff;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      line-height: 1.15;
+    }
+    .gbp-address {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.88rem;
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
+
+    /* Rating banner */
+    .rating-banner {
+      background: linear-gradient(135deg, rgba(26,107,107,0.2) 0%, rgba(26,107,107,0.08) 100%);
+      border: 1px solid rgba(26,107,107,0.35);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+    .rating-left {}
+    .rating-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2a9d9d;
+      margin: 0 0 0.4rem;
+    }
+    .rating-stars-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .stars {
+      display: flex;
+      gap: 3px;
+    }
+    .stars span { font-size: 1.6rem; color: #f5c518; }
+    .rating-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .rating-number sup {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      margin-left: 0.35rem;
+    }
+    .rating-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin: 0.4rem 0 0;
+      line-height: 1.5;
+    }
+    .btn-first-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f5c518;
+      color: #0a2e2e;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.85rem 1.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+    .btn-first-review:hover {
+      background: #ffd740;
+      transform: translateY(-1px);
+    }
+
+    /* Review cards */
+    .review-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) {
+      .review-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px dashed rgba(26,107,107,0.3);
+      border-radius: 8px;
+      padding: 1.4rem;
+      position: relative;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .review-card:hover {
+      border-color: rgba(26,107,107,0.55);
+      background: rgba(26,107,107,0.06);
+    }
+    .review-card-tag {
+      position: absolute;
+      top: 0.75rem; right: 0.85rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(42,157,157,0.45);
+    }
+    .review-card-meta {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .review-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(26,107,107,0.2);
+      border: 1px solid rgba(26,107,107,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #2a9d9d;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+    }
+    .review-location {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .review-stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 0.6rem;
+    }
+    .review-stars span { font-size: 1rem; color: rgba(245,197,24,0.25); }
+    .review-text {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.18);
+      line-height: 1.65;
+      margin: 0;
+      font-style: italic;
+    }
+
+    /* Map + info grid */
+    .map-info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .map-info-grid { grid-template-columns: 1.4fr 1fr; }
+    }
+
+    .map-wrap {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+      border: 1px solid rgba(26,107,107,0.3);
+      line-height: 0;
+    }
+    .map-wrap iframe {
+      border: 0;
+      display: block;
+      width: 100%;
+      height: 380px;
+    }
+
+    .info-card {
+      background: rgba(26,107,107,0.12);
+      border: 1px solid rgba(26,107,107,0.25);
+      border-radius: 8px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .info-col-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2a9d9d;
+      margin: 0 0 1.1rem;
+    }
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .contact-item {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      text-decoration: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      transition: color 0.2s;
+    }
+    .contact-item:hover { color: #2a9d9d; }
+    .contact-icon { color: #2a9d9d; flex-shrink: 0; margin-top: 2px; }
+    .info-divider {
+      border: none;
+      border-top: 1px solid rgba(26,107,107,0.25);
+    }
+    .info-review-note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin: 0 0 1rem;
+    }
+    .btn-leave-review {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1a6b6b;
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 0.8rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      width: 100%;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .btn-leave-review:hover { background: #2a9d9d; }
+    .serving-box {
+      background: rgba(0,0,0,0.2);
+      border-radius: 4px;
+      padding: 0.85rem 1rem;
+    }
+    .serving-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #2a9d9d;
+      margin: 0 0 0.5rem;
+    }
+    .serving-text {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── SIMULATED FOOTER (for context) ── */
+    .sim-footer {
+      background: #0d0f14;
+      border-top: 1px solid rgba(26,107,107,0.25);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .sim-footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.15);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preview label -->
+  <div class="preview-bar">
+    🔍 Preview Mode — GBP Section for patientacquisitionhub.com
+  </div>
+
+  <!-- Simulated nav -->
+  <nav class="sim-nav">
+    <div class="sim-nav-logo">Patient Acquisition Hub</div>
+    <div class="sim-nav-cta">📅 Book Free Call</div>
+  </nav>
+
+  <!-- Simulated page body above -->
+  <div class="sim-spacer">
+    <p>↑ Rest of page content above ↑</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       GBP SECTION — copy everything from here
+       ══════════════════════════════════════════ -->
+  <section id="find-us">
+
+    <div class="gbp-bg-text" aria-hidden="true">NW1</div>
+
+    <div class="gbp-inner">
+
+      <!-- Header -->
+      <div class="gbp-header">
+        <p class="gbp-eyebrow">Find Us on Google</p>
+        <h2 class="gbp-title">Patient Acquisition Hub</h2>
+        <p class="gbp-address">📍 Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR</p>
+      </div>
+
+      <!-- Rating banner -->
+      <div class="rating-banner">
+        <div class="rating-left">
+          <p class="rating-label">Our Google Rating — Building Towards</p>
+          <div class="rating-stars-row">
+            <div class="stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <div>
+              <span class="rating-number">5.0 <sup>target</sup></span>
+            </div>
+          </div>
+          <p class="rating-sub">
+            We're just getting started — your review would be our first.<br>
+            Help Camden &amp; Hampstead dentists find us.
+          </p>
+        </div>
+        <a href="https://g.page/r/CaqSIaSgMzenEBM/review"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-first-review">
+          ⭐ Be Our First Reviewer
+        </a>
+      </div>
+
+      <!-- Placeholder review cards -->
+      <div class="review-grid">
+
+        <div class="review-card">
+          <div class="review-card-tag">Awaiting review</div>
+          <div class="review-card-meta">
+            <div class="review-avatar">?</div>
+            <div>
+              <div class="review-name">Camden Practice Owner</div>
+              <div class="review-location">NW1 · Google review</div>
+            </div>
+          </div>
+          <div class="review-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="review-text">
+            "Your review could appear here — helping other Camden and Hampstead dental practices find us on Google."
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-tag">Awaiting review</div>
+          <div class="review-card-meta">
+            <div class="review-avatar">?</div>
+            <div>
+              <div class="review-name">Hampstead Practice Manager</div>
+              <div class="review-location">NW3 · Google review</div>
+            </div>
+          </div>
+          <div class="review-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="review-text">
+            "We help dental practices get reviews like this one. Be first — it takes 30 seconds."
+          </p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-card-tag">Awaiting review</div>
+          <div class="review-card-meta">
+            <div class="review-avatar">?</div>
+            <div>
+              <div class="review-name">Local Business Owner</div>
+              <div class="review-location">London · Google review</div>
+            </div>
+          </div>
+          <div class="review-stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p class="review-text">
+            "This space is reserved for your experience working with Patient Acquisition Hub."
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Map + info -->
+      <div class="map-info-grid">
+
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79396.31144589963!2d-0.2418014526538204!3d51.54742839302211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b75d9c1a5ca995b%3A0xa73733a0a42192aa!2sPatient%20Acquisition%20Hub!5e0!3m2!1sen!2suk!4v1780697743790!5m2!1sen!2suk"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Patient Acquisition Hub on Google Maps">
+          </iframe>
+        </div>
+
+        <div class="info-card">
+          <div>
+            <p class="info-col-label">Contact &amp; Location</p>
+            <div class="contact-list">
+              <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span>Suite G04, 1 Quality Court<br>Chancery Lane, London WC2A 1HR</span>
+              </div>
+              <a href="tel:02080507468" class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span>020 8050 7468</span>
+              </a>
+              <a href="mailto:julien@patientacquisitionhub.com" class="contact-item">
+                <span class="contact-icon">✉️</span>
+                <span>julien@patientacquisitionhub.com</span>
+              </a>
+            </div>
+          </div>
+
+          <hr class="info-divider">
+
+          <div>
+            <p class="info-review-note">
+              We help dental practices get reviews just like the ones above. Your review of us helps other Camden &amp; Hampstead practice owners find us when they need us.
+            </p>
+            <a href="https://g.page/r/CaqSIaSgMzenEBM/review"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn-leave-review">
+              ⭐ Leave Us a Google Review
+            </a>
+          </div>
+
+          <div class="serving-box">
+            <p class="serving-label">Serving</p>
+            <p class="serving-text">Camden Town · Hampstead · Chalk Farm · Belsize Park · Kentish Town · West Hampstead · Primrose Hill · Swiss Cottage — NW1, NW3, NW5, NW6</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ══════════════════════════════════════════
+       END GBP SECTION
+       ══════════════════════════════════════════ -->
+
+  <!-- Simulated footer -->
+  <div class="sim-footer">
+    <p>↓ Footer below ↓</p>
+  </div>
+
+</body>
+</html>

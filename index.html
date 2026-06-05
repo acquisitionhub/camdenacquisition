@@ -1865,86 +1865,185 @@
         </div>
         <!-- On desktop, third column shows separately (already handled by 3-col grid) -->
       </div>
-      <iframe src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79396.31144589963!2d-0.2418014526538204!3d51.54742839302211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b75d9c1a5ca995b%3A0xa73733a0a42192aa!2sPatient%20Acquisition%20Hub!5e0!3m2!1sen!2suk!4v1780697743790!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>" 
-  width="600" height="450" style="border:0;" 
-  allowfullscreen="" loading="lazy" 
-  referrerpolicy="no-referrer-when-downgrade">
-</iframe>
-      <!-- GBP Map Section — place just above <footer> -->
+     <!-- ── GBP MAP SECTION — place immediately before <footer> ── -->
 <section id="find-us" style="
-  background: #0f3f3f;
-  padding: 64px 24px;
-  text-align: center;
-  font-family: inherit;
+  background: #0a2e2e;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  overflow: hidden;
 ">
-  <div style="max-width: 900px; margin: 0 auto;">
 
-    <p style="
-      color: #5ecfcf;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin: 0 0 10px;
-    ">Find Us on Google</p>
+  <!-- Decorative background text -->
+  <div aria-hidden="true" style="
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 18vw, 14rem);
+    font-weight: 700;
+    color: rgba(26,107,107,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  ">NW1</div>
 
-    <h2 style="
-      color: #ffffff;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 700;
-      margin: 0 0 8px;
-      line-height: 1.2;
-    ">Patient Acquisition Hub</h2>
+  <div style="max-width: 1060px; margin: 0 auto; position: relative;">
 
-    <p style="
-      color: #a0c8c8;
-      font-size: 0.95rem;
-      margin: 0 0 32px;
-    ">Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR</p>
-
-    <!-- MAP EMBED -->
-    <div style="
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
-      line-height: 0;
-    ">
-      <iframe
-        src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79396.31144589963!2d-0.2418014526538204!3d51.54742839302211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b75d9c1a5ca995b%3A0xa73733a0a42192aa!2sPatient%20Acquisition%20Hub!5e0!3m2!1sen!2suk!4v1780697743790!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>"
-        width="100%"
-        height="420"
-        style="border:0; display:block;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Patient Acquisition Hub on Google Maps">
-      </iframe>
+    <!-- Section header -->
+    <div style="text-align: center; margin-bottom: 2.5rem;">
+      <p style="
+        color: #2a9d9d;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        margin: 0 0 0.6rem;
+      ">Find Us on Google</p>
+      <h2 style="
+        font-family: 'Cormorant Garamond', serif;
+        color: #ffffff;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 700;
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+      ">Patient Acquisition Hub</h2>
+      <p style="
+        color: rgba(255,255,255,0.45);
+        font-size: 0.88rem;
+        margin: 0;
+        letter-spacing: 0.02em;
+      ">📍 Suite G04, 1 Quality Court, Chancery Lane, London WC2A 1HR</p>
     </div>
 
-    <!-- CTA below map -->
-    <p style="margin: 28px 0 0;">
-      <a href="https://g.page/r/CaqSIaSgMzenEBM/review"
-         target="_blank"
-         rel="noopener noreferrer"
-         style="
-           display: inline-block;
-           background: #1a9090;
-           color: #ffffff;
-           font-size: 0.9rem;
-           font-weight: 600;
-           padding: 12px 28px;
-           border-radius: 6px;
-           text-decoration: none;
-           letter-spacing: 0.04em;
-           transition: background 0.2s;
-         "
-         onmouseover="this.style.background='#5ecfcf';this.style.color='#0f3f3f'"
-         onmouseout="this.style.background='#1a9090';this.style.color='#ffffff'"
-      >⭐ Leave Us a Google Review</a>
-    </p>
+    <!-- Two-column layout: map + info card -->
+    <div style="
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    " id="gbp-grid">
 
+      <!-- Map -->
+      <div style="
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+        border: 1px solid rgba(26,107,107,0.3);
+        line-height: 0;
+        flex: 1;
+      ">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79396.31144589963!2d-0.2418014526538204!3d51.54742839302211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b75d9c1a5ca995b%3A0xa73733a0a42192aa!2sPatient%20Acquisition%20Hub!5e0!3m2!1sen!2suk!4v1780697743790!5m2!1sen!2suk"
+          width="100%"
+          height="400"
+          style="border:0; display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Patient Acquisition Hub on Google Maps">
+        </iframe>
+      </div>
+
+      <!-- Info card -->
+      <div style="
+        background: rgba(26,107,107,0.12);
+        border: 1px solid rgba(26,107,107,0.25);
+        border-radius: 8px;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5rem;
+      ">
+
+        <!-- Details -->
+        <div>
+          <p style="
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #2a9d9d;
+            margin: 0 0 1.1rem;
+          ">Contact &amp; Location</p>
+
+          <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <div style="display:flex; gap:0.75rem; align-items:flex-start;">
+              <span style="color:#2a9d9d; flex-shrink:0; margin-top:2px;">📍</span>
+              <span style="font-size:0.88rem; color:rgba(255,255,255,0.65); line-height:1.55;">Suite G04, 1 Quality Court<br>Chancery Lane, London WC2A 1HR</span>
+            </div>
+            <a href="tel:02080507468" style="display:flex; gap:0.75rem; align-items:center; text-decoration:none;">
+              <span style="color:#2a9d9d; flex-shrink:0;">📞</span>
+              <span style="font-size:0.88rem; color:rgba(255,255,255,0.65);">020 8050 7468</span>
+            </a>
+            <a href="mailto:julien@patientacquisitionhub.com" style="display:flex; gap:0.75rem; align-items:center; text-decoration:none;">
+              <span style="color:#2a9d9d; flex-shrink:0;">✉️</span>
+              <span style="font-size:0.88rem; color:rgba(255,255,255,0.65);">julien@patientacquisitionhub.com</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div style="border-top: 1px solid rgba(26,107,107,0.25);"></div>
+
+        <!-- Review CTA -->
+        <div>
+          <p style="
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.65;
+            margin: 0 0 1.1rem;
+          ">Found us helpful? A Google review makes a real difference for a small London businesses.</p>
+          <a href="https://g.page/r/CaqSIaSgMzenEBM/review"
+             target="_blank"
+             rel="noopener noreferrer"
+             style="
+               display: inline-flex;
+               align-items: center;
+               gap: 0.5rem;
+               background: #1a6b6b;
+               color: #ffffff;
+               font-size: 0.88rem;
+               font-weight: 700;
+               padding: 0.8rem 1.4rem;
+               border-radius: 4px;
+               text-decoration: none;
+               letter-spacing: 0.03em;
+               border: 1px solid rgba(255,255,255,0.1);
+               transition: background 0.2s;
+               width: 100%;
+               justify-content: center;
+             "
+             onmouseover="this.style.background='#2a9d9d'"
+             onmouseout="this.style.background='#1a6b6b'"
+          >⭐ Leave Us a Google Review</a>
+        </div>
+
+        <!-- Service areas -->
+        <div style="
+          background: rgba(0,0,0,0.2);
+          border-radius: 4px;
+          padding: 0.85rem 1rem;
+        ">
+          <p style="font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#2a9d9d; margin:0 0 0.5rem;">Serving</p>
+          <p style="font-size:0.82rem; color:rgba(255,255,255,0.45); margin:0; line-height:1.6;">Camden Town · Hampstead · Chalk Farm · Belsize Park · Kentish Town · West Hampstead · Primrose Hill · Swiss Cottage — NW1, NW3, NW5, NW6</p>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+  <!-- Responsive: two columns on desktop -->
+  <style>
+    @media (min-width: 768px) {
+      #gbp-grid { grid-template-columns: 1.4fr 1fr !important; }
+    }
+  </style>
+
 </section>
-<!-- End GBP Map Section -->
+<!-- ── END GBP MAP SECTION ── -->
       <div class="footer-bottom">
         <p class="footer-copyright">&copy; 2026 Patient Acquisition Hub Ltd &nbsp;·&nbsp; <a href="https://www.tryreviewbloom.com" target="_blank" rel="noopener">Review Bloom</a> is a product of Patient Acquisition Hub Ltd</p>
         <div class="footer-legal">

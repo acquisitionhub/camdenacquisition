@@ -1548,7 +1548,13 @@
         <div style="border-top:1px solid rgba(26,107,107,0.25);"></div>
         <div>
           <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.65;margin:0 0 1.1rem;">Found us helpful? A Google review makes a real difference for a small London businesses.</p>
-          <a href="https://g.page/r/CaqSIaSgMzenEBM/review" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;background:#1a6b6b;color:#ffffff;font-size:0.88rem;font-weight:700;padding:0.8rem 1.4rem;border-radius:4px;text-decoration:none;letter-spacing:0.03em;border:1px solid rgba(255,255,255,0.1);transition:background 0.2s;width:100%;justify-content:center;" onmouseover="this.style.background='#2a9d9d'" onmouseout="this.style.background='#1a6b6b'">⭐ Leave Us a Google Review</a>
+          <a href="#" onclick="showReviewPopup(); return false;"
+   style="display:inline-flex;align-items:center;gap:0.5rem;background:#1a6b6b;color:#ffffff;font-size:0.88rem;font-weight:700;padding:0.8rem 1.4rem;border-radius:4px;text-decoration:none;letter-spacing:0.03em;border:1px solid rgba(255,255,255,0.1);transition:background 0.2s;width:100%;justify-content:center;"
+   onmouseover="this.style.background='#2a9d9d'"
+   onmouseout="this.style.background='#1a6b6b'">
+   ⭐ Leave Us a Google Review
+</a>
+          <!--<a href="https://g.page/r/CaqSIaSgMzenEBM/review" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:0.5rem;background:#1a6b6b;color:#ffffff;font-size:0.88rem;font-weight:700;padding:0.8rem 1.4rem;border-radius:4px;text-decoration:none;letter-spacing:0.03em;border:1px solid rgba(255,255,255,0.1);transition:background 0.2s;width:100%;justify-content:center;" onmouseover="this.style.background='#2a9d9d'" onmouseout="this.style.background='#1a6b6b'">⭐ Leave Us a Google Review</a>-->
         </div>
         <div style="background:rgba(0,0,0,0.2);border-radius:4px;padding:0.85rem 1rem;">
           <p style="font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#2a9d9d;margin:0 0 0.5rem;">Serving</p>
@@ -1558,6 +1564,53 @@
     </div>
   </div>
   <style>@media (min-width: 768px) { #gbp-grid { grid-template-columns: 1.4fr 1fr !important; } }</style>
+  <!-- Review Popup -->
+<div id="reviewPopup" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.75);z-index:9999;">
+  <div style="background:#0a2e2e;color:#fff;max-width:520px;margin:10vh auto;padding:2rem;border-radius:8px;border:1px solid rgba(42,157,157,.3);">
+    
+    <h3 style="margin-top:0;font-family:'Cormorant Garamond',serif;font-size:1.8rem;">
+      Thank You!
+    </h3>
+
+    <p style="line-height:1.7;color:rgba(255,255,255,.8);">
+      Thanks for choosing us.
+    </p>
+
+    <p style="line-height:1.7;color:rgba(255,255,255,.8);">
+      We'd really appreciate a quick Google review. If you'd like, please mention the service we provided and your practice location. Reviews with real-world context help other dental practice owners understand how we've helped practices like theirs.
+    </p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:1.5rem;">
+      <button onclick="goToReview()"
+              style="flex:1;background:#1a6b6b;color:white;border:none;padding:12px;border-radius:4px;font-weight:700;cursor:pointer;">
+        Leave Review
+      </button>
+
+      <button onclick="closeReviewPopup()"
+              style="flex:1;background:transparent;color:white;border:1px solid rgba(255,255,255,.2);padding:12px;border-radius:4px;cursor:pointer;">
+        Maybe Later
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showReviewPopup() {
+  document.getElementById('reviewPopup').style.display = 'block';
+}
+
+function closeReviewPopup() {
+  document.getElementById('reviewPopup').style.display = 'none';
+}
+
+function goToReview() {
+  window.open(
+    'https://g.page/r/CaqSIaSgMzenEBM/review',
+    '_blank'
+  );
+}
+</script>
 </section>
 
       <div class="footer-bottom">

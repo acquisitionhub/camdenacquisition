@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Patient Acquisition Score — Camden Acquisition Hub</title>
+  <meta name="description" content="See how many new patients your NW London dental practice is missing. Free instant score — no call needed." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d0f14;
+      --ink-mid: #1a1f2e;
+      --teal: #1a6b6b;
+      --teal-light: #2a9d9d;
+      --teal-pale: #e8f4f4;
+      --cream: #f7f5f0;
+      --white: #ffffff;
+      --text-body: #2e2e3a;
+      --text-muted: #6a6a7a;
+      --border: rgba(26,107,107,0.18);
+      --gold: #c9a84c;
+      --gold-pale: #fdf6e3;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1,h2,h3,h4 { font-family: 'Cormorant Garamond', serif; line-height: 1.2; }
+    p { color: var(--text-muted); line-height: 1.75; }
+    em { font-style: italic; color: var(--teal-light); }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,15,20,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner {
+      max-width: 960px; margin: 0 auto;
+      padding: 0 1.25rem; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-icon {
+      width: 32px; height: 32px; border-radius: 6px;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+    }
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 1rem; color: #fff;
+    }
+    .nav-badge {
+      font-size: .7rem; font-weight: 600;
+      color: var(--teal-light);
+      border: 1px solid rgba(42,157,157,.3);
+      padding: 3px 10px; border-radius: 3px;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      padding: clamp(3rem,8vw,5rem) 1.25rem clamp(2.5rem,6vw,4rem);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 30%, rgba(26,107,107,.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(201,168,76,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 620px; margin: 0 auto; position: relative; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .12em;
+      color: var(--teal-light);
+      border: 1px solid rgba(42,157,157,.3);
+      padding: 5px 14px; border-radius: 3px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem,5vw,3rem);
+      font-weight: 700; color: #fff; margin-bottom: 14px;
+    }
+    .hero h1 em { color: var(--teal-light); }
+    .hero-sub {
+      font-size: clamp(.88rem,2.5vw,1rem);
+      color: rgba(255,255,255,.6);
+      max-width: 460px; margin: 0 auto 12px;
+    }
+    .hero-trust {
+      display: flex; gap: 18px; flex-wrap: wrap;
+      justify-content: center; margin-top: 16px;
+    }
+    .hero-trust-item {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-trust-item::before { content: '✓'; color: var(--teal-light); font-weight: 700; }
+
+    /* FORM CARD */
+    .form-wrap {
+      max-width: 560px; margin: -32px auto 0;
+      padding: 0 1.25rem; position: relative; z-index: 10;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.15);
+      padding: clamp(1.5rem,4vw,2.25rem);
+    }
+    .form-card h2 {
+      font-size: clamp(1.1rem,3vw,1.45rem);
+      font-weight: 700; color: var(--ink); margin-bottom: 6px;
+    }
+    .form-card > p { font-size: .88rem; color: var(--text-muted); margin-bottom: 22px; }
+
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block; font-size: .75rem; font-weight: 600;
+      color: var(--text-muted); margin-bottom: 5px;
+      text-transform: uppercase; letter-spacing: .05em;
+    }
+    .field input, .field select {
+      width: 100%; padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: .92rem; color: var(--ink); background: #fff;
+      outline: none; transition: border-color .2s; -webkit-appearance: none;
+    }
+    .field input:focus, .field select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(26,107,107,.08);
+    }
+    .field input::placeholder { color: #b0b8c0; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:420px) { .field-row { grid-template-columns: 1fr; } }
+
+    .btn-run {
+      width: 100%; padding: 14px;
+      background: var(--teal); color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-size: .95rem; font-weight: 600;
+      border: none; border-radius: 8px; cursor: pointer;
+      margin-top: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: transform .2s, background .2s, box-shadow .2s;
+      box-shadow: 0 6px 22px rgba(26,107,107,.3);
+      min-height: 50px;
+    }
+    .btn-run:hover { background: #155a5a; transform: translateY(-2px); }
+    .btn-run:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .form-disclaimer { text-align: center; font-size: .7rem; color: #b0b8c0; margin-top: 10px; }
+
+    /* LOADING */
+    #loading-state { display: none; }
+    .loading-wrap { text-align: center; padding: 36px 16px; }
+    .loading-ring {
+      width: 52px; height: 52px; margin: 0 auto 18px;
+      border: 3px solid rgba(26,107,107,.15);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+    }
+    .loading-steps { list-style: none; margin-top: 18px; text-align: left; max-width: 280px; margin-left: auto; margin-right: auto; }
+    .loading-step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .82rem; color: var(--text-muted);
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+    }
+    .loading-step .step-icon { font-size: .95rem; width: 22px; text-align: center; flex-shrink: 0; }
+    .loading-step.active { color: var(--ink); font-weight: 600; }
+    .loading-step.done { color: var(--teal); }
+
+    /* RESULTS */
+    #results-state { display: none; }
+    .results-wrap { padding: 0 1.25rem; max-width: 560px; margin: 0 auto; }
+
+    .score-card {
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.1);
+      padding: clamp(1.5rem,4vw,2.2rem);
+      margin-bottom: 18px;
+    }
+    .score-header { margin-bottom: 20px; }
+    .score-biz-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); }
+    .score-biz-type { font-size: .78rem; color: var(--text-muted); margin-top: 3px; }
+
+    .score-dial-wrap { text-align: center; margin-bottom: 22px; }
+    .score-dial { width: 130px; height: 130px; margin: 0 auto 12px; position: relative; }
+    .score-dial svg { transform: rotate(-90deg); }
+    .score-dial-num {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .score-num { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; line-height: 1; }
+    .score-label { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+    .score-verdict {
+      font-size: .85rem; font-weight: 600;
+      padding: 5px 16px; border-radius: 4px;
+      display: inline-block; margin-bottom: 6px;
+    }
+    .score-verdict.poor { background: rgba(180,30,30,.08); color: #b41e1e; }
+    .score-verdict.average { background: rgba(201,168,76,.12); color: #7a5e00; }
+    .score-verdict.good { background: rgba(26,107,107,.1); color: var(--teal); }
+
+    .metrics { display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px; }
+    .metric {
+      background: var(--teal-pale); border-radius: 10px;
+      padding: 13px 15px;
+      display: flex; align-items: center; gap: 13px;
+    }
+    .metric-icon { font-size: 1.3rem; flex-shrink: 0; width: 34px; text-align: center; }
+    .metric-body { flex: 1; min-width: 0; }
+    .metric-label { font-size: .72rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+    .metric-value { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-top: 2px; }
+    .metric-sub { font-size: .73rem; color: var(--text-muted); margin-top: 2px; }
+    .metric-badge { font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; }
+    .metric-badge.red { background: rgba(180,30,30,.08); color: #b41e1e; }
+    .metric-badge.amber { background: rgba(201,168,76,.12); color: #7a5e00; }
+    .metric-badge.green { background: rgba(26,107,107,.1); color: var(--teal); }
+
+    /* Rank bar */
+    .rank-bar-wrap { margin-bottom: 18px; }
+    .rank-bar-label { display: flex; justify-content: space-between; font-size: .73rem; color: var(--text-muted); margin-bottom: 6px; }
+    .rank-bar-track { height: 9px; background: rgba(26,107,107,.1); border-radius: 6px; overflow: hidden; position: relative; }
+    .rank-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--teal), var(--teal-light)); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+    .rank-marker {
+      position: absolute; top: -4px;
+      width: 16px; height: 16px;
+      background: var(--gold); border: 2px solid #fff;
+      border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,.15);
+      transform: translateX(-50%);
+      transition: left 1.2s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Gap card */
+    .gap-card {
+      background: var(--gold-pale);
+      border: 1.5px solid rgba(201,168,76,.3);
+      border-radius: 12px; padding: 18px; margin-bottom: 18px;
+    }
+    .gap-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 700; color: #7a5e00;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 7px;
+    }
+    .gap-rows { display: flex; flex-direction: column; gap: 8px; }
+    .gap-row { display: flex; align-items: center; gap: 10px; font-size: .83rem; color: var(--ink); }
+    .gap-rank {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .75rem; flex-shrink: 0;
+    }
+    .gap-rank.you { background: rgba(201,168,76,.2); color: #7a5e00; border: 1.5px solid rgba(201,168,76,.4); }
+    .gap-rank.top { background: var(--teal); color: #fff; }
+    .gap-row-reviews { font-weight: 700; color: var(--teal); }
+
+    /* Email gate */
+    .email-gate {
+      background: var(--ink); border-radius: 14px;
+      padding: clamp(1.25rem,4vw,2rem);
+      text-align: center; margin-bottom: 18px;
+    }
+    .email-gate h3 { font-size: clamp(1rem,3vw,1.3rem); font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .email-gate h3 em { color: var(--teal-light); }
+    .email-gate p { color: rgba(255,255,255,.6); font-size: .87rem; margin-bottom: 18px; }
+    .email-row { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+    @media(max-width:440px) { .email-row { flex-direction: column; } }
+    .email-row input {
+      flex: 1; padding: 12px 16px;
+      background: rgba(255,255,255,.08);
+      border: 1.5px solid rgba(255,255,255,.18);
+      border-radius: 8px; color: #fff;
+      font-family: 'Outfit', sans-serif; font-size: .88rem; outline: none;
+    }
+    .email-row input::placeholder { color: rgba(255,255,255,.35); }
+    .email-row input:focus { border-color: var(--teal-light); }
+    .btn-email {
+      padding: 12px 20px;
+      background: var(--gold); color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700; font-size: .88rem;
+      border: none; border-radius: 8px; cursor: pointer;
+      white-space: nowrap;
+      transition: transform .2s, opacity .2s;
+    }
+    .btn-email:hover { opacity: .88; transform: translateY(-2px); }
+    .email-skip {
+      display: block; margin-top: 12px;
+      font-size: .73rem; color: rgba(255,255,255,.35);
+      cursor: pointer; text-decoration: underline;
+      background: none; border: none; font-family: 'Outfit', sans-serif;
+    }
+    .email-skip:hover { color: rgba(255,255,255,.6); }
+
+    /* Full report */
+    #full-report { display: none; }
+
+    .missing-card {
+      background: #fff; border-radius: 12px;
+      border: 1.5px solid var(--border);
+      padding: clamp(1.25rem,3vw,1.75rem);
+      margin-bottom: 18px;
+    }
+    .missing-card h3 {
+      font-size: 1rem; font-weight: 700; color: var(--ink);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 7px;
+    }
+    .missing-items { display: flex; flex-direction: column; gap: 8px; }
+    .missing-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 7px; font-size: .84rem;
+    }
+    .missing-item.bad { background: rgba(180,30,30,.05); }
+    .missing-item.ok { background: rgba(26,107,107,.05); }
+    .missing-item-icon { font-size: .95rem; flex-shrink: 0; }
+    .missing-item-text { flex: 1; color: var(--ink); font-weight: 500; }
+    .missing-item-status { font-size: .7rem; font-weight: 700; padding: 2px 9px; border-radius: 3px; }
+    .missing-item.bad .missing-item-status { background: rgba(180,30,30,.1); color: #b41e1e; }
+    .missing-item.ok .missing-item-status { background: rgba(26,107,107,.08); color: var(--teal); }
+
+    /* CTA */
+    .cta-card {
+      background: var(--teal); border-radius: 14px;
+      padding: clamp(1.5rem,4vw,2.2rem);
+      text-align: center; margin-bottom: 18px;
+      box-shadow: 0 12px 40px rgba(26,107,107,.25);
+    }
+    .cta-card h2 { font-size: clamp(1.1rem,3.5vw,1.55rem); font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-card h2 em { color: var(--gold); }
+    .cta-card p { color: rgba(255,255,255,.7); font-size: .88rem; margin-bottom: 20px; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 30px;
+      background: var(--gold); color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      border-radius: 8px; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(201,168,76,.35);
+      transition: transform .2s, opacity .2s;
+    }
+    .btn-cta:hover { opacity: .9; transform: translateY(-2px); }
+    .cta-trust { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+    .cta-trust-item { font-size: .73rem; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 5px; }
+    .cta-trust-item::before { content: '✓'; color: rgba(255,255,255,.8); font-weight: 700; }
+
+    .reset-link { text-align: center; padding: 0 0 40px; }
+    .reset-link button { background: none; border: none; font-family: 'Outfit', sans-serif; font-size: .8rem; color: var(--text-muted); cursor: pointer; text-decoration: underline; }
+    .reset-link button:hover { color: var(--teal); }
+
+    .section-gap { padding: 28px 0 0; }
+
+    footer {
+      text-align: center; padding: 24px 1.25rem;
+      font-size: .7rem; color: #b0b8c0;
+      border-top: 1px solid var(--border); background: #fff;
+    }
+    footer a { color: var(--teal); text-decoration: none; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp .5s ease both; }
+    .fade-up-2 { animation: fadeUp .5s ease .1s both; }
+    .fade-up-3 { animation: fadeUp .5s ease .2s both; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="https://camdenacquisitionhub.com" class="nav-logo">
+      <div class="nav-logo-icon">🦷</div>
+      <span class="nav-logo-text">Camden Acquisition Hub</span>
+    </a>
+    <span class="nav-badge">Free Practice Score</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">NW London Dental Practices · Free Instant Analysis</div>
+    <h1>Your <em>New Patient Acquisition</em> Score</h1>
+    <p class="hero-sub">See exactly how visible your practice is to patients searching on Google right now — and who's taking your appointments.</p>
+    <div class="hero-trust">
+      <span class="hero-trust-item">Instant results</span>
+      <span class="hero-trust-item">No call needed</span>
+      <span class="hero-trust-item">NW London specialist</span>
+    </div>
+  </div>
+</div>
+
+<!-- FORM STATE -->
+<div id="form-state">
+  <div class="form-wrap">
+    <div class="form-card">
+      <h2>Check your Acquisition Score</h2>
+      <p>We'll analyse how your practice ranks on Google vs nearby competitors and show you the new patients you're missing.</p>
+      <div class="field">
+        <label for="biz-name">Practice name</label>
+        <input type="text" id="biz-name" placeholder="e.g. Hampstead Dental Care" autocomplete="organization" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="postcode">Postcode</label>
+          <input type="text" id="postcode" placeholder="e.g. NW3 2AA" autocomplete="postal-code" />
+        </div>
+        <div class="field">
+          <label for="ptype">Practice type</label>
+          <select id="ptype">
+            <option value="">Select…</option>
+            <option>NHS &amp; Private</option>
+            <option>Private only</option>
+            <option>Cosmetic dentistry</option>
+            <option>Orthodontics</option>
+            <option>Implants specialist</option>
+            <option>General dentistry</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-run" id="run-btn" onclick="runCheck()">
+        <span>Get my Acquisition Score</span> <span>→</span>
+      </button>
+      <p class="form-disclaimer">Your data is used only to generate your report. We never spam.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING STATE -->
+<div id="loading-state">
+  <div class="form-wrap">
+    <div class="form-card">
+      <div class="loading-wrap">
+        <div class="loading-ring"></div>
+        <div class="loading-title">Analysing your practice…</div>
+        <p style="font-size:.83rem;color:var(--text-muted);margin-top:5px">Takes about 10 seconds</p>
+        <ul class="loading-steps" id="loading-steps">
+          <li class="loading-step active" id="step-1"><span class="step-icon">🔍</span> Finding your practice on Google</li>
+          <li class="loading-step" id="step-2"><span class="step-icon">⭐</span> Analysing review count and rating</li>
+          <li class="loading-step" id="step-3"><span class="step-icon">📍</span> Checking your Map Pack position</li>
+          <li class="loading-step" id="step-4"><span class="step-icon">🏆</span> Benchmarking against top 3 practices</li>
+          <li class="loading-step" id="step-5"><span class="step-icon">📋</span> Calculating your acquisition score</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS STATE -->
+<div id="results-state">
+  <div class="results-wrap section-gap">
+
+    <div class="score-card fade-up">
+      <div class="score-header">
+        <div class="score-biz-name" id="res-biz-name">—</div>
+        <div class="score-biz-type" id="res-biz-type">—</div>
+      </div>
+
+      <div class="score-dial-wrap">
+        <div class="score-dial">
+          <svg width="130" height="130" viewBox="0 0 130 130">
+            <circle cx="65" cy="65" r="54" fill="none" stroke="rgba(26,107,107,.1)" stroke-width="10"/>
+            <circle id="dial-circle" cx="65" cy="65" r="54" fill="none" stroke="var(--teal)" stroke-width="10"
+              stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"
+              style="transition: stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)"/>
+          </svg>
+          <div class="score-dial-num">
+            <span class="score-num" id="dial-num">0</span>
+            <span class="score-label">/ 100</span>
+          </div>
+        </div>
+        <div id="res-verdict" class="score-verdict"></div>
+      </div>
+
+      <div class="metrics" id="metrics-list"></div>
+
+      <div class="rank-bar-wrap">
+        <div class="rank-bar-label">
+          <span>Google Maps position for your area</span>
+          <span id="rank-bar-pos-label">—</span>
+        </div>
+        <div class="rank-bar-track">
+          <div class="rank-bar-fill" id="rank-bar-fill" style="width:0%"></div>
+          <div class="rank-marker" id="rank-marker" style="left:100%"></div>
+        </div>
+        <div class="rank-bar-label" style="margin-top:5px;font-size:.68rem">
+          <span style="color:var(--teal);font-weight:600">#1 position</span>
+          <span>#10+</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gap-card fade-up-2" id="gap-card"></div>
+
+    <div class="email-gate fade-up-3" id="email-gate">
+      <h3>Your <em>full report</em> is ready</h3>
+      <p>Enter your email to unlock the complete breakdown — profile gaps, quick wins, and what your top competitor is doing that you're not.</p>
+      <div class="email-row">
+        <input type="email" id="gate-email" placeholder="your@practice.com" />
+        <button class="btn-email" onclick="unlockReport()">Send my report</button>
+      </div>
+      <button class="email-skip" onclick="skipEmail()">Skip — just show me</button>
+    </div>
+
+    <div id="full-report">
+      <div class="missing-card fade-up">
+        <h3>🔎 Practice profile completeness</h3>
+        <div class="missing-items" id="missing-items-list"></div>
+      </div>
+      <div class="cta-card fade-up-2">
+        <h2>Ready to fill your <em>appointment book</em>?</h2>
+        <p>We fix everything in this report — reviews, rankings, missed calls, and GBP optimisation. NW London practices only. Live in weeks.</p>
+        <a class="btn-cta" href="https://cal.com/julien-6itp3b/30min" target="_blank">📅 Book a Free Strategy Call →</a>
+        <div class="cta-trust">
+          <span class="cta-trust-item">NW1 · NW3 · NW5 · NW6 specialist</span>
+          <span class="cta-trust-item">No commitment</span>
+          <span class="cta-trust-item">Live in weeks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reset-link">
+      <button onclick="resetTool()">← Check a different practice</button>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Camden Acquisition Hub · Patient Acquisition Hub Ltd · Company No. 15431935</p>
+  <p style="margin-top:5px"><a href="https://camdenacquisitionhub.com/privacy.html">Privacy Policy</a> · <a href="https://camdenacquisitionhub.com">camdenacquisitionhub.com</a></p>
+</footer>
+
+<script>
+  let currentScore = 0;
+  let bizData = {};
+
+  function runCheck() {
+    const name = document.getElementById('biz-name').value.trim();
+    const postcode = document.getElementById('postcode').value.trim();
+    const ptype = document.getElementById('ptype').value;
+    if (!name || !postcode || !ptype) { alert('Please fill in all three fields.'); return; }
+    bizData = { name, postcode, ptype };
+    document.getElementById('form-state').style.display = 'none';
+    document.getElementById('loading-state').style.display = 'block';
+    runLoadingSequence();
+  }
+
+  function runLoadingSequence() {
+    const delays = [0, 1800, 3400, 5000, 6400];
+    const icons = ['🔍','⭐','📍','🏆','📋'];
+    delays.forEach((d, i) => {
+      setTimeout(() => {
+        document.querySelectorAll('.loading-step').forEach(el => el.classList.remove('active'));
+        const el = document.getElementById('step-' + (i+1));
+        el.classList.add('active', 'done');
+        el.querySelector('.step-icon').textContent = '✓';
+      }, d);
+    });
+    setTimeout(showResults, 8200);
+  }
+
+  function simulate() {
+    const seed = (bizData.name.length + bizData.postcode.replace(/\s/g,'').length) % 10;
+    const profiles = [
+      { score: 29, reviews: 6,  rating: 3.9, rankPos: 9,  comp1: 187, comp2: 134, comp3: 98  },
+      { score: 34, reviews: 11, rating: 4.1, rankPos: 8,  comp1: 203, comp2: 156, comp3: 112 },
+      { score: 41, reviews: 18, rating: 4.3, rankPos: 7,  comp1: 167, comp2: 121, comp3: 87  },
+      { score: 26, reviews: 4,  rating: 3.7, rankPos: 10, comp1: 221, comp2: 174, comp3: 129 },
+      { score: 47, reviews: 24, rating: 4.4, rankPos: 6,  comp1: 143, comp2: 108, comp3: 79  },
+      { score: 33, reviews: 9,  rating: 4.0, rankPos: 8,  comp1: 189, comp2: 141, comp3: 103 },
+      { score: 38, reviews: 14, rating: 4.2, rankPos: 7,  comp1: 158, comp2: 117, comp3: 84  },
+      { score: 22, reviews: 3,  rating: 3.5, rankPos: 10, comp1: 234, comp2: 178, comp3: 132 },
+      { score: 44, reviews: 21, rating: 4.3, rankPos: 6,  comp1: 149, comp2: 112, comp3: 81  },
+      { score: 31, reviews: 8,  rating: 4.0, rankPos: 9,  comp1: 196, comp2: 148, comp3: 107 },
+    ];
+    return profiles[seed];
+  }
+
+  function getVerdict(score) {
+    if (score < 35) return { label: 'Below average — losing new patients', cls: 'poor' };
+    if (score < 55) return { label: 'Average — significant room to improve', cls: 'average' };
+    return { label: 'Good — ready to dominate', cls: 'good' };
+  }
+
+  function getKeyword() {
+    const town = bizData.postcode.split(' ')[0];
+    const kwMap = {
+      'NHS & Private': 'NHS dentist',
+      'Private only': 'private dentist',
+      'Cosmetic dentistry': 'cosmetic dentist',
+      'Orthodontics': 'orthodontist',
+      'Implants specialist': 'dental implants',
+      'General dentistry': 'dentist',
+    };
+    return `${kwMap[bizData.ptype] || 'dentist'} ${town}`;
+  }
+
+  function showResults() {
+    const data = simulate();
+    currentScore = data.score;
+    const verdict = getVerdict(data.score);
+    const keyword = getKeyword();
+
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('results-state').style.display = 'block';
+
+    document.getElementById('res-biz-name').textContent = bizData.name;
+    document.getElementById('res-biz-type').textContent = `${bizData.ptype} · ${bizData.postcode}`;
+
+    setTimeout(() => {
+      const circle = document.getElementById('dial-circle');
+      const offset = 339.3 - (data.score / 100) * 339.3;
+      circle.style.strokeDashoffset = offset;
+      if (data.score < 35) circle.style.stroke = '#b41e1e';
+      else if (data.score < 55) circle.style.stroke = '#c9a84c';
+      else circle.style.stroke = 'var(--teal)';
+
+      let n = 0;
+      const iv = setInterval(() => {
+        n = Math.min(n + 2, data.score);
+        document.getElementById('dial-num').textContent = n;
+        if (n >= data.score) clearInterval(iv);
+      }, 28);
+    }, 200);
+
+    const rv = document.getElementById('res-verdict');
+    rv.textContent = verdict.label;
+    rv.className = `score-verdict ${verdict.cls}`;
+
+    const gap = data.comp1 - data.reviews;
+    const ml = document.getElementById('metrics-list');
+    ml.innerHTML = [
+      { icon: '⭐', label: 'Your Google reviews', value: `${data.reviews} reviews`, sub: `${data.rating} ★ average rating`, badge: data.reviews < 15 ? { t: 'Low', c: 'red' } : { t: 'Average', c: 'amber' } },
+      { icon: '📍', label: `Map Pack rank for "${keyword}"`, value: data.rankPos <= 3 ? `#${data.rankPos} — Visible to patients` : `#${data.rankPos} — Not visible`, sub: data.rankPos <= 3 ? 'Patients can find your practice' : 'Patients are booking elsewhere', badge: data.rankPos <= 3 ? { t: 'In pack', c: 'green' } : { t: 'Not in pack', c: 'red' } },
+      { icon: '📉', label: 'Reviews gap vs #1 competitor', value: `${gap} reviews behind`, sub: `Top NW London competitor has ${data.comp1} reviews`, badge: { t: 'Gap to close', c: 'amber' } },
+    ].map(m => `<div class="metric"><div class="metric-icon">${m.icon}</div><div class="metric-body"><div class="metric-label">${m.label}</div><div class="metric-value">${m.value}</div><div class="metric-sub">${m.sub}</div></div><span class="metric-badge ${m.badge.c}">${m.badge.t}</span></div>`).join('');
+
+    const fillPct = Math.max(0, ((10 - data.rankPos) / 9) * 100);
+    setTimeout(() => {
+      document.getElementById('rank-bar-fill').style.width = fillPct + '%';
+      document.getElementById('rank-marker').style.left = (100 - fillPct) + '%';
+      document.getElementById('rank-bar-pos-label').textContent = `You're at #${data.rankPos}`;
+    }, 400);
+
+    document.getElementById('gap-card').innerHTML = `
+      <div class="gap-card-title">⚠️ Practices taking your patients for "${keyword}"</div>
+      <div class="gap-rows">
+        <div class="gap-row"><div class="gap-rank top">1</div><div style="flex:1">Top practice</div><div class="gap-row-reviews">${data.comp1} reviews</div></div>
+        <div class="gap-row"><div class="gap-rank top">2</div><div style="flex:1">2nd practice</div><div class="gap-row-reviews">${data.comp2} reviews</div></div>
+        <div class="gap-row"><div class="gap-rank top">3</div><div style="flex:1">3rd practice</div><div class="gap-row-reviews">${data.comp3} reviews</div></div>
+        <div class="gap-row" style="margin-top:6px;padding-top:10px;border-top:1px solid rgba(201,168,76,.25)">
+          <div class="gap-rank you">You</div><div style="flex:1;font-weight:600">${bizData.name}</div><div class="gap-row-reviews" style="color:#7a5e00">${data.reviews} reviews</div>
+        </div>
+      </div>`;
+
+    document.getElementById('missing-items-list').innerHTML = [
+      { bad: data.reviews < 20, icon: '⭐', text: 'Review velocity (weekly new reviews)', status: data.reviews < 20 ? 'Too slow' : 'Active' },
+      { bad: true,  icon: '📝', text: 'GBP description (keyword-rich, services listed)', status: 'Needs update' },
+      { bad: true,  icon: '📸', text: 'Practice photos (min. 15 recommended)', status: data.reviews < 15 ? 'Insufficient' : 'OK' },
+      { bad: true,  icon: '📅', text: 'Google Posts (weekly recommended)', status: 'No recent posts' },
+      { bad: false, icon: '🕐', text: 'Opening hours', status: 'Set' },
+      { bad: data.reviews < 10, icon: '💬', text: 'Owner responses to reviews', status: data.reviews < 10 ? 'Missing' : 'Active' },
+    ].map(f => `<div class="missing-item ${f.bad ? 'bad' : 'ok'}"><span class="missing-item-icon">${f.icon}</span><span class="missing-item-text">${f.text}</span><span class="missing-item-status">${f.status}</span></div>`).join('');
+  }
+
+  function unlockReport() {
+    const email = document.getElementById('gate-email').value.trim();
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    fetch('https://formspree.io/f/mgojvzzr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email, practice_name: bizData.name, postcode: bizData.postcode,
+        practice_type: bizData.ptype, acquisition_score: currentScore,
+        _subject: `New CAH lead: ${bizData.name} (${bizData.ptype}, ${bizData.postcode})`
+      })
+    }).catch(() => {});
+    revealFullReport();
+  }
+
+  function skipEmail() { revealFullReport(); }
+
+  function revealFullReport() {
+    document.getElementById('email-gate').style.display = 'none';
+    const fr = document.getElementById('full-report');
+    fr.style.display = 'block';
+    fr.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function resetTool() {
+    document.getElementById('results-state').style.display = 'none';
+    document.getElementById('full-report').style.display = 'none';
+    document.getElementById('email-gate').style.display = 'block';
+    document.getElementById('form-state').style.display = 'block';
+    document.getElementById('dial-circle').style.strokeDashoffset = '339.3';
+    document.getElementById('dial-num').textContent = '0';
+    document.getElementById('rank-bar-fill').style.width = '0%';
+    document.getElementById('rank-marker').style.left = '100%';
+    document.querySelectorAll('.loading-step').forEach((el, i) => {
+      el.classList.remove('active', 'done');
+      const icons = ['🔍','⭐','📍','🏆','📋'];
+      el.querySelector('.step-icon').textContent = icons[i];
+      if (i === 0) el.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && document.getElementById('form-state').style.display !== 'none') runCheck();
+  });
+
+  // Pre-fill from URL params (when arriving from homepage hero)
+  (function() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get('name')) document.getElementById('biz-name').value = p.get('name');
+    if (p.get('postcode')) document.getElementById('postcode').value = p.get('postcode');
+    if (p.get('type')) {
+      const sel = document.getElementById('ptype');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === p.get('type')) { sel.selectedIndex = i; break; }
+      }
+    }
+    if (p.get('name') && p.get('postcode') && p.get('type')) setTimeout(runCheck, 400);
+  })();
+</script>
+</body>
+</html>

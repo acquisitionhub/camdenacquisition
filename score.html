@@ -384,6 +384,7 @@
     .fade-up-2 { animation: fadeUp .5s ease .1s both; }
     .fade-up-3 { animation: fadeUp .5s ease .2s both; }
   </style>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs1-RXW8sp_-awSmXcPhcVfOAXXo_QvA0&libraries=places&callback=initPlaces" async defer></script>
 </head>
 <body>
 
@@ -566,9 +567,43 @@
     runLoadingSequence();
   }
 
+  let placesService = null;
+  let realPlacesData = null;
+
+  function initPlaces() {
+    const dummy = document.createElement('div');
+    placesService = new google.maps.places.PlacesService(dummy);
+  }
+
+  function fetchRealData(name, postcode) {
+    return new Promise((resolve) => {
+      if (!placesService) { resolve(null); return; }
+      placesService.findPlaceFromQuery({
+        query: name + ' ' + postcode + ' dental UK',
+        fields: ['name','rating','user_ratings_total','photos','opening_hours','place_id']
+      }, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results && results[0]) {
+          const p = results[0];
+          resolve({
+            reviews: p.user_ratings_total || null,
+            rating: p.rating ? p.rating.toFixed(1) : null,
+            hasPhotos: p.photos && p.photos.length >= 5,
+            hasHours: !!(p.opening_hours),
+            placeId: p.place_id
+          });
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
+
   function runLoadingSequence() {
     const delays = [0, 1800, 3400, 5000, 6400];
-    const icons = ['🔍','⭐','📍','🏆','📋'];
+    realPlacesData = null;
+    fetchRealData(bizData.name, bizData.postcode).then(function(data) {
+      realPlacesData = data;
+    });
     delays.forEach((d, i) => {
       setTimeout(() => {
         document.querySelectorAll('.loading-step').forEach(el => el.classList.remove('active'));
@@ -616,8 +651,21 @@
     return `${kwMap[bizData.ptype] || 'dentist'} ${town}`;
   }
 
+  function calcScore(reviews, rankPos) {
+    const reviewScore = Math.min(60, Math.round((reviews / 200) * 60));
+    const rankScore = Math.max(0, Math.round(((10 - rankPos) / 9) * 40));
+    return Math.min(99, reviewScore + rankScore);
+  }
+
   function showResults() {
-    const data = simulate();
+    const simData = simulate();
+    const realReviews = realPlacesData && realPlacesData.reviews != null ? realPlacesData.reviews : null;
+    const realRating = realPlacesData && realPlacesData.rating != null ? realPlacesData.rating : null;
+    const data = Object.assign({}, simData, {
+      reviews: realReviews !== null ? realReviews : simData.reviews,
+      rating: realRating !== null ? realRating : simData.rating,
+      score: realReviews !== null ? calcScore(realReviews, simData.rankPos) : simData.score
+    });
     currentScore = data.score;
     const verdict = getVerdict(data.score);
     const keyword = getKeyword();

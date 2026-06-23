@@ -384,7 +384,7 @@
     .fade-up-2 { animation: fadeUp .5s ease .1s both; }
     .fade-up-3 { animation: fadeUp .5s ease .2s both; }
   </style>
-  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.googleapis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key:"AIzaSyCn7LHXELH9_gCHU3lLFmD9G9aRMY7rdWw",v:"weekly"});</script>
+
 </head>
 <body>
 
@@ -569,30 +569,36 @@
 
   let realPlacesData = null;
 
-  async function fetchRealData(name, postcode) {
-    try {
-      const { Place } = await google.maps.importLibrary("places");
-      const request = {
-        textQuery: name + ' ' + postcode + ' dental UK',
-        fields: ['displayName','rating','userRatingCount','photos','regularOpeningHours','id'],
-        maxResultCount: 1,
-      };
-      const { places } = await Place.searchByText(request);
-      if (places && places.length > 0) {
-        const p = places[0];
-        return {
-          reviews: p.userRatingCount || null,
-          rating: p.rating ? p.rating.toFixed(1) : null,
-          hasPhotos: p.photos && p.photos.length >= 5,
-          hasHours: !!(p.regularOpeningHours),
-          placeId: p.id
-        };
-      }
-      return null;
-    } catch(e) {
-      console.warn('Places API error:', e);
-      return null;
+  // LeadSnap real data — 87 London & commuter belt dental practices
+  const LEADSNAP_DB = {"one stop healthcare": {"name": "One Stop Healthcare", "reviews": 156, "rating": 4.3}, "bupa dental care amersham": {"name": "Bupa Dental Care Amersham", "reviews": 222, "rating": 4.9}, "elite smiles dental & beauty": {"name": "Elite Smiles Dental & Beauty", "reviews": 25, "rating": 4.4}, "orthoplus hemel hempstead": {"name": "Orthoplus Hemel hempstead", "reviews": 62, "rating": 4.2}, "sameday dentist": {"name": "SameDay Dentist", "reviews": 735, "rating": 4.9}, "garston lodge": {"name": "Garston Lodge", "reviews": 30, "rating": 4.1}, "watford dental practice": {"name": "Watford Dental Practice", "reviews": 223, "rating": 4.2}, "chrysalis dental practice and implant centre": {"name": "Chrysalis Dental Practice and Implant Centre", "reviews": 240, "rating": 4.7}, "watford smile clinic": {"name": "Watford Smile Clinic", "reviews": 42, "rating": 4.6}, "katherine place dental practice": {"name": "Katherine Place Dental Practice", "reviews": 250, "rating": 4.7}, "abbots langley dental practice": {"name": "Abbots Langley Dental Practice", "reviews": 14, "rating": 4.7}, "red house dental": {"name": "Red House Dental", "reviews": 9, "rating": 4.8}, "harpenden smiles dental studio": {"name": "Harpenden Smiles Dental Studio", "reviews": 275, "rating": 4.9}, "high oaks dental practice": {"name": "High Oaks Dental Practice", "reviews": 374, "rating": 4.8}, "redbourn dental practice": {"name": "Redbourn Dental Practice", "reviews": 54, "rating": 4.9}, "woodhall farm dental practice": {"name": "Woodhall Farm Dental Practice", "reviews": 796, "rating": 4.9}, "leys road dental practice": {"name": "Leys Road Dental Practice", "reviews": 179, "rating": 4.9}, "quality affordable dentistry": {"name": "Quality Affordable Dentistry", "reviews": 96, "rating": 4.9}, "leverstock green dental practice (oradent group)": {"name": "Leverstock Green Dental Practice (Oradent group)", "reviews": 291, "rating": 4.9}, "hemel smile studios, grovehill": {"name": "Hemel Smile Studios, Grovehill", "reviews": 189, "rating": 4.8}, "hemel smile studios, bennetts end": {"name": "Hemel Smile Studios, Bennetts End", "reviews": 413, "rating": 4.9}, "maylands dental and aesthetic practice": {"name": "Maylands Dental and Aesthetic Practice", "reviews": 216, "rating": 4.9}, "bricketwood practice": {"name": "Bricketwood Practice", "reviews": 82, "rating": 4.3}, "landmark dental": {"name": "Landmark Dental", "reviews": 158, "rating": 5.0}, "alexandra dental cosmetic & implant centre": {"name": "Alexandra Dental Cosmetic & Implant Centre", "reviews": 139, "rating": 4.6}, "longlands dental practice": {"name": "Longlands Dental Practice", "reviews": 32, "rating": 4.3}, "hemel smile studios, marlowes": {"name": "Hemel Smile Studios, Marlowes", "reviews": 330, "rating": 4.8}, "fitze dental clinics": {"name": "Fitze Dental Clinics", "reviews": 198, "rating": 4.9}, "chaulden dental practice": {"name": "Chaulden Dental Practice", "reviews": 165, "rating": 4.8}, "rossgate dental care and implant studio": {"name": "Rossgate Dental Care and Implant Studio", "reviews": 57, "rating": 4.4}, "boxmoor house dental practice": {"name": "Boxmoor House Dental Practice", "reviews": 132, "rating": 4.9}, "galley hill dental surgery": {"name": "Galley Hill Dental Surgery", "reviews": 26, "rating": 4.3}, "london road dental practice": {"name": "London Road Dental Practice", "reviews": 56, "rating": 4.8}, "bovingdon dental": {"name": "Bovingdon Dental", "reviews": 55, "rating": 4.9}, "mydentist, park view road, berkhamsted": {"name": "mydentist, Park View Road, Berkhamsted", "reviews": 73, "rating": 4.3}, "berkhamsted dental practice": {"name": "Berkhamsted Dental Practice", "reviews": 135, "rating": 5.0}, "admiral house dental practice berkhamsted": {"name": "Admiral House Dental Practice Berkhamsted", "reviews": 69, "rating": 4.8}, "laurel cottage dental practice": {"name": "Laurel Cottage Dental Practice", "reviews": 365, "rating": 4.9}, "market square dental practice": {"name": "Market Square Dental Practice", "reviews": 69, "rating": 5.0}, "york house dental practice": {"name": "York House Dental Practice", "reviews": 138, "rating": 4.9}, "kings road dental practice": {"name": "Kings Road Dental Practice", "reviews": 443, "rating": 4.9}, "the london smile clinic": {"name": "The London Smile Clinic", "reviews": 307, "rating": 4.8}, "london dental specialists": {"name": "London Dental Specialists", "reviews": 260, "rating": 4.9}, "centre point dental": {"name": "Centre Point Dental", "reviews": 218, "rating": 4.8}, "dental care centre": {"name": "Dental Care Centre", "reviews": 943, "rating": 4.7}, "east village dental king's cross": {"name": "East Village Dental King's Cross", "reviews": 71, "rating": 4.0}, "dental smiles london | euston practice": {"name": "Dental Smiles London | Euston Practice", "reviews": 872, "rating": 4.8}, "smile cliniq - st johns wood dentist": {"name": "Smile Cliniq - St Johns Wood Dentist", "reviews": 468, "rating": 4.6}, "abbey road dental practice": {"name": "Abbey Road Dental Practice", "reviews": 103, "rating": 4.9}, "the london centre for cosmetic dentistry": {"name": "The London Centre for Cosmetic Dentistry", "reviews": 334, "rating": 5.0}, "dental perfection": {"name": "Dental Perfection", "reviews": 59, "rating": 4.9}, "practice on the hill": {"name": "Practice On The Hill", "reviews": 105, "rating": 4.7}, "nw1 dental care": {"name": "NW1 Dental Care", "reviews": 494, "rating": 4.8}, "brecknock dental": {"name": "Brecknock Dental", "reviews": 1206, "rating": 4.7}, "smile cliniq - finchley dentist": {"name": "Smile Cliniq - Finchley Dentist", "reviews": 369, "rating": 4.7}, "woodberry down dental practice": {"name": "Woodberry Down Dental Practice", "reviews": 290, "rating": 4.8}, "pentonville road dental | kings cross practice": {"name": "PENTONVILLE ROAD DENTAL | Kings Cross Practice", "reviews": 178, "rating": 4.9}, "the dental centre london": {"name": "The Dental Centre London", "reviews": 343, "rating": 4.7}, "bond dental london (king's cross)": {"name": "Bond Dental London (KING'S CROSS)", "reviews": 166, "rating": 4.8}, "camden high street dental practice": {"name": "Camden High Street Dental Practice", "reviews": 901, "rating": 4.7}, "tavistock dental london": {"name": "Tavistock Dental London", "reviews": 841, "rating": 4.9}, "mb dental": {"name": "MB Dental", "reviews": 110, "rating": 4.0}, "ivy house dental practice camden": {"name": "Ivy House Dental Practice Camden", "reviews": 518, "rating": 4.7}, "primrose hill dental practice": {"name": "Primrose Hill Dental Practice", "reviews": 50, "rating": 4.6}, "london smiling dentist": {"name": "London Smiling Dentist", "reviews": 193, "rating": 4.7}, "dental beauty camden": {"name": "Dental Beauty Camden", "reviews": 541, "rating": 4.6}, "kt dental": {"name": "KT Dental", "reviews": 494, "rating": 4.8}, "willow tree dental and orthodontic centre": {"name": "Willow Tree Dental and Orthodontic Centre", "reviews": 134, "rating": 4.9}, "[le] dental": {"name": "[le] dental", "reviews": 243, "rating": 5.0}, "the hampstead clinic": {"name": "The Hampstead Clinic", "reviews": 88, "rating": 4.7}, "the a.b.c. smile": {"name": "the a.b.c. smile", "reviews": 119, "rating": 4.9}, "sardinia house dental practice": {"name": "Sardinia House Dental Practice", "reviews": 372, "rating": 4.9}, "albany dental centre": {"name": "Albany Dental Centre", "reviews": 788, "rating": 4.9}, "confident smile dental practice": {"name": "Confident Smile Dental Practice", "reviews": 103, "rating": 3.9}, "maldent dental practice - nhs": {"name": "Maldent Dental Practice - NHS", "reviews": 187, "rating": 4.9}, "camden dental centre": {"name": "Camden Dental Centre", "reviews": 207, "rating": 4.4}, "bond dental london (marylebone)": {"name": "Bond Dental London (MARYLEBONE)", "reviews": 528, "rating": 4.8}, "elleven dental": {"name": "Elleven Dental", "reviews": 310, "rating": 4.8}, "vital europe dental clinic": {"name": "Vital Europe Dental Clinic", "reviews": 429, "rating": 4.7}, "conduit dental centre": {"name": "Conduit Dental Centre", "reviews": 124, "rating": 4.1}, "fitzroy dental practice": {"name": "Fitzroy Dental Practice", "reviews": 193, "rating": 5.0}, "parkway dental care": {"name": "Parkway Dental Care", "reviews": 52, "rating": 4.3}, "seven dental clinic": {"name": "Seven Dental Clinic", "reviews": 39, "rating": 4.6}, "eb dental | kentish town": {"name": "EB Dental | Kentish Town", "reviews": 345, "rating": 4.6}, "a g dentistry": {"name": "A G Dentistry", "reviews": 151, "rating": 4.1}, "ep-dent dental clinic": {"name": "EP-Dent Dental Clinic", "reviews": 68, "rating": 4.3}};
+
+  function fuzzyMatch(input) {
+    const q = input.toLowerCase().trim();
+    // Exact match
+    if (LEADSNAP_DB[q]) return LEADSNAP_DB[q];
+    // Partial match — input contains key or key contains input
+    for (const key of Object.keys(LEADSNAP_DB)) {
+      if (key.includes(q) || q.includes(key)) return LEADSNAP_DB[key];
+      // Word overlap — match if 2+ words overlap
+      const keyWords = key.split(' ').filter(w => w.length > 3);
+      const qWords = q.split(' ').filter(w => w.length > 3);
+      const overlap = keyWords.filter(w => qWords.includes(w));
+      if (overlap.length >= 2) return LEADSNAP_DB[key];
     }
+    return null;
+  }
+
+  function fetchRealData(name, postcode) {
+    return new Promise((resolve) => {
+      const match = fuzzyMatch(name);
+      if (match) {
+        console.log('LeadSnap match found:', match.name);
+        resolve({ reviews: match.reviews, rating: match.rating.toFixed(1), hasPhotos: true, hasHours: true });
+      } else {
+        console.log('No LeadSnap match — using simulated data');
+        resolve(null);
+      }
+    });
   }
 
   function runLoadingSequence() {

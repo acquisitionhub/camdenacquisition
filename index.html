@@ -1426,7 +1426,534 @@
   </section>
 
   <!-- ── RANKING FACTORS ── -->
-  <section class="ranking" id="ranking-factors">
+  <!-- ══════════════════════════════════════════════════════════════════
+     CAH — LOCAL PRESENCE SECTION
+     PLACEMENT: paste immediately BEFORE <section class="ranking" id="ranking-factors">
+     Matches CAH design system: Cormorant Garamond + Outfit, teal palette
+     ══════════════════════════════════════════════════════════════════ -->
+
+<style>
+  .lp-dental { background: var(--ink); padding: var(--section-py) var(--section-px); }
+  .lp-dental .container { max-width: 1100px; margin: 0 auto; }
+
+  .lp-dental-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: rgba(26,107,107,0.15);
+    border: 1px solid rgba(26,107,107,0.35);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .lp-dental-insight-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+  .lp-dental-insight p { font-size: 0.88rem; color: rgba(255,255,255,.75); line-height: 1.7; margin: 0; }
+  .lp-dental-insight strong { color: var(--teal-light); }
+
+  .lp-dental-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  @media (min-width: 900px) {
+    .lp-dental-grid { grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  }
+
+  .lp-dental h2 { color: #fff; margin-bottom: 14px; }
+  .lp-dental h2 em { color: var(--teal-light); font-style: italic; }
+  .lp-dental .section-label { color: var(--teal-light); margin-bottom: 10px; }
+  .lp-dental .lead-text {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  /* Includes list */
+  .lp-dental-includes { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .lp-dental-includes li { display: flex; align-items: flex-start; gap: 12px; }
+  .lp-dental-includes .lp-tick { color: var(--teal-light); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .lp-dental-includes .lp-il { font-size: 0.9rem; font-weight: 600; color: #fff; display: block; margin-bottom: 2px; }
+  .lp-dental-includes .lp-is { font-size: 0.78rem; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+  /* Price */
+  .lp-dental-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .lp-dental-price-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--teal-light);
+    line-height: 1;
+  }
+  .lp-dental-price-per { font-size: 0.9rem; color: rgba(255,255,255,.45); }
+  .lp-dental-price-note { font-size: 0.75rem; color: rgba(255,255,255,.35); margin-bottom: 24px; }
+
+  /* CTAs */
+  .lp-dental-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+  .lp-dental-btn-primary {
+    background: var(--teal);
+    color: #fff;
+    padding: 0.85rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+    min-height: 48px;
+  }
+  .lp-dental-btn-primary:hover { background: var(--teal-light); }
+  .lp-dental-btn-outline {
+    background: transparent;
+    color: rgba(255,255,255,.7);
+    border: 1px solid rgba(255,255,255,.2);
+    padding: 0.85rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    transition: border-color 0.2s, color 0.2s;
+    min-height: 48px;
+  }
+  .lp-dental-btn-outline:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+  /* Vs table */
+  .lp-dental-vs {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 28px;
+  }
+  .lp-dental-vs th {
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,.3);
+    padding: 0 0 10px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .lp-dental-vs th:not(:first-child) { text-align: center; }
+  .lp-dental-vs td {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    color: rgba(255,255,255,.6);
+    vertical-align: middle;
+  }
+  .lp-dental-vs td:not(:first-child) { text-align: center; }
+  .lp-dental-vs tr.lp-hl td { color: var(--teal-light); font-weight: 600; }
+  .lp-tick-g { color: var(--teal-light); }
+  .lp-cross { color: rgba(255,255,255,.15); }
+
+  /* Right column */
+  .lp-dental-right { display: flex; flex-direction: column; gap: 20px; }
+
+  /* SERP mock */
+  .lp-dental-serp {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  }
+  .lp-dental-serp-bar {
+    background: #f1f3f4;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .lp-ds-dots { display: flex; gap: 5px; }
+  .lp-ds-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .lp-ds-query {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.72rem;
+    color: #3c4043;
+    font-family: 'Outfit', sans-serif;
+  }
+  .lp-dental-serp-body { padding: 14px 16px; }
+  .lp-ds-label {
+    font-size: 0.62rem;
+    color: #70757a;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'Outfit', sans-serif;
+  }
+  .lp-ds-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .lp-ds-result:last-child { border-bottom: none; }
+  .lp-ds-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.62rem; font-weight: 700;
+    flex-shrink: 0; margin-top: 2px;
+    font-family: 'Outfit', sans-serif;
+  }
+  .lp-ds-num.p1 { background: #1a6b6b; color: #fff; }
+  .lp-ds-num.p2 { background: #e8f4f4; color: #1a6b6b; }
+  .lp-ds-num.p3 { background: #fef9e7; color: #b7950b; }
+  .lp-ds-num.p5 { background: #fdebd0; color: #ca6f1e; }
+  .lp-ds-info { flex: 1; min-width: 0; }
+  .lp-ds-name { font-size: 0.82rem; font-weight: 700; color: #202124; margin-bottom: 2px; font-family: 'Outfit', sans-serif; }
+  .lp-ds-meta { font-size: 0.68rem; color: #70757a; display: flex; gap: 7px; flex-wrap: wrap; font-family: 'Outfit', sans-serif; }
+  .lp-ds-stars { color: #fbbc04; }
+  .lp-ds-tag {
+    font-size: 0.62rem; font-weight: 600;
+    padding: 2px 7px; border-radius: 3px;
+  }
+  .lp-ds-tag.has { background: #e8f4f4; color: #1a6b6b; }
+  .lp-ds-tag.none { background: #fdecea; color: #c0392b; }
+  .lp-ds-you-row {
+    background: rgba(202,111,30,.07);
+    border-radius: 6px;
+    padding: 9px;
+    margin: 0 -4px;
+  }
+
+  /* Gap callout */
+  .lp-dental-gap {
+    background: rgba(26,107,107,0.1);
+    border: 1px solid rgba(26,107,107,0.25);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-size: 0.83rem;
+    color: rgba(255,255,255,.7);
+    line-height: 1.65;
+  }
+  .lp-dental-gap strong { color: var(--teal-light); }
+
+  /* After card */
+  .lp-dental-after {
+    background: rgba(26,107,107,0.1);
+    border: 1px solid rgba(26,107,107,0.2);
+    border-radius: 4px;
+    padding: 20px;
+  }
+  .lp-dental-after-label {
+    font-size: 0.68rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--teal-light); margin-bottom: 12px;
+  }
+  .lp-dental-after-item {
+    display: flex; align-items: center; gap: 9px;
+    font-size: 0.8rem; color: rgba(255,255,255,.6);
+    margin-bottom: 7px;
+  }
+  .lp-dental-after-item span { color: var(--teal-light); font-weight: 700; flex-shrink: 0; }
+
+  /* Gold CTA card */
+  .lp-dental-cta-card {
+    background: var(--teal);
+    border-radius: 4px;
+    padding: 22px;
+    text-align: center;
+  }
+  .lp-dental-cta-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+  .lp-dental-cta-card p {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 16px;
+    line-height: 1.65;
+  }
+  .lp-dental-cta-card .lp-dental-btn-white {
+    background: #fff;
+    color: var(--teal);
+    padding: 0.85rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    transition: background 0.2s;
+    min-height: 48px;
+  }
+  .lp-dental-cta-card .lp-dental-btn-white:hover { background: var(--teal-pale); }
+  .lp-dental-cta-note { font-size: 0.7rem; color: rgba(255,255,255,.45); margin-top: 10px; }
+
+  /* Objections */
+  .lp-dental-objs {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 4px;
+    padding: 22px;
+    margin-top: 32px;
+  }
+  .lp-dental-obj { margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .lp-dental-obj:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .lp-dental-obj-q { font-size: 0.88rem; font-weight: 600; color: #fff; margin-bottom: 5px; }
+  .lp-dental-obj-a { font-size: 0.82rem; color: rgba(255,255,255,.5); line-height: 1.7; }
+  .lp-dental-obj-a strong { color: rgba(255,255,255,.75); }
+</style>
+
+<section class="lp-dental" id="local-presence">
+  <div class="container">
+
+    <div class="section-label" style="color:var(--teal-light);">Local Presence — £397/month</div>
+    <h2>Your practice is showing up<br>on Google Maps. <em>But there's nothing to click.</em></h2>
+
+    <div class="lp-dental-insight">
+      <span class="lp-dental-insight-icon">💡</span>
+      <p>A patient searching for Invisalign in NW1 will not call a practice they can't verify online. <strong>That's a £4,000 treatment walking to the practice above you — every week.</strong> You've done the hard work of getting visible. A website converts that visibility into booked appointments.</p>
+    </div>
+
+    <div class="lp-dental-grid">
+
+      <!-- LEFT -->
+      <div>
+        <p class="lead-text">Most of the NW London practices we audit are ranking in positions 4–10 with no website attached to their GBP. The three practices above them all have one. Local Presence fixes that gap — and compounds it with reviews and GBP management running alongside.</p>
+
+        <ul class="lp-dental-includes">
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Dental website — built for NW London search</span>
+              <span class="lp-is">Treatment pages (Invisalign, implants, veneers, whitening) + location pages for NW1, NW3, NW5, NW6 — live in 7 days</span>
+            </div>
+          </li>
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Google Business Profile management</span>
+              <span class="lp-is">Weekly posts, photos, Q&A, category optimisation — managed every week</span>
+            </div>
+          </li>
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Review automation via Try Review Bloom</span>
+              <span class="lp-is">Post-appointment SMS + email review requests, AI replies to every review, geo-keyword prompts</span>
+            </div>
+          </li>
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Dentist + MedicalBusiness schema markup</span>
+              <span class="lp-is">Structured data that signals your specialisms, location, and opening hours directly to Google</span>
+            </div>
+          </li>
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Monthly heatmap ranking report</span>
+              <span class="lp-is">Map pack position across your NW London postcode — every month, no guesswork</span>
+            </div>
+          </li>
+          <li>
+            <span class="lp-tick">✓</span>
+            <div>
+              <span class="lp-il">Ongoing site updates included</span>
+              <span class="lp-is">New treatment, new associate, new location — just message us, no extra charge</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="lp-dental-price-row">
+          <div class="lp-dental-price-num">£397</div>
+          <div class="lp-dental-price-per">/month</div>
+        </div>
+        <p class="lp-dental-price-note">No setup fee. 30 days' notice to cancel. All files returned in full if you leave.</p>
+
+        <div class="lp-dental-ctas">
+          <a href="https://cal.com/julien-6itp3b/30min" target="_blank" rel="noopener" class="lp-dental-btn-primary">
+            📅 Book a free site audit →
+          </a>
+          <a href="/pricing.html" class="lp-dental-btn-outline">See all plans</a>
+        </div>
+
+        <!-- Vs table -->
+        <table class="lp-dental-vs">
+          <thead>
+            <tr>
+              <th>What you get</th>
+              <th>Reviews only</th>
+              <th>Local Presence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GBP management</td>
+              <td><span class="lp-tick-g">✓</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+            <tr>
+              <td>Review automation</td>
+              <td><span class="lp-tick-g">✓</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+            <tr class="lp-hl">
+              <td>Dental website (treatment + location pages)</td>
+              <td><span class="lp-cross">✕</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+            <tr class="lp-hl">
+              <td>Dentist + MedicalBusiness schema</td>
+              <td><span class="lp-cross">✕</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+            <tr class="lp-hl">
+              <td>Monthly heatmap report</td>
+              <td><span class="lp-cross">✕</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+            <tr class="lp-hl">
+              <td>Ongoing site updates</td>
+              <td><span class="lp-cross">✕</span></td>
+              <td><span class="lp-tick-g">✓</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Objections -->
+        <div class="lp-dental-objs">
+          <div class="lp-dental-obj">
+            <div class="lp-dental-obj-q">We already have a website from 2018 — do we need a new one?</div>
+            <div class="lp-dental-obj-a">Possibly not. We audit your existing site first. If it has dedicated treatment pages, location pages, and correct schema markup, we build on what's there. <strong>If it doesn't — and most 2015–2019 dental sites don't — we rebuild it properly.</strong> Either way the audit is free.</div>
+          </div>
+          <div class="lp-dental-obj">
+            <div class="lp-dental-obj-q">Our GBP is already doing well — why do we need a website on top?</div>
+            <div class="lp-dental-obj-a">Because <strong>GBP gets you found, a website gets you chosen.</strong> A patient looking at your listing for Invisalign in NW3 will click through to verify your credentials, see before and afters, and check pricing before they call. Without a website, that click goes nowhere — and they go to the practice above you that has one.</div>
+          </div>
+          <div class="lp-dental-obj">
+            <div class="lp-dental-obj-q">How is £397/month justified vs a standalone web build?</div>
+            <div class="lp-dental-obj-a">A standalone dental website build typically costs £2,500–£5,000 upfront plus hosting. At £397/month you get the website <strong>plus</strong> GBP management, review automation, schema markup, monthly reporting, and ongoing updates — all managed. One recovered Invisalign patient pays three months of fees.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="lp-dental-right">
+
+        <!-- SERP mock -->
+        <div class="lp-dental-serp">
+          <div class="lp-dental-serp-bar">
+            <div class="lp-ds-dots">
+              <span style="background:#ff5f57;"></span>
+              <span style="background:#febc2e;"></span>
+              <span style="background:#28c840;"></span>
+            </div>
+            <div class="lp-ds-query">invisalign dentist camden nw1</div>
+          </div>
+          <div class="lp-dental-serp-body">
+            <div class="lp-ds-label">Google Map Pack</div>
+
+            <div class="lp-ds-result">
+              <div class="lp-ds-num p1">1</div>
+              <div class="lp-ds-info">
+                <div class="lp-ds-name">Camden Dental Studio</div>
+                <div class="lp-ds-meta">
+                  <span class="lp-ds-stars">★★★★★</span>
+                  <span>4.9 · 284 reviews</span>
+                  <span class="lp-ds-tag has">✓ Website</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lp-ds-result">
+              <div class="lp-ds-num p2">2</div>
+              <div class="lp-ds-info">
+                <div class="lp-ds-name">NW1 Smile Clinic</div>
+                <div class="lp-ds-meta">
+                  <span class="lp-ds-stars">★★★★★</span>
+                  <span>4.8 · 196 reviews</span>
+                  <span class="lp-ds-tag has">✓ Website</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lp-ds-result">
+              <div class="lp-ds-num p3">3</div>
+              <div class="lp-ds-info">
+                <div class="lp-ds-name">Kentish Town Dental</div>
+                <div class="lp-ds-meta">
+                  <span class="lp-ds-stars">★★★★☆</span>
+                  <span>4.6 · 112 reviews</span>
+                  <span class="lp-ds-tag has">✓ Website</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lp-ds-result lp-ds-you-row">
+              <div class="lp-ds-num p5">5</div>
+              <div class="lp-ds-info">
+                <div class="lp-ds-name" style="color:#ca6f1e;">Your Practice ← You are here</div>
+                <div class="lp-ds-meta">
+                  <span class="lp-ds-stars">★★★★☆</span>
+                  <span>4.4 · 31 reviews</span>
+                  <span class="lp-ds-tag none">✗ No website</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gap callout -->
+        <div class="lp-dental-gap">
+          <strong>What's happening every time a patient searches:</strong> practices 1–3 all have websites with treatment pages and before/after galleries. Your listing is visible — but a patient researching Invisalign has nowhere to go to verify you offer it, see pricing, or trust you before they call. They pick someone with a site. Every time.
+        </div>
+
+        <!-- After state -->
+        <div class="lp-dental-after">
+          <div class="lp-dental-after-label">What changes with Local Presence</div>
+          <div class="lp-dental-after-item" style="margin-bottom:10px;">
+            <div class="lp-ds-num p1" style="width:22px;height:22px;font-size:.62rem;">↑</div>
+            <div>
+              <div style="font-size:.82rem;font-weight:600;color:#fff;">Your Practice</div>
+              <div style="font-size:.68rem;color:rgba(255,255,255,.45);">4.8 · reviews growing weekly · <span style="color:var(--teal-light);font-weight:600;">✓ Website live</span></div>
+            </div>
+          </div>
+          <div class="lp-dental-after-item"><span>✓</span> Treatment pages — Invisalign, implants, veneers, whitening</div>
+          <div class="lp-dental-after-item"><span>✓</span> Location pages — NW1, NW3, NW5, NW6</div>
+          <div class="lp-dental-after-item"><span>✓</span> Reviews growing automatically after every appointment</div>
+          <div class="lp-dental-after-item"><span>✓</span> Dentist schema reinforcing your GBP signals</div>
+          <div class="lp-dental-after-item"><span>✓</span> Monthly heatmap — see your rank across the postcode</div>
+        </div>
+
+        <!-- CTA card -->
+        <div class="lp-dental-cta-card">
+          <h3>Convert the visibility you're already generating</h3>
+          <p>Free 20-minute audit. We'll show you exactly where your practice is losing clicks and what it would take to fix it — no obligation.</p>
+          <a href="https://cal.com/julien-6itp3b/30min" target="_blank" rel="noopener" class="lp-dental-btn-white">
+            Book your free practice audit →
+          </a>
+          <div class="lp-dental-cta-note">No pitch. Just an honest look at your Google presence.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══ END LOCAL PRESENCE SECTION ══ -->
+
+
+
+<section class="ranking" id="ranking-factors">
     <div class="container">
       <div class="section-label">Based on Whitespark 2026</div>
       <h2>The ranking signals <em>Camden Acquisition Hub targets</em></h2>

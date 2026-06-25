@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Treatment Coordinator — Camden Acquisition Hub</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:     #0b1a14;
+      --deep:    #061910;
+      --forest:  #0d3d25;
+      --green:   #1a7a45;
+      --lime:    #3ec96e;
+      --gold:    #c9983a;
+      --gold-lt: #f5e4b8;
+      --cream:   #f7f3ec;
+      --white:   #ffffff;
+      --muted:   #4e6359;
+      --border:  #d0e3d8;
+      --card:    #f0f7f3;
+      --r:       10px;
+      --px:      1.25rem;
+    }
+    @media(min-width:600px){ :root{ --px:2rem } }
+    @media(min-width:960px){ :root{ --px:3rem } }
+
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0 }
+
+    body {
+      font-family:'DM Sans',sans-serif;
+      background:var(--cream);
+      color:var(--ink);
+      line-height:1.65;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,h4 { font-family:'Fraunces',serif; line-height:1.12 }
+    p { color:var(--muted) }
+    em { font-style:italic; color:var(--green) }
+    strong { color:var(--ink); font-weight:600 }
+
+    /* ── RIBBON ── */
+    .ribbon {
+      background:var(--gold);
+      color:var(--deep);
+      text-align:center;
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.08em;
+      padding:.55rem var(--px);
+      text-transform:uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner {
+      max-width:1040px; margin:0 auto;
+      padding:0 var(--px); height:62px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none }
+    .nav-logo-mark {
+      width:34px; height:34px; border-radius:8px;
+      background:var(--forest);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem;
+    }
+    .nav-logo-text { font-family:'Fraunces',serif; font-weight:700; font-size:1rem; color:var(--ink) }
+    .nav-tag {
+      font-size:.7rem; font-weight:600; letter-spacing:.06em;
+      color:var(--gold); background:rgba(201,152,58,.12);
+      border:1px solid rgba(201,152,58,.35);
+      padding:3px 10px; border-radius:50px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background:linear-gradient(155deg, var(--deep) 0%, #07261a 55%, #0d3d25 100%);
+      padding:clamp(4rem,10vw,7rem) var(--px) clamp(3rem,7vw,5.5rem);
+      text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 55% 40% at 80% 20%, rgba(201,152,58,.12) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(62,201,110,.07) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:.78rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--gold); background:rgba(201,152,58,.15);
+      border:1px solid rgba(201,152,58,.3);
+      padding:.4rem 1.1rem; border-radius:50px;
+      margin-bottom:2rem;
+    }
+    .hero h1 {
+      font-size:clamp(2.4rem,6vw,4.2rem);
+      color:var(--white);
+      max-width:820px; margin:0 auto 1.5rem;
+      font-weight:700;
+    }
+    .hero h1 em { color:var(--gold); font-style:italic }
+    .hero-sub {
+      font-size:clamp(1rem,2vw,1.2rem);
+      color:rgba(255,255,255,.65);
+      max-width:580px; margin:0 auto 2.5rem;
+      line-height:1.75;
+    }
+    .hero-badges {
+      display:flex; flex-wrap:wrap; gap:.65rem;
+      justify-content:center; margin-bottom:3rem;
+    }
+    .hero-badge {
+      font-size:.78rem; font-weight:500;
+      color:rgba(255,255,255,.8);
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      padding:.4rem 1rem; border-radius:50px;
+    }
+    .hero-cta {
+      display:inline-block;
+      background:var(--gold);
+      color:var(--deep);
+      font-weight:700; font-size:1rem;
+      padding:.9rem 2.2rem; border-radius:var(--r);
+      text-decoration:none;
+      transition:opacity .2s;
+    }
+    .hero-cta:hover { opacity:.88 }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding:clamp(3rem,7vw,5.5rem) var(--px) }
+    .section-inner { max-width:1040px; margin:0 auto }
+    .section-eyebrow {
+      display:inline-block;
+      font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--green); margin-bottom:1rem;
+    }
+    .section-title {
+      font-size:clamp(1.8rem,4vw,2.8rem);
+      max-width:700px; margin-bottom:1.25rem;
+    }
+    .section-lead {
+      font-size:1.05rem; max-width:640px; line-height:1.8;
+      margin-bottom:2.5rem;
+    }
+
+    /* ── PROBLEM CARDS ── */
+    .problem-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.25rem;
+    }
+    .problem-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:1.75rem;
+    }
+    .problem-icon { font-size:1.6rem; margin-bottom:1rem }
+    .problem-card h3 { font-size:1.1rem; margin-bottom:.6rem; font-family:'DM Sans',sans-serif; font-weight:600 }
+    .problem-card p { font-size:.9rem; line-height:1.7 }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border:none;
+      border-top:1px solid var(--border);
+      margin:0;
+    }
+
+    /* ── TRAP SECTION ── */
+    .trap {
+      background:linear-gradient(135deg, #1a0a00 0%, #2d1400 100%);
+      padding:clamp(3rem,7vw,5rem) var(--px);
+      position:relative; overflow:hidden;
+    }
+    .trap::before {
+      content:'';
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,152,58,.08) 0%, transparent 70%);
+    }
+    .trap-inner { max-width:1040px; margin:0 auto; position:relative }
+    .trap-label {
+      display:inline-block;
+      font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      color:#e07a30; background:rgba(224,122,48,.15);
+      border:1px solid rgba(224,122,48,.3);
+      padding:.35rem .9rem; border-radius:50px; margin-bottom:1.25rem;
+    }
+    .trap h2 { color:var(--white); font-size:clamp(1.7rem,3.5vw,2.5rem); margin-bottom:1.25rem }
+    .trap p { color:rgba(255,255,255,.65); font-size:1rem; line-height:1.8; max-width:700px; margin-bottom:1.25rem }
+    .trap-callout {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(201,152,58,.25);
+      border-left:3px solid var(--gold);
+      border-radius:var(--r);
+      padding:1.4rem 1.6rem;
+      margin-top:1.75rem;
+    }
+    .trap-callout p { color:rgba(255,255,255,.8); font-size:.95rem }
+
+    /* ── TRAINING TABLE ── */
+    .training { background:var(--white) }
+    .table-wrap { overflow-x:auto; margin-top:2rem }
+    table {
+      width:100%; border-collapse:collapse;
+      font-size:.92rem;
+    }
+    thead th {
+      background:var(--forest); color:var(--white);
+      padding:1rem 1.25rem; text-align:left;
+      font-family:'Fraunces',serif; font-weight:600; font-size:1rem;
+    }
+    thead th:first-child { border-radius:var(--r) 0 0 0 }
+    thead th:last-child  { border-radius:0 var(--r) 0 0 }
+    tbody tr:nth-child(even) { background:var(--card) }
+    tbody td { padding:.95rem 1.25rem; border-bottom:1px solid var(--border); vertical-align:top }
+    tbody td:first-child { font-weight:600; color:var(--ink) }
+    tbody td p { font-size:.88rem; margin:0 }
+
+    /* ── GUARDRAILS ── */
+    .guardrail-box {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:1.75rem 2rem;
+      margin-top:2rem;
+    }
+    .guardrail-box h4 { font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; margin-bottom:.75rem; color:var(--ink) }
+    .guardrail-label {
+      font-size:.72rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--green); margin-bottom:.35rem; display:block;
+    }
+    .dialogue { margin-top:1rem }
+    .dialogue-q {
+      background:rgba(201,152,58,.1); border-left:3px solid var(--gold);
+      padding:.85rem 1.1rem; border-radius:0 var(--r) var(--r) 0;
+      font-size:.9rem; color:var(--ink); margin-bottom:.6rem;
+    }
+    .dialogue-q span { display:block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); margin-bottom:.35rem }
+    .dialogue-a {
+      background:rgba(26,122,69,.08); border-left:3px solid var(--lime);
+      padding:.85rem 1.1rem; border-radius:0 var(--r) var(--r) 0;
+      font-size:.9rem; color:var(--ink);
+    }
+    .dialogue-a span { display:block; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--green); margin-bottom:.35rem }
+
+    /* ── ONBOARDING TIMELINE ── */
+    .timeline { background:var(--forest) }
+    .timeline h2 { color:var(--white) }
+    .timeline .section-lead { color:rgba(255,255,255,.65) }
+    .timeline .section-eyebrow { color:var(--gold) }
+    .phase-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:1.25rem; margin-top:2rem;
+    }
+    .phase-card {
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--r);
+      padding:2rem 1.75rem;
+      position:relative;
+    }
+    .phase-num {
+      font-family:'Fraunces',serif; font-size:3rem; font-weight:900;
+      color:rgba(201,152,58,.25); line-height:1;
+      margin-bottom:1rem;
+    }
+    .phase-days {
+      display:inline-block;
+      font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--gold); background:rgba(201,152,58,.15);
+      border:1px solid rgba(201,152,58,.25);
+      padding:.3rem .8rem; border-radius:50px;
+      margin-bottom:1rem;
+    }
+    .phase-card h3 { font-size:1.2rem; color:var(--white); margin-bottom:.75rem }
+    .phase-card p { font-size:.9rem; color:rgba(255,255,255,.6); line-height:1.75 }
+
+    /* ── GOLDEN RULE ── */
+    .golden {
+      background:var(--gold);
+      padding:clamp(3rem,6vw,4.5rem) var(--px);
+      text-align:center;
+    }
+    .golden-inner { max-width:740px; margin:0 auto }
+    .golden h2 {
+      font-size:clamp(1.7rem,3.5vw,2.4rem);
+      color:var(--deep); margin-bottom:1.25rem;
+    }
+    .golden p { color:rgba(6,25,16,.7); font-size:1.05rem; line-height:1.8 }
+
+    /* ── POSITIONING ── */
+    .positioning { background:var(--cream) }
+    .pos-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.25rem; margin-top:2rem;
+    }
+    .pos-card {
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:1.75rem;
+    }
+    .pos-card-icon { font-size:1.5rem; margin-bottom:.85rem }
+    .pos-card h3 { font-size:1rem; font-family:'DM Sans',sans-serif; font-weight:700; margin-bottom:.5rem }
+    .pos-card p { font-size:.88rem; line-height:1.7 }
+
+    /* ── PRICING ── */
+    .pricing { background:var(--ink) }
+    .pricing .section-eyebrow { color:var(--gold) }
+    .pricing h2 { color:var(--white) }
+    .pricing .section-lead { color:rgba(255,255,255,.55) }
+    .pricing-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:1.25rem; margin-top:2.5rem; align-items:start;
+    }
+    .price-card {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:var(--r);
+      padding:2rem 1.75rem;
+    }
+    .price-card.featured {
+      background:var(--forest);
+      border-color:var(--gold);
+      position:relative;
+    }
+    .price-featured-tag {
+      position:absolute; top:-13px; left:50%; transform:translateX(-50%);
+      font-size:.7rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color:var(--deep); background:var(--gold);
+      padding:.3rem 1rem; border-radius:50px; white-space:nowrap;
+    }
+    .price-label {
+      font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:rgba(255,255,255,.45); margin-bottom:.85rem; display:block;
+    }
+    .price-card h3 { color:var(--white); font-size:1.2rem; margin-bottom:.5rem }
+    .price-card .price-amount {
+      font-family:'Fraunces',serif;
+      font-size:clamp(2.4rem,5vw,3.2rem);
+      font-weight:900; color:var(--gold);
+      line-height:1; margin:.75rem 0 .25rem;
+    }
+    .price-card .price-amount span {
+      font-size:1rem; font-weight:400;
+      color:rgba(255,255,255,.45); font-family:'DM Sans',sans-serif;
+    }
+    .price-card .price-note {
+      font-size:.8rem; color:rgba(255,255,255,.4);
+      margin-bottom:1.5rem; display:block;
+    }
+    .price-list {
+      list-style:none; display:flex; flex-direction:column; gap:.6rem;
+    }
+    .price-list li {
+      font-size:.88rem; color:rgba(255,255,255,.65);
+      display:flex; gap:.6rem; align-items:flex-start;
+    }
+    .price-list li::before { content:'✓'; color:var(--lime); flex-shrink:0; font-weight:700 }
+    .pricing-roi {
+      margin-top:2.5rem;
+      background:rgba(201,152,58,.1);
+      border:1px solid rgba(201,152,58,.25);
+      border-radius:var(--r);
+      padding:1.75rem 2rem;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:1.5rem;
+    }
+    .roi-stat { text-align:center }
+    .roi-stat .roi-num {
+      font-family:'Fraunces',serif;
+      font-size:2.2rem; font-weight:900;
+      color:var(--gold); display:block; line-height:1;
+      margin-bottom:.35rem;
+    }
+    .roi-stat p { font-size:.82rem; color:rgba(255,255,255,.5); line-height:1.55 }
+    .pricing-stack {
+      margin-top:1.5rem;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--r);
+      padding:1.5rem 1.75rem;
+    }
+    .pricing-stack h4 {
+      color:var(--white); font-size:.95rem;
+      font-family:'DM Sans',sans-serif; font-weight:600;
+      margin-bottom:1rem;
+    }
+    .stack-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:.6rem 0; border-bottom:1px solid rgba(255,255,255,.07);
+      font-size:.9rem;
+    }
+    .stack-row:last-child { border-bottom:none; padding-bottom:0 }
+    .stack-row span:first-child { color:rgba(255,255,255,.55) }
+    .stack-row span:last-child { color:var(--white); font-weight:600 }
+    .stack-row.total span:first-child { color:rgba(255,255,255,.8); font-weight:600 }
+    .stack-row.total span:last-child { color:var(--gold); font-size:1.05rem }
+
+    /* ── DEV NOTE ── */
+    .dev-note {
+      background:var(--deep);
+      padding:clamp(2rem,5vw,3.5rem) var(--px);
+    }
+    .dev-note-inner { max-width:1040px; margin:0 auto }
+    .dev-tag {
+      display:inline-block;
+      font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+      color:#3ec96e; background:rgba(62,201,110,.12);
+      border:1px solid rgba(62,201,110,.25);
+      padding:.3rem .9rem; border-radius:50px; margin-bottom:1.25rem;
+    }
+    .dev-note h3 { color:var(--white); font-size:1.5rem; margin-bottom:1rem }
+    .dev-note p { color:rgba(255,255,255,.55); font-size:.92rem; line-height:1.8; max-width:680px }
+    .dev-list {
+      list-style:none; margin-top:1.25rem;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:.65rem;
+    }
+    .dev-list li {
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:8px;
+      padding:.75rem 1rem;
+      font-size:.85rem; color:rgba(255,255,255,.65);
+    }
+    .dev-list li::before { content:'→ '; color:var(--lime) }
+
+    /* ── FOOTER ── */
+    footer {
+      background:var(--deep); border-top:1px solid rgba(255,255,255,.08);
+      padding:1.75rem var(--px); text-align:center;
+    }
+    footer p { font-size:.8rem; color:rgba(255,255,255,.3) }
+    footer a { color:rgba(255,255,255,.5); text-decoration:none }
+    footer a:hover { color:var(--gold) }
+
+    @media(prefers-reduced-motion:reduce){ * { transition:none !important; animation:none !important } }
+  </style>
+</head>
+<body>
+
+<!-- RIBBON -->
+<div class="ribbon">⚠ Internal concept document — not for public release · Camden Acquisition Hub Ltd</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="https://camdenacquisitionhub.com" class="nav-logo">
+      <div class="nav-logo-mark">🦷</div>
+      <span class="nav-logo-text">Camden Acquisition Hub</span>
+    </a>
+    <span class="nav-tag">Premium Product Concept</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🤖 AI-Powered · Premium Service · Coming Soon</div>
+  <h1>The 24/7 <em>AI Treatment Coordinator</em> for Private Dental Practices</h1>
+  <p class="hero-sub">Close the gap between a patient's fear and the consultation chair — automatically, compliantly, and at a scale no human coordinator can match.</p>
+  <div class="hero-badges">
+    <span class="hero-badge">Trained on elite dental sales calls</span>
+    <span class="hero-badge">B2C healthcare psychology</span>
+    <span class="hero-badge">Chrysalis Finance integration</span>
+    <span class="hero-badge">UK GDPR compliant</span>
+    <span class="hero-badge">Never diagnoses</span>
+    <span class="hero-badge">Live in 14 days</span>
+  </div>
+  <a href="https://cal.com/julien-6itp3b/30min" class="hero-cta">Book a founder call →</a>
+</section>
+
+<!-- WHY THIS WORKS -->
+<section class="section" style="background:var(--white)">
+  <div class="section-inner">
+    <span class="section-eyebrow">The opportunity</span>
+    <h2 class="section-title">Why the AI training model works — and why now</h2>
+    <p class="section-lead">Training an AI agent on real transcripts from elite human high-ticket closers is the gold standard for building an inbound or outbound sales system. By feeding it real calls, the AI learns the subtle psychological shifts that convert enquiries into seated patients.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">🧠</div>
+        <h3>Price objection handling</h3>
+        <p>The AI learns exactly how experienced coordinators respond to "that's too expensive" — pivoting to monthly finance options without pressure or hesitation.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📉</div>
+        <h3>Gap amplification</h3>
+        <p>It learns how to build the emotional distance between where a patient is now — hiding their smile — and where they want to be, making the consultation the obvious next step.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🤝</div>
+        <h3>Consultative tone</h3>
+        <p>It moves entirely away from robotic customer service language and sounds like a highly empathetic treatment coordinator — because it learned from one.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">⚡</div>
+        <h3>24/7 response</h3>
+        <p>Every inbound enquiry — at 9pm, Sunday morning, bank holiday — gets an intelligent, warm, compliant response within seconds. No missed opportunities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- THE TRAP -->
+<section class="trap">
+  <div class="trap-inner">
+    <div class="trap-label">⚠ The dangerous trap</div>
+    <h2>The Dentist Disconnect — why generic AI fails here</h2>
+    <p>If the AI agent is trained on general high-ticket B2B sales calls — software sales, coaching programmes — the framework will fail in a dental context. Standard B2B frameworks rely on high-pressure tactics, deep pain-digging, and lengthy discovery sessions.</p>
+    <p>If an AI agent tries those tactics on a patient in Camden who just wants a dental implant, it will feel aggressive, manipulative, and clinical. Dentistry is not B2B sales. It is highly emotional B2C healthcare.</p>
+    <p>A patient's objections are not about ROI or quarterly budgets. They are rooted in <strong>physical fear of pain, embarrassment about their smile, and anxiety about hidden costs.</strong></p>
+    <div class="trap-callout">
+      <p><strong>The distinction that changes everything:</strong> This AI agent's sole job is not to "close the deal and take the cash." Its job is to close the distance between a patient's fear and the dentist's consultation chair. Train it for that, and conversion rates follow naturally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRAINING DATA -->
+<section class="section training">
+  <div class="section-inner">
+    <span class="section-eyebrow">The framework</span>
+    <h2 class="section-title">The Tri-Phase training data structure</h2>
+    <p class="section-lead">The AI must be trained across three specific data types — not just one. Each one teaches a distinct layer of the patient conversation. Together they produce an agent that sounds nothing like generic sales AI.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>What the AI Learns</th>
+            <th>Why It's Critical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High-Ticket Patient Care Coordinators</td>
+            <td><p>Empathy, clinical-to-layman translation, medical tone compliance</p></td>
+            <td><p>Keeps the practice from legal exposure and ensures the agent sounds professional, not pushy</p></td>
+          </tr>
+          <tr>
+            <td>Luxury Hospitality &amp; Concierge</td>
+            <td><p>Tone modulation, premium framing, onboarding reassurance</p></td>
+            <td><p>Makes patients feel they are entering a private clinic — not a hospital appointment system</p></td>
+          </tr>
+          <tr>
+            <td>Elite B2C Soft Closers</td>
+            <td><p>Objection handling, framing price as a monthly finance breakdown</p></td>
+            <td><p>Drives actual conversion without triggering medical anxiety or feeling pushy</p></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GUARDRAILS -->
+    <div class="guardrail-box">
+      <h4>The Handoff Guardrails — your core compliance deliverable</h4>
+      <p style="font-size:.9rem;margin-bottom:1.25rem">Because the AI handles sales and the dental practice's real staff handles delivery, strict conditional guardrails prevent the system from collapsing on a broken promise. The most critical rule:</p>
+      <span class="guardrail-label">The rule</span>
+      <p style="font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:1.25rem">The AI agent <em>never diagnoses.</em> It never answers clinical questions. It always routes clinical enquiries to the consultation itself.</p>
+      <div class="dialogue">
+        <div class="dialogue-q">
+          <span>Patient asks</span>
+          "Will I need a bone graft for my implant?"
+        </div>
+        <div class="dialogue-a">
+          <span>AI responds</span>
+          "That is exactly what Dr. [Name] will look at during your 3D digital scan on Tuesday. He customises the treatment map for every patient, so you only ever pay for exactly what your jaw needs. Let me get that slot locked in for you now."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ONBOARDING TIMELINE -->
+<section class="section timeline">
+  <div class="section-inner">
+    <span class="section-eyebrow">Go-live process</span>
+    <h2 class="section-title" style="color:var(--white)">From contract to live agent in <em>14 days</em></h2>
+    <p class="section-lead">Three phases. No shortcuts. The 14-day timeline is firm because rushing the testing phase is where every other AI sales product breaks.</p>
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-num">01</div>
+        <span class="phase-days">Days 1–5</span>
+        <h3>Diagnostic Transcription Audit</h3>
+        <p>We ingest 50–100 hours of top-performing private dental sales calls to map the exact objections unique to the NW London patient demographic. No assumptions — pure signal.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">02</div>
+        <span class="phase-days">Days 6–10</span>
+        <h3>Context Injection &amp; Practice Sync</h3>
+        <p>We upload the specific clinic's pricing tiers, finance options (Chrysalis Finance etc.), and the clinical philosophy of the Principal Dentist. The AI never misrepresents the practice.</p>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">03</div>
+        <span class="phase-days">Days 11–14</span>
+        <h3>Shadow Dial Testing Phase</h3>
+        <p>We run the agent through 50 simulated high-objection patient scenarios in a closed sandbox — grading empathy scores, compliance, and appointment conversion rates before it goes live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOLDEN RULE -->
+<section class="golden">
+  <div class="golden-inner">
+    <h2>The Golden Rule of this service</h2>
+    <p>The AI agent's job is not to "close the deal and take the cash." Its sole job is to <strong>close the distance between a patient's fear and the dentist's consultation chair.</strong> Train it for that one outcome — the comfort of the consultation, not the price of the treatment — and conversion rates, retention, and dentist trust follow automatically.</p>
+  </div>
+</section>
+
+<!-- POSITIONING -->
+<section class="section positioning">
+  <div class="section-inner">
+    <span class="section-eyebrow">How to sell it</span>
+    <h2 class="section-title">Positioning this as the premium upgrade</h2>
+    <p class="section-lead">Because Camden Acquisition Hub already delivers review automation and local presence, this product slots in as the natural next layer — converting the visibility CAH builds into seated patients around the clock.</p>
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="pos-card-icon">📍</div>
+        <h3>Layer 1 — Local Presence (£397/mo)</h3>
+        <p>GBP management, review automation, dental website. Gets the practice found and trusted online. Already delivered.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-icon">🤖</div>
+        <h3>Layer 2 — AI Treatment Coordinator (Premium)</h3>
+        <p>Converts every inbound enquiry into a booked consultation — 24/7, without hiring another member of staff. The AI closes the gap reviews open.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-icon">💰</div>
+        <h3>The revenue argument</h3>
+        <p>One additional Invisalign case per month at £3,500 covers the cost of both services for the year. Frame the fee against a single treatment conversion, not a monthly line item.</p>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-icon">🔒</div>
+        <h3>The retention argument</h3>
+        <p>A dental practice with a working AI coordinator does not churn. The system becomes embedded in their front desk workflow. This is recurring revenue with deep stickiness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing">
+  <div class="section-inner">
+    <span class="section-eyebrow">Investment</span>
+    <h2 class="section-title">Priced against <em>treatment value,</em> not service cost</h2>
+    <p class="section-lead">One additional Invisalign case per month at £3,500 covers the full annual cost of this service. That is the frame — not a monthly line item, but a guaranteed return on a single conversion.</p>
+
+    <div class="pricing-grid">
+
+      <!-- Setup -->
+      <div class="price-card">
+        <span class="price-label">One-time</span>
+        <h3>Setup & Onboarding</h3>
+        <div class="price-amount">£3,000<span> once</span></div>
+        <span class="price-note">Paid before work begins. Non-refundable after Day 5.</span>
+        <ul class="price-list">
+          <li>Diagnostic transcription audit (50–100hrs of calls)</li>
+          <li>Context injection — your pricing, finance options, clinical philosophy</li>
+          <li>50-scenario shadow dial testing in closed sandbox</li>
+          <li>Empathy scoring and compliance grading before go-live</li>
+          <li>Handoff protocol — AI to human coordinator</li>
+          <li>Full practice sync call with Julien</li>
+        </ul>
+      </div>
+
+      <!-- Monthly -->
+      <div class="price-card featured">
+        <div class="price-featured-tag">Core product</div>
+        <span class="price-label">Monthly recurring</span>
+        <h3>AI Treatment Coordinator</h3>
+        <div class="price-amount">£1,997<span>/mo</span></div>
+        <span class="price-note">30 days' notice to cancel. All data returned in full.</span>
+        <ul class="price-list">
+          <li>24/7 inbound patient enquiry handling</li>
+          <li>Voice + SMS + WhatsApp coverage via Retell AI (Willa)</li>
+          <li>Trained on dental B2C psychology — never sounds like a bot</li>
+          <li>Hard guardrail — never diagnoses, always routes to consultation</li>
+          <li>Chrysalis Finance framing built in</li>
+          <li>Monthly performance report — consultations booked vs enquiries handled</li>
+          <li>Ongoing retraining as your offer or team changes</li>
+          <li>Direct access to Julien for escalations</li>
+        </ul>
+      </div>
+
+      <!-- Stack -->
+      <div class="price-card">
+        <span class="price-label">Full stack with CAH</span>
+        <h3>Complete Patient Acquisition System</h3>
+        <div class="price-amount">£2,394<span>/mo</span></div>
+        <span class="price-note">Local Presence (£397) + AI Coordinator (£1,997)</span>
+        <ul class="price-list">
+          <li>Everything in Local Presence — GBP, reviews, dental website</li>
+          <li>Everything in AI Treatment Coordinator</li>
+          <li>One system: get found → get trusted → get booked → 24/7</li>
+          <li>Single point of contact for all patient acquisition</li>
+          <li>Priority onboarding and support</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ROI stats -->
+    <div class="pricing-roi">
+      <div class="roi-stat">
+        <span class="roi-num">£3,500</span>
+        <p>Average Invisalign case value — one conversion covers 1.75 months of fees</p>
+      </div>
+      <div class="roi-stat">
+        <span class="roi-num">£4,000</span>
+        <p>Average single implant value — one case covers 2 months of fees</p>
+      </div>
+      <div class="roi-stat">
+        <span class="roi-num">£28k+</span>
+        <p>Annual cost of a human treatment coordinator — fully loaded with NI and benefits</p>
+      </div>
+      <div class="roi-stat">
+        <span class="roi-num">24/7</span>
+        <p>Coverage with no sick days, no turnover, no training lag</p>
+      </div>
+    </div>
+
+    <!-- Stack summary -->
+    <div class="pricing-stack">
+      <h4>At 5 clients — what this looks like as a revenue line</h4>
+      <div class="stack-row">
+        <span>5 × AI Treatment Coordinator (£1,997/mo)</span>
+        <span>£9,985/mo</span>
+      </div>
+      <div class="stack-row">
+        <span>5 × Local Presence (£397/mo)</span>
+        <span>£1,985/mo</span>
+      </div>
+      <div class="stack-row">
+        <span>Setup fees (one-time, 5 clients)</span>
+        <span>£15,000</span>
+      </div>
+      <div class="stack-row total">
+        <span>Monthly recurring at scale</span>
+        <span>£11,970/mo</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DEV NOTES -->
+<section class="dev-note">
+  <div class="dev-note-inner">
+    <div class="dev-tag">📋 Development notes</div>
+    <h3>Build roadmap — things to solve before launch</h3>
+    <p>This is a premium product that requires infrastructure, compliance clarity, and a proven case study before it goes to market. Notes for future development:</p>
+    <ul class="dev-list">
+      <li>Source 50–100hrs of real dental patient coordinator call recordings</li>
+      <li>Legal review — UK GDPR on AI call handling and patient data</li>
+      <li>GDC compliance check on AI-assisted patient communication</li>
+      <li>Chrysalis Finance API integration for payment framing</li>
+      <li>Retell AI (Willa) as the voice layer — already configured</li>
+      <li>Build empathy scoring rubric for shadow dial testing</li>
+      <li>Define handoff protocol — AI to human coordinator</li>
+      <li>Pricing model — monthly retainer vs per-consultation fee</li>
+      <li>Beta client — one NW London private practice, case study focused</li>
+      <li>Define what "never diagnoses" guardrail looks like in code</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🦷 Camden Acquisition Hub Ltd · Internal concept document · Not for public distribution · <a href="https://camdenacquisitionhub.com">camdenacquisitionhub.com</a></p>
+</footer>
+
+</body>
+</html>

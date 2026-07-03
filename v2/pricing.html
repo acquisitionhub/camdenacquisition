@@ -29,6 +29,16 @@
   .plan.featured .btn-primary{background:var(--gold);color:var(--ink);}
   .setup-note{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--ink-soft);margin-top:20px;}
 
+  .founding-banner{background:var(--paper-raised);border:1px solid var(--gold);border-radius:4px;padding:22px 24px;margin-top:26px;max-width:600px;}
+  .founding-badge{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.06em;color:var(--gold);font-weight:600;}
+  .founding-banner p{font-size:0.94rem;color:var(--ink-soft);margin:10px 0 0;}
+  .founding-banner strong{color:var(--ink);}
+  .spots-row{display:flex;align-items:center;gap:8px;margin-top:16px;}
+  .spot{width:14px;height:14px;border-radius:3px;border:1px solid var(--line);}
+  .spot.filled{background:var(--line);}
+  .spot.open{background:var(--teal);border-color:var(--teal);}
+  .spots-label{font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--ink);margin-left:6px;font-weight:600;}
+
   .local-presence{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:34px 30px;margin-top:60px;}
   .local-presence .top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px;}
   .local-presence .price{font-family:'Fraunces',serif;font-size:2rem;color:var(--teal);}
@@ -64,6 +74,14 @@
     <h1 style="font-size:clamp(2rem,4vw,2.8rem);">Choose your scope of growth.</h1>
     <p class="lede">Three plans built around Google review automation, GBP management, and local web presence — pick the scope that matches where your practice is now.</p>
     <p class="setup-note">One-time setup: £297 · covers GBP audit, profile optimisation &amp; review funnel build</p>
+    <div class="founding-banner">
+      <span class="founding-badge">🎯 FOUNDING CLIENT RATE</span>
+      <p>The prices below are our <strong>founding client rate — the first 3 NW London practices only.</strong> Once those 3 spots are filled, pricing moves to standard rates for all new clients. Founding clients keep this rate for the life of their agreement.</p>
+      <div class="spots-row">
+        <div class="spot open"></div><div class="spot open"></div><div class="spot open"></div>
+        <span class="spots-label"><span id="spotsLeft">3</span> spots remaining</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -71,7 +89,7 @@
   <div class="wrap">
     <div class="plan-grid">
       <div class="plan">
-        <span class="tag">Scope 01</span>
+        <span class="tag">Scope 01 · Founding rate</span>
         <h3>Get Found</h3>
         <p class="desc">For practices with under 50 reviews. Establish credibility and stop losing NW1 patients before competitors widen the gap.</p>
         <div class="price">£397</div>
@@ -88,7 +106,7 @@
         <a class="btn-ghost" href="https://cal.com/julien-6itp3b/30min">Book a call →</a>
       </div>
       <div class="plan featured">
-        <span class="tag">Scope 02 · Most chosen</span>
+        <span class="tag">Scope 02 · Founding rate · Most chosen</span>
         <h3>Dominate NW1</h3>
         <p class="desc">For practices ready to actively compete in the Camden Map Pack and own the search results in Kentish Town, Chalk Farm and Primrose Hill.</p>
         <div class="price">£597</div>
@@ -104,7 +122,7 @@
         <a class="btn-primary" href="https://cal.com/julien-6itp3b/30min">Book a call →</a>
       </div>
       <div class="plan">
-        <span class="tag">Scope 03</span>
+        <span class="tag">Scope 03 · Founding rate</span>
         <h3>Own the Postcode</h3>
         <p class="desc">For established or multi-site practices targeting total NW1 dominance across Google, Yelp, Facebook and Nextdoor.</p>
         <div class="price">£1,097</div>
@@ -195,6 +213,10 @@
       <h2>Answered honestly.</h2>
     </div>
     <details class="faq-item" open>
+      <summary>What is the "founding client rate" and how long does it last?</summary>
+      <p>We're currently onboarding our first 3 NW London practices at these rates, in exchange for the flexibility to feature the results as case studies. Once those 3 spots are filled, new clients move to standard pricing. If you sign up as a founding client, you keep this rate for the life of your agreement — it doesn't increase later.</p>
+    </details>
+    <details class="faq-item">
       <summary>How quickly will I see results?</summary>
       <p>Most Camden practices recover their first missed-call patient within 24–48 hours of going live. Review volume starts climbing in the first week. Local Google Maps ranking improvements for NW1 searches typically become visible within 4–8 weeks.</p>
     </details>

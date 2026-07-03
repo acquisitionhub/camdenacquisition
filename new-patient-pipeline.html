@@ -358,6 +358,45 @@
   }
   .price-btn:hover { opacity: 0.88; }
 
+  /* CROSS-SELL NOTE */
+  .crosssell {
+    margin-top: 24px;
+    padding: 22px 28px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .crosssell-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .crosssell p {
+    font-size: 13.5px;
+    color: var(--text-sec);
+    margin-top: 6px;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+  .crosssell p strong { color: var(--text); font-weight: 500; }
+  .crosssell-btn {
+    flex-shrink: 0;
+    padding: 11px 20px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--border-hover);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .crosssell-btn:hover { border-color: var(--accent); color: var(--accent); }
+
   /* FIT TABLE */
   .fit-section {
     padding: 0 48px 80px;
@@ -623,6 +662,14 @@
       </div>
       <a href="https://cal.com/julien-6itp3b/30min" class="price-btn">Book a free audit →</a>
     </div>
+  </div>
+
+  <div class="crosssell">
+    <div>
+      <span class="crosssell-label">Need live inbound too?</span>
+      <p>This handles follow-up on leads and patients after the fact. If you want enquiries answered in real time, 24/7, that's the job of the <strong>AI Treatment Coordinator</strong>.</p>
+    </div>
+    <a href="/ai-treatment-coordinator.html" class="crosssell-btn">See AI Treatment Coordinator →</a>
   </div>
 </section>
 

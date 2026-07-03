@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Google Review Audit — Dental Practices | Camden Acquisition Hub</title>
+<meta name="description" content="Discover how much revenue your Google reviews are costing you. Free 60-second audit for UK dental practices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v2/assets/site-v2.css">
+<style>
+  .audit-wrap{max-width:600px;margin:0 auto;padding:50px 0 80px;}
+  .audit-alert{background:var(--gold-soft);color:var(--ink);font-family:'IBM Plex Mono',monospace;font-size:0.78rem;padding:10px 16px;border-radius:var(--radius);display:inline-block;margin-top:18px;}
+  .audit-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:36px 32px;margin-top:30px;}
+  .step-label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.06em;}
+  .audit-card h2{font-size:1.4rem;margin:10px 0 6px;}
+  .audit-card .sub{color:var(--ink-soft);font-size:0.92rem;margin-bottom:26px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:0.88rem;font-weight:600;margin-bottom:8px;}
+  .field input, .field select{
+    width:100%;font-family:'IBM Plex Sans',sans-serif;font-size:0.95rem;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    padding:12px 14px;border-radius:var(--radius);
+  }
+  .choice-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  @media (max-width:500px){.choice-row{grid-template-columns:repeat(2,1fr);}}
+  .choice{
+    border:1px solid var(--line);border-radius:var(--radius);padding:12px 6px;text-align:center;
+    cursor:pointer;font-size:0.8rem;color:var(--ink-soft);background:var(--paper);
+  }
+  .choice .emoji{font-size:1.3rem;display:block;margin-bottom:4px;}
+  .choice.selected{border-color:var(--teal);background:var(--paper-raised);color:var(--ink);font-weight:600;}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;}
+  .step-track{display:flex;gap:6px;margin-top:22px;}
+  .step-track span{height:3px;flex:1;background:var(--line);border-radius:2px;}
+  .step-track span.done{background:var(--teal);}
+  .score-circle{
+    width:160px;height:160px;border-radius:50%;border:6px solid var(--teal);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 26px;
+  }
+  .score-circle .n{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--ink);}
+  .score-circle .of{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-soft);}
+  .trust-row{display:flex;justify-content:center;gap:26px;margin-top:30px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-soft);}
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <a class="brand" href="/v2/index.html">CAMDEN <span>ACQUISITION</span> HUB</a>
+    <div class="nav-links"><a href="/v2/index.html">Home</a><a href="/v2/pricing.html">Pricing</a></div>
+    <a class="cta-small" href="https://cal.com/julien-6itp3b/30min">Book a Demo</a>
+  </nav>
+</header>
+
+<section class="audit-wrap wrap">
+  <div class="eyebrow">⭐ FREE GOOGLE REVIEW AUDIT</div>
+  <h1 style="font-size:clamp(1.8rem,3.6vw,2.4rem);margin-top:14px;">Discover how much revenue your Google reviews are costing you.</h1>
+  <p style="color:var(--ink-soft);margin-top:10px;">Takes 60 seconds. Get a personalised reputation score with specific action steps for your practice.</p>
+  <span class="audit-alert">⚠ Only 4 free audit slots remaining this week</span>
+
+  <div class="audit-card">
+    <div class="step-track" id="stepTrack"></div>
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <div class="step-label">Step 1 of 3 — Your practice</div>
+      <h2>Tell us about your clinic</h2>
+      <p class="sub">We'll use this to tailor your audit results.</p>
+      <div class="field"><label>Clinic name</label><input type="text" id="clinicName" placeholder="e.g. Camden Dental Studio"></div>
+      <div class="field"><label>City / Town</label><input type="text" id="clinicCity" placeholder="e.g. London"></div>
+      <div class="field">
+        <label>Practice type</label>
+        <select id="practiceType">
+          <option value="">Select…</option>
+          <option>Private only</option>
+          <option>Mixed NHS &amp; private</option>
+          <option>NHS only</option>
+          <option>Cosmetic / implants</option>
+        </select>
+      </div>
+      <div class="nav-row"><span></span><button class="btn-primary" onclick="goStep(2)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+      <div class="step-label">Step 2 of 3 — Your Google presence</div>
+      <h2>How are your reviews looking?</h2>
+      <p class="sub">Be honest — this only helps us give you accurate insights.</p>
+
+      <div class="field">
+        <label>How many Google reviews do you have?</label>
+        <div class="choice-row" id="reviewCount">
+          <div class="choice" data-val="1"><span class="emoji">😬</span>0–10</div>
+          <div class="choice" data-val="2"><span class="emoji">😐</span>11–30</div>
+          <div class="choice" data-val="3"><span class="emoji">🙂</span>31–60</div>
+          <div class="choice" data-val="4"><span class="emoji">😄</span>60+</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Your average star rating</label>
+        <div class="choice-row" id="starRating">
+          <div class="choice" data-val="1">⭐<br>Below 3.5</div>
+          <div class="choice" data-val="2">⭐⭐<br>3.5–4.0</div>
+          <div class="choice" data-val="3">⭐⭐⭐<br>4.1–4.5</div>
+          <div class="choice" data-val="4">🌟<br>4.6–5.0</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Do you reply to Google reviews?</label>
+        <select id="repliesTo">
+          <option value="">Select…</option>
+          <option value="1">Never — no replies at all</option>
+          <option value="2">Sometimes — a few here and there</option>
+          <option value="3">Always — every review gets a response</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>When was your last Google review received?</label>
+        <select id="lastReview">
+          <option value="">Select…</option>
+          <option value="1">More than 3 months ago</option>
+          <option value="2">1–3 months ago</option>
+          <option value="3">Within the last month</option>
+          <option value="4">Within the last week</option>
+        </select>
+      </div>
+      <div class="nav-row"><button class="btn-ghost" onclick="goStep(1)">← Back</button><button class="btn-primary" onclick="goStep(3)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden">
+      <div class="step-label">Step 3 of 3 — Get your results</div>
+      <h2>Where shall we send your audit?</h2>
+      <p class="sub">Your personalised reputation score and action plan will appear instantly.</p>
+      <div class="field"><label>Your name</label><input type="text" id="userName" placeholder="Your name"></div>
+      <div class="field">
+        <label>Your role</label>
+        <select id="userRole">
+          <option value="">Select…</option>
+          <option>Practice owner</option>
+          <option>Principal dentist</option>
+          <option>Practice manager</option>
+          <option>Marketing lead</option>
+        </select>
+      </div>
+      <div class="field"><label>Email address</label><input type="email" id="userEmail" placeholder="you@practice.com"></div>
+      <div class="field"><label>Phone number <span style="font-weight:400;color:var(--ink-soft);">(optional — for callback)</span></label><input type="tel" id="userPhone"></div>
+      <div class="nav-row"><button class="btn-ghost" onclick="goStep(2)">← Back</button><button class="btn-primary" onclick="showResults()">Run my free audit ↗</button></div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="stepResults" class="hidden" style="text-align:center;">
+      <div class="step-label">Your audit results</div>
+      <h2 style="margin-bottom:20px;">Reputation Score</h2>
+      <div class="score-circle"><span class="n" id="scoreNum">0</span><span class="of">/ 100</span></div>
+      <p id="scoreMessage" style="color:var(--ink-soft);"></p>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px;margin-top:20px;text-align:left;">
+        <p style="font-weight:600;margin-bottom:10px;">Ready to fix this — fast?</p>
+        <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:14px;">We help UK dental clinics grow their Google reviews on autopilot. No extra work for your team. Results in 30 days.</p>
+        <p style="font-size:0.88rem;margin:4px 0;">✓ Automated review requests</p>
+        <p style="font-size:0.88rem;margin:4px 0;">✓ Missed call recovery</p>
+        <p style="font-size:0.88rem;margin:4px 0;">✓ UK-based support</p>
+      </div>
+      <div style="margin-top:24px;">
+        <a class="btn-primary" href="https://cal.com/julien-6itp3b/30min">Book a Free Strategy Call with Julien</a>
+      </div>
+      <p style="margin-top:16px;"><a href="#" onclick="location.reload();return false;" style="font-size:0.85rem;color:var(--ink-soft);">Start a new audit</a></p>
+    </div>
+  </div>
+
+  <div class="trust-row">
+    <span>🔒 100% private — no data sold</span>
+    <span>🇬🇧 Built for UK dental practices</span>
+    <span>⚡ Instant results, no waiting</span>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>Camden Acquisition Hub &middot; 5-7 Buck Street, London NW1 8NJ &middot; julien@camdenacquisitionhub.com</span>
+      <span>&copy; 2026 Camden Acquisition Hub Ltd &middot; <a href="/v2/private-policy.html">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let selections = {reviewCount: null, starRating: null};
+
+  document.querySelectorAll('#reviewCount .choice').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('#reviewCount .choice').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selections.reviewCount = parseInt(el.dataset.val);
+    });
+  });
+  document.querySelectorAll('#starRating .choice').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('#starRating .choice').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selections.starRating = parseInt(el.dataset.val);
+    });
+  });
+
+  function goStep(n) {
+    document.querySelectorAll('#step1,#step2,#step3').forEach(s => s.classList.add('hidden'));
+    document.getElementById('step' + n).classList.remove('hidden');
+    renderTrack(n);
+  }
+
+  function renderTrack(n) {
+    const track = document.getElementById('stepTrack');
+    track.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+      const span = document.createElement('span');
+      if (i <= n) span.classList.add('done');
+      track.appendChild(span);
+    }
+  }
+  renderTrack(1);
+
+  function showResults() {
+    document.querySelectorAll('#step1,#step2,#step3').forEach(s => s.classList.add('hidden'));
+    document.getElementById('stepResults').classList.remove('hidden');
+
+    const replies = parseInt(document.getElementById('repliesTo').value) || 1;
+    const recency = parseInt(document.getElementById('lastReview').value) || 1;
+    const rc = selections.reviewCount || 1;
+    const sr = selections.starRating || 1;
+
+    // simple weighted score out of 100
+    const score = Math.round(((rc + sr + replies + recency) / 16) * 100);
+    document.getElementById('scoreNum').textContent = score;
+
+    let msg = '';
+    if (score < 40) msg = "Your Google presence is likely costing you patients every week — competitors with stronger review signals are ranking above you.";
+    else if (score < 70) msg = "You're on the board, but there's a real gap between you and the top 3 Map Pack results in your area.";
+    else msg = "Strong foundation — small, consistent improvements could push you into the top 3 for your core searches.";
+    document.getElementById('scoreMessage').textContent = msg;
+  }
+</script>
+
+</body>
+</html>

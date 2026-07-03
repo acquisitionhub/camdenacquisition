@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Onboarding — Camden Acquisition Hub</title>
+<meta name="description" content="New client onboarding — set up your Google review and patient reactivation system in 5 steps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v2/assets/site-v2.css">
+<style>
+  .ob-wrap{max-width:640px;margin:0 auto;padding:50px 0 80px;}
+  .ob-track{display:flex;gap:8px;margin:24px 0 10px;}
+  .ob-track .dot{flex:1;text-align:center;}
+  .ob-track .dot .circle{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-family:'IBM Plex Mono',monospace;font-size:0.75rem;background:var(--paper);}
+  .ob-track .dot.done .circle{background:var(--teal);border-color:var(--teal);color:var(--paper);}
+  .ob-track .dot.active .circle{border-color:var(--gold);color:var(--gold);font-weight:600;}
+  .ob-track .dot .lbl{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:var(--ink-soft);text-transform:uppercase;}
+  .ob-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:34px 30px;margin-top:14px;}
+  .panel{display:none;}
+  .panel.on{display:block;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:0.88rem;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:0.8rem;color:var(--ink-soft);margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%;font-family:'IBM Plex Sans',sans-serif;font-size:0.94rem;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    padding:11px 13px;border-radius:var(--radius);
+  }
+  .check-row{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .check-row input{margin-top:3px;}
+  .check-row .t{font-size:0.92rem;font-weight:600;}
+  .check-row .d{font-size:0.82rem;color:var(--ink-soft);}
+  .nav-row{display:flex;justify-content:space-between;margin-top:26px;}
+  .summary-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:0.92rem;}
+  .summary-row .k{color:var(--ink-soft);}
+  .summary-row .v{font-weight:600;}
+  .timeline-mini{margin-top:26px;}
+  .tl-row{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .tl-row .d{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.8rem;min-width:60px;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <a class="brand" href="/v2/index.html">CAMDEN <span>ACQUISITION</span> HUB</a>
+    <div class="nav-links"><a href="/v2/index.html">Home</a></div>
+    <a class="cta-small" href="https://cal.com/julien-6itp3b/30min">Book a Call</a>
+  </nav>
+</header>
+
+<section class="ob-wrap wrap">
+  <div class="eyebrow">NEW CLIENT ONBOARDING</div>
+  <h1 style="font-size:clamp(1.7rem,3.4vw,2.2rem);margin-top:14px;">Welcome — let's get your practice set up.</h1>
+  <p style="color:var(--ink-soft);margin-top:8px;">We'll have your review &amp; reactivation system live within days. Start by telling us about your practice.</p>
+
+  <div class="ob-track" id="obTrack"></div>
+
+  <div class="ob-card">
+    <!-- STEP 1: PRACTICE -->
+    <div id="ob1" class="panel on">
+      <div class="eyebrow">STEP 1 OF 5 — PRACTICE DETAILS</div>
+      <div class="field" style="margin-top:16px;"><label>Practice name</label><input type="text" id="obPracticeName"></div>
+      <div class="field"><label>Principal dentist</label><input type="text" id="obDentist"></div>
+      <div class="field"><label>Practice email</label><input type="email" id="obEmail"></div>
+      <div class="field"><label>Reception phone</label><input type="tel" id="obPhone"></div>
+      <div class="field"><label>Practice address</label><input type="text" id="obAddress"></div>
+      <div class="field">
+        <label>Practice type</label>
+        <select id="obType">
+          <option value="">Select type...</option>
+          <option>NHS practice</option><option>Private practice</option>
+          <option>Mixed NHS &amp; private</option><option>Cosmetic / specialist</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Monthly appointments (approx.)</label>
+        <select id="obVolume">
+          <option value="">Select volume...</option>
+          <option>Under 100</option><option>100 – 300</option><option>300 – 600</option><option>600+</option>
+        </select>
+      </div>
+      <div class="nav-row"><span></span><button class="btn-primary" onclick="obGo(2)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 2: REVIEWS -->
+    <div id="ob2" class="panel">
+      <div class="eyebrow">STEP 2 OF 5 — GOOGLE BUSINESS PROFILE</div>
+      <div class="field" style="margin-top:16px;">
+        <label>Your Google Business Profile review link</label>
+        <div class="hint">ℹ Not sure of your URL? Open Google Maps, search your practice name, click "Write a review" — then copy the URL. We'll verify this before going live.</div>
+        <input type="text" id="obGbpUrl" placeholder="https://g.page/r/...">
+      </div>
+      <div class="field">
+        <label>Current Google rating</label>
+        <select id="obRating">
+          <option value="">Select rating...</option>
+          <option>No reviews yet</option><option>Below 4.0 ★</option><option>4.0 – 4.4 ★</option>
+          <option>4.5 – 4.7 ★</option><option>4.8 – 5.0 ★</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Total reviews currently</label>
+        <select id="obReviewCount">
+          <option value="">Select range...</option>
+          <option>0 – 10</option><option>11 – 30</option><option>31 – 80</option><option>81 – 150</option><option>150+</option>
+        </select>
+      </div>
+      <label style="font-size:0.88rem;font-weight:600;">Review request preferences</label>
+      <div class="check-row"><input type="checkbox" checked><div><div class="t">Send via SMS</div><div class="d">Personalised text after each appointment — highest open rates</div></div></div>
+      <div class="check-row"><input type="checkbox" checked><div><div class="t">Send via email</div><div class="d">Branded email follow-up as backup channel</div></div></div>
+      <div class="check-row"><input type="checkbox" checked><div><div class="t">Private routing for unhappy patients</div><div class="d">Low scores go private first — protecting your public reputation</div></div></div>
+      <div class="check-row"><input type="checkbox"><div><div class="t">Auto-respond to new reviews</div><div class="d">Professional responses drafted and posted on your behalf</div></div></div>
+      <div class="nav-row"><button class="btn-ghost" onclick="obGo(1)">← Back</button><button class="btn-primary" onclick="obGo(3)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 3: REACTIVATION -->
+    <div id="ob3" class="panel">
+      <div class="eyebrow">STEP 3 OF 5 — REACTIVATION</div>
+      <div class="field" style="margin-top:16px;">
+        <label>Define "lapsed" patient as someone who hasn't visited in...</label>
+        <select id="obLapsed">
+          <option>6 months</option><option>12 months</option><option>18 months</option><option>24 months</option>
+        </select>
+      </div>
+      <label style="font-size:0.88rem;font-weight:600;">Outreach channels</label>
+      <div class="check-row"><input type="checkbox" checked><div><div class="t">SMS message</div><div class="d">Personalised text with booking link — highest engagement</div></div></div>
+      <div class="check-row"><input type="checkbox" checked><div><div class="t">Email campaign</div><div class="d">Branded recall email with appointment link</div></div></div>
+      <div class="check-row"><input type="checkbox"><div><div class="t">WhatsApp message</div><div class="d">High open rates for recall outreach</div></div></div>
+      <div class="field" style="margin-top:18px;">
+        <label>Recall incentive</label>
+        <select id="obIncentive">
+          <option>None — reminder only</option>
+          <option>Free check-up with hygienist booking</option>
+          <option>10% off next treatment</option>
+          <option>Complimentary whitening consultation</option>
+          <option>Custom (we'll agree this on your onboarding call)</option>
+        </select>
+      </div>
+      <div class="field"><label>Anything specific about your patient base?</label><textarea rows="3" id="obNotes"></textarea></div>
+      <div class="nav-row"><button class="btn-ghost" onclick="obGo(2)">← Back</button><button class="btn-primary" onclick="obGo(4)">Continue →</button></div>
+    </div>
+
+    <!-- STEP 4: SETUP -->
+    <div id="ob4" class="panel">
+      <div class="eyebrow">STEP 4 OF 5 — TECHNICAL SETUP</div>
+      <div class="field" style="margin-top:16px;">
+        <label>Practice management software</label>
+        <select id="obPMS">
+          <option>Select your software...</option>
+          <option>Dentally</option><option>SOE / Exact</option><option>Carestream Dental</option>
+          <option>R4 Software</option><option>Nookal</option><option>Acuro</option><option>Soeasy</option><option>Other / not sure</option>
+        </select>
+      </div>
+      <div class="field"><label>Primary contact name</label><input type="text" id="obContactName"></div>
+      <div class="field"><label>Contact email</label><input type="email" id="obContactEmail"></div>
+      <div class="field">
+        <label>Preferred reporting frequency</label>
+        <select id="obReportFreq">
+          <option>Weekly summary email</option><option>Fortnightly summary email</option><option>Monthly summary email</option>
+        </select>
+      </div>
+      <label style="font-size:0.88rem;font-weight:600;">Go-live checklist</label>
+      <div class="check-row"><input type="checkbox"><div><div class="t">Google Business Profile access granted</div><div class="d">We need manager access to monitor &amp; respond to reviews</div></div></div>
+      <div class="check-row"><input type="checkbox"><div><div class="t">Patient GDPR consent confirmed</div><div class="d">Opt-in collected at reception or via booking forms</div></div></div>
+      <div class="check-row"><input type="checkbox"><div><div class="t">SMS sender name approved</div><div class="d">e.g. "Smile Studio" — this is what patients see on texts</div></div></div>
+      <div class="check-row"><input type="checkbox"><div><div class="t">Test SMS received &amp; approved</div><div class="d">We'll send a live test before activating for patients</div></div></div>
+      <div class="nav-row"><button class="btn-ghost" onclick="obGo(3)">← Back</button><button class="btn-primary" onclick="obGo(5)">View summary →</button></div>
+    </div>
+
+    <!-- STEP 5: SUMMARY -->
+    <div id="ob5" class="panel">
+      <div style="text-align:center;">
+        <div class="eyebrow" style="justify-content:center;">YOU'RE ALL SET!</div>
+        <h2 style="font-size:1.5rem;margin-top:10px;">Julien will review your setup and reach out within one business day to confirm your go-live date.</h2>
+      </div>
+      <div style="margin-top:26px;">
+        <p style="font-weight:600;margin-bottom:6px;">Setup overview</p>
+        <div class="summary-row"><span class="k">Google review requests</span><span class="v">SMS + Email ✓</span></div>
+        <div class="summary-row"><span class="k">Unhappy patient routing</span><span class="v">Private first ✓</span></div>
+        <div class="summary-row"><span class="k">Reactivation window</span><span class="v" id="sumLapsed">12 months lapsed</span></div>
+        <div class="summary-row"><span class="k">Outreach channels</span><span class="v">SMS + Email</span></div>
+        <div class="summary-row"><span class="k">GDPR compliance</span><span class="v">UK GDPR ✓</span></div>
+        <div class="summary-row"><span class="k">Estimated go-live</span><span class="v">Within 5 days</span></div>
+      </div>
+      <div class="timeline-mini">
+        <p style="font-weight:600;margin-bottom:6px;">What happens next</p>
+        <div class="tl-row"><div class="d">Day 1</div><div><strong>Confirmation call</strong><br><span style="color:var(--ink-soft);font-size:0.88rem;">Julien reviews your setup and confirms integration details</span></div></div>
+        <div class="tl-row"><div class="d">Days 2–3</div><div><strong>Technical setup</strong><br><span style="color:var(--ink-soft);font-size:0.88rem;">We connect to your practice management software and configure messages</span></div></div>
+        <div class="tl-row"><div class="d">Day 4</div><div><strong>Test &amp; approve</strong><br><span style="color:var(--ink-soft);font-size:0.88rem;">You receive a test SMS and sign off on your message templates</span></div></div>
+        <div class="tl-row"><div class="d">Day 5</div><div><strong>Go live</strong><br><span style="color:var(--ink-soft);font-size:0.88rem;">Review requests and reactivation campaigns launch automatically</span></div></div>
+        <div class="tl-row"><div class="d">Day 30</div><div><strong>First results review</strong><br><span style="color:var(--ink-soft);font-size:0.88rem;">We report on new reviews gained, patients reactivated, and opportunities</span></div></div>
+      </div>
+      <div class="nav-row"><button class="btn-ghost" onclick="obGo(4)">← Back</button><a class="btn-primary" href="https://cal.com/julien-6itp3b/30min">Book go-live call →</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Camden Acquisition Hub &middot; 5-7 Buck Street, London NW1 8NJ</span>
+      <span><a href="mailto:julien@camdenacquisitionhub.com">julien@camdenacquisitionhub.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const stepLabels = ["Practice", "Reviews", "Reactivation", "Setup", "Summary"];
+
+  function renderTrack(n) {
+    const track = document.getElementById('obTrack');
+    track.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i < n ? ' done' : i === n ? ' active' : '');
+      dot.innerHTML = `<div class="circle">${i < n ? '✓' : i}</div><div class="lbl">${stepLabels[i-1]}</div>`;
+      track.appendChild(dot);
+    }
+  }
+
+  function obGo(n) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+    document.getElementById('ob' + n).classList.add('on');
+    renderTrack(n);
+    window.scrollTo(0,0);
+    if (n === 5) {
+      document.getElementById('sumLapsed').textContent = document.getElementById('obLapsed').value + ' lapsed';
+    }
+  }
+  renderTrack(1);
+</script>
+
+</body>
+</html>

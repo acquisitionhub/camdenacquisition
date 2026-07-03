@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental Missed Call Revenue Calculator | Camden Acquisition Hub</title>
+<meta name="description" content="Find out how much your practice is losing from missed calls. Takes 60 seconds — the number will surprise you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/v2/assets/site-v2.css">
+<style>
+  .calc-wrap{max-width:600px;margin:0 auto;padding:50px 0 80px;}
+  .calc-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:4px;padding:36px 32px;margin-top:30px;}
+  .step-label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--teal);text-transform:uppercase;letter-spacing:0.06em;}
+  .calc-card h2{font-size:1.4rem;margin:10px 0 6px;}
+  .calc-card .sub{color:var(--ink-soft);font-size:0.9rem;margin-bottom:26px;}
+  .field{margin-bottom:20px;}
+  .field label{display:block;font-size:0.88rem;font-weight:600;margin-bottom:6px;}
+  .field .hint{font-size:0.8rem;color:var(--ink-soft);margin-bottom:8px;}
+  .field input{width:100%;font-family:'IBM Plex Sans',sans-serif;font-size:0.95rem;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:12px 14px;border-radius:var(--radius);}
+  .field input[type=range]{padding:0;accent-color:var(--teal);}
+  .slider-out{font-family:'Fraunces',serif;font-size:1.6rem;color:var(--teal);text-align:center;margin:8px 0;}
+  .slider-marks{display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--ink-soft);}
+  .live-loss{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:18px;text-align:center;margin:20px 0;}
+  .live-loss .n{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--ink);}
+  .step-track{display:flex;gap:6px;margin-top:22px;}
+  .step-track span{height:3px;flex:1;background:var(--line);border-radius:2px;}
+  .step-track span.done{background:var(--teal);}
+  .hidden{display:none;}
+  .results-hero{text-align:center;}
+  .results-hero .big{font-family:'Fraunces',serif;font-size:2.6rem;color:var(--coral);margin:10px 0;}
+  .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px;}
+  .results-grid .cell{background:var(--paper-raised);padding:18px;text-align:center;}
+  .results-grid .cell .n{font-family:'Fraunces',serif;font-size:1.4rem;}
+  .results-grid .cell .l{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;color:var(--ink-soft);margin-top:4px;}
+  .trust-strip{display:flex;justify-content:center;gap:20px;margin-top:24px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--ink-soft);flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <a class="brand" href="/v2/index.html">CAMDEN <span>ACQUISITION</span> HUB</a>
+    <div class="nav-links"><a href="/v2/index.html">Home</a><a href="/v2/pricing.html">Pricing</a></div>
+    <a class="cta-small" href="https://cal.com/julien-6itp3b/30min">Book a Demo</a>
+  </nav>
+</header>
+
+<section class="calc-wrap wrap">
+  <div class="eyebrow">DENTAL REVENUE TOOL</div>
+  <h1 style="font-size:clamp(1.8rem,3.6vw,2.4rem);margin-top:14px;">Find out how much your practice is losing from missed calls.</h1>
+  <p style="color:var(--ink-soft);margin-top:10px;">Takes 60 seconds. The number will surprise you.</p>
+
+  <div class="calc-card">
+    <div class="step-track" id="stepTrack"></div>
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <div class="step-label">01 — First, tell us about your practice</div>
+      <h2>Your results will be personalised to you.</h2>
+      <div class="field"><label>Your name</label><input type="text" id="cName" placeholder="Your name"></div>
+      <div class="field"><label>Email address</label><input type="email" id="cEmail" placeholder="you@practice.com"></div>
+      <div class="field"><label>Practice name <span style="font-weight:400;color:var(--ink-soft);">(optional)</span></label><input type="text" id="cPractice"></div>
+      <button class="btn-primary" style="width:100%;" onclick="goStep(2)">Continue — See My Calculation</button>
+      <p style="font-size:0.78rem;color:var(--ink-soft);text-align:center;margin-top:14px;">Your data is private. We never share or sell it.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+      <div class="step-label">02 — Now let's run the numbers</div>
+      <h2>Adjust the values to match your practice.</h2>
+      <p class="sub">Your result updates live.</p>
+      <div class="field">
+        <label>How many calls does your practice miss per day?</label>
+        <div class="hint">Even 3–5 missed calls/day can mean thousands in lost revenue.</div>
+        <div class="slider-out"><span id="missOut">5</span> calls/day</div>
+        <input type="range" id="missSlider" min="1" max="30" value="5" oninput="updateLive()">
+        <div class="slider-marks"><span>1/day</span><span>15/day</span><span>30/day</span></div>
+      </div>
+      <div class="field">
+        <label>Average patient value (£)</label>
+        <div class="hint">Lifetime value or typical treatment value per new patient.</div>
+        <input type="number" id="patientValue" value="250" oninput="updateLive()">
+      </div>
+      <div class="live-loss">
+        <div class="step-label">MONTHLY LOST REVENUE</div>
+        <div class="n" id="liveLoss">£37,500</div>
+      </div>
+      <button class="btn-primary" style="width:100%;" onclick="calculate()">Calculate My Lost Revenue →</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div id="step3" class="hidden">
+      <div class="step-label">03 — Your results</div>
+      <div class="results-hero">
+        <p style="color:var(--ink-soft);">You're losing approximately</p>
+        <div class="big" id="finalMonthly">£0</div>
+        <p style="color:var(--ink-soft);">per month from missed calls. That's <strong id="finalAnnualInline" style="color:var(--ink);">£0</strong> per year in missed patient revenue.</p>
+      </div>
+      <div class="results-grid">
+        <div class="cell"><div class="n" id="rMonthly">£0</div><div class="l">MONTHLY LOSS</div></div>
+        <div class="cell"><div class="n" id="rAnnual">£0</div><div class="l">ANNUAL LOSS</div></div>
+        <div class="cell"><div class="n" id="rCalls">0</div><div class="l">MISSED CALLS/MONTH</div></div>
+        <div class="cell"><div class="n" id="rValue">£0</div><div class="l">PER PATIENT VALUE</div></div>
+      </div>
+      <div style="margin-top:26px;">
+        <p style="color:var(--ink-soft);font-size:0.92rem;">Most practices don't realise how much revenue slips through the cracks from unanswered calls. This is revenue you're already generating — but not capturing. Every missed call is a patient who was <strong style="color:var(--ink);">ready to book</strong> — but went somewhere else instead.</p>
+      </div>
+      <div style="background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px;margin-top:20px;">
+        <p style="font-weight:600;margin-bottom:8px;">✦ Recover lost revenue automatically</p>
+        <p style="color:var(--ink-soft);font-size:0.9rem;margin-bottom:16px;">We help practices turn missed calls into booked appointments automatically. Most practices recover their investment in the first week.</p>
+        <a class="btn-primary" href="https://cal.com/julien-6itp3b/30min">Book a Free Demo →</a>
+      </div>
+      <p style="text-align:center;margin-top:16px;"><a href="#" onclick="location.reload();return false;" style="font-size:0.85rem;color:var(--ink-soft);">← Recalculate with different numbers</a></p>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <span>🔒 Private — never shared or sold</span>
+    <span>⚡ Instant results</span>
+    <span>Joined by 200+ healthcare practices this year</span>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Camden Acquisition Hub Ltd</span>
+      <span><a href="/v2/index.html">Home</a> &middot; <a href="/v2/private-policy.html">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fmt(n) { return '£' + Math.round(n).toLocaleString('en-GB'); }
+
+  function goStep(n) {
+    document.querySelectorAll('#step1,#step2,#step3').forEach(s => s.classList.add('hidden'));
+    document.getElementById('step' + n).classList.remove('hidden');
+    renderTrack(n);
+    updateLive();
+  }
+
+  function renderTrack(n) {
+    const track = document.getElementById('stepTrack');
+    track.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+      const span = document.createElement('span');
+      if (i <= n) span.classList.add('done');
+      track.appendChild(span);
+    }
+  }
+  renderTrack(1);
+
+  function updateLive() {
+    const m = parseFloat(document.getElementById('missSlider').value);
+    const v = parseFloat(document.getElementById('patientValue').value) || 0;
+    document.getElementById('missOut').textContent = m;
+    document.getElementById('liveLoss').textContent = fmt(m * v * 30);
+  }
+
+  function calculate() {
+    const m = parseFloat(document.getElementById('missSlider').value);
+    const v = parseFloat(document.getElementById('patientValue').value) || 0;
+    const monthly = m * v * 30;
+    const annual = monthly * 12;
+    document.getElementById('finalMonthly').textContent = fmt(monthly);
+    document.getElementById('finalAnnualInline').textContent = fmt(annual);
+    document.getElementById('rMonthly').textContent = fmt(monthly);
+    document.getElementById('rAnnual').textContent = fmt(annual);
+    document.getElementById('rCalls').textContent = Math.round(m * 30);
+    document.getElementById('rValue').textContent = fmt(v);
+    goStep(3);
+  }
+</script>
+
+</body>
+</html>

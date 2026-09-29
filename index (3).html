@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Camden Acquisition Hub Ltd | Local search software for agencies</title>
+<meta name="description" content="Camden Acquisition Hub Ltd builds software that helps local marketing agencies find and win clients on Google. Maker of Review Bloom." />
+<link rel="canonical" href="https://camdenacquisitionhub.com/" />
+<link rel="icon" type="image/png" href="/CAH.png" />
+<meta name="theme-color" content="#1a6b6b" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Camden Acquisition Hub Ltd" />
+<meta property="og:description" content="Local search software for marketing agencies. Maker of Review Bloom." />
+<meta property="og:url" content="https://camdenacquisitionhub.com/" />
+<meta property="og:image" content="https://camdenacquisitionhub.com/og-image.png" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://camdenacquisitionhub.com/#organization",
+      "name": "Camden Acquisition Hub Ltd",
+      "legalName": "Camden Acquisition Hub Ltd",
+      "url": "https://camdenacquisitionhub.com",
+      "logo": "https://camdenacquisitionhub.com/CAH.png",
+      "email": "julien@camdenacquisitionhub.com",
+      "telephone": "+442046520289",
+      "foundingDate": "2024-01",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "349 Royal College St",
+        "addressLocality": "London",
+        "postalCode": "NW1 9QS",
+        "addressCountry": "GB"
+      },
+      "founder": {
+        "@type": "Person",
+        "@id": "https://camdenacquisitionhub.com/about.html#julien",
+        "name": "Julien Kabongo",
+        "url": "https://camdenacquisitionhub.com/about.html",
+        "sameAs": ["https://www.linkedin.com/in/julien-kabongo1993"]
+      },
+      "identifier": [
+        {"@type": "PropertyValue", "name": "Companies House", "value": "15431935"},
+        {"@type": "PropertyValue", "name": "ICO Registration", "value": "ZC148168"}
+      ],
+      "brand": {"@type": "Brand", "name": "Review Bloom", "url": "https://tryreviewbloom.com"},
+      "sameAs": [
+        "https://www.linkedin.com/in/julien-kabongo1993",
+        "https://www.instagram.com/camdenacquisitionhub",
+        "https://tryreviewbloom.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://camdenacquisitionhub.com/#website",
+      "url": "https://camdenacquisitionhub.com",
+      "name": "Camden Acquisition Hub",
+      "publisher": {"@id": "https://camdenacquisitionhub.com/#organization"},
+      "inLanguage": "en-GB"
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --teal:#1a6b6b; --teal-dark:#124f4f; --teal-pale:#e6f2f1; --ink:#15181f;
+  --paper:#fbfbf9; --white:#fff; --line:#d9e3e2; --muted:#5d6670; --bloom:#1a7a45;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Outfit',system-ui,sans-serif;
+  --wrap:1040px; --gutter:clamp(1.25rem,4vw,2rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.05rem;line-height:1.7}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6.5vw,4.6rem);max-width:15ch}
+h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:.6rem}
+h3{font-size:1.6rem}
+p{max-width:62ch}
+.lede{font-size:clamp(1.05rem,2vw,1.2rem);color:var(--muted)}
+section{padding:clamp(3.5rem,8vw,5.5rem) 0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.35rem;border-radius:4px;font-weight:600;font-size:.98rem;text-decoration:none;border:2px solid transparent;transition:background .15s,color .15s}
+.btn-teal{background:var(--teal);color:#fff}
+.btn-teal:hover{background:var(--teal-dark)}
+.btn-line{border-color:var(--teal);color:var(--teal)}
+.btn-line:hover{background:var(--teal);color:#fff}
+
+.nav{border-bottom:1px solid var(--line);background:var(--white)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:1rem}
+.logo{font-family:var(--serif);font-weight:700;font-size:1.3rem;color:var(--teal);text-decoration:none}
+.nav ul{list-style:none;display:flex;gap:1.5rem;font-size:.95rem}
+.nav ul a{color:var(--muted);text-decoration:none}
+.nav ul a:hover{color:var(--teal)}
+@media(max-width:560px){.nav ul li:not(:last-child){display:none}}
+
+/* Hero: the company line set large, a ruled ledger of what the company makes */
+.hero{padding-top:clamp(3.5rem,9vw,6.5rem)}
+.hero h1{margin-bottom:1.3rem}
+.hero .lede{margin-bottom:2rem}
+.ctas{display:flex;flex-wrap:wrap;gap:.8rem}
+
+.ledger{margin-top:clamp(3rem,7vw,4.5rem);border-top:2px solid var(--ink)}
+.ledger-row{display:grid;gap:.4rem 2rem;padding:1.6rem 0;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.ledger-row{grid-template-columns:12rem 1fr auto;align-items:baseline}}
+.ledger-status{font-size:.9rem;font-weight:600}
+.status-live{color:var(--bloom)}
+.status-next{color:var(--muted)}
+.ledger-row h3{margin-bottom:.3rem}
+.ledger-row p{color:var(--muted);font-size:1rem}
+.ledger-row .btn{justify-self:start}
+
+.notice{background:var(--teal-pale);border-left:4px solid var(--teal);border-radius:4px;padding:1.3rem 1.5rem}
+.notice h2{font-size:1.6rem;margin-bottom:.4rem}
+.notice p{color:var(--ink)}
+
+.guides h2{margin-bottom:.4rem}
+.guide-cols{display:grid;gap:2.5rem;margin-top:2rem}
+@media(min-width:760px){.guide-cols{grid-template-columns:repeat(3,1fr)}}
+.guide-cols h3{font-family:var(--sans);font-size:1rem;font-weight:700;margin-bottom:.6rem}
+.guide-cols ul{list-style:none}
+.guide-cols li{padding:.35rem 0;border-bottom:1px solid var(--line);font-size:.97rem}
+.guide-cols a{text-decoration:none;color:var(--ink)}
+.guide-cols a:hover{color:var(--teal);text-decoration:underline}
+
+.about{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-grid{display:grid;gap:2rem;align-items:center}
+@media(min-width:760px){.about-grid{grid-template-columns:180px 1fr;gap:3rem}}
+.about img{width:180px;aspect-ratio:1;object-fit:cover;border-radius:50%}
+.about p{color:var(--muted)}
+.about p+p{margin-top:.8rem}
+
+.contact-grid{display:grid;gap:2rem}
+@media(min-width:760px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact dl{display:grid;grid-template-columns:6rem 1fr;gap:.6rem 1rem}
+.contact dt{font-weight:600}
+.contact dd a{color:var(--ink)}
+
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:2.5rem 0 calc(2rem + env(safe-area-inset-bottom,0px));font-size:.88rem;line-height:1.8}
+footer a{color:rgba(255,255,255,.8)}
+.foot-links{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-bottom:1.2rem}
+.foot-small{font-size:.82rem;color:rgba(255,255,255,.45);margin-top:1.2rem}
+.foot-small a{color:rgba(255,255,255,.55)}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="/">Camden Acquisition Hub</a>
+    <ul>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#guides">Guides</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <h1>Software that helps local marketers win on Google.</h1>
+    <p class="lede">Camden Acquisition Hub Ltd is a small London software company. We build tools for the agencies and freelancers who help local businesses get found, starting with Review Bloom.</p>
+    <div class="ctas">
+      <a class="btn btn-teal" href="https://tryreviewbloom.com">Visit Review Bloom</a>
+      <a class="btn btn-line" href="https://tryreviewbloom.com/audit.html">Run a free audit</a>
+    </div>
+
+    <div class="ledger" id="products">
+      <div class="ledger-row">
+        <span class="ledger-status status-live">Available now</span>
+        <div>
+          <h3>Review Bloom</h3>
+          <p>Search a niche and a town, see which local businesses have the weakest Google profiles, and send them an audit. Built for local SEO agencies.</p>
+        </div>
+        <a class="btn btn-line" href="https://tryreviewbloom.com">See Review Bloom</a>
+      </div>
+      <div class="ledger-row">
+        <span class="ledger-status status-next">In development</span>
+        <div>
+          <h3>Review Bloom for dental marketing</h3>
+          <p>An audit tool built for agencies that market dental practices. Want early access? <a href="mailto:julien@camdenacquisitionhub.com?subject=Dental%20audit%20tool%20early%20access">Email Julien</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="notice">
+      <h2>Looking for dental marketing services?</h2>
+      <p>We're focused on building software, so we aren't taking on new dental practice clients right now. The guides below stay free to read.</p>
+    </div>
+  </div>
+</section>
+
+<section class="guides" id="guides" style="padding-top:0">
+  <div class="wrap">
+    <h2>Guides for NW London dental practices</h2>
+    <p class="lede">Local search guides written for practices in Camden, Hampstead and the surrounding postcodes.</p>
+    <div class="guide-cols">
+      <div>
+        <h3>Areas</h3>
+        <ul>
+          <li><a href="/london/dental-marketing-camden-town.html">Camden Town</a></li>
+          <li><a href="/london/dental-marketing-hampstead.html">Hampstead</a></li>
+          <li><a href="/london/dental-marketing-primrose-hill.html">Primrose Hill</a></li>
+          <li><a href="/london/dental-marketing-chalk-farm.html">Chalk Farm</a></li>
+          <li><a href="/london/dental-marketing-belsize-park.html">Belsize Park</a></li>
+          <li><a href="/london/dental-marketing-west-hampstead.html">West Hampstead</a></li>
+          <li><a href="/london/dental-marketing-kentish-town.html">Kentish Town</a></li>
+          <li><a href="/london/dental-marketing-swiss-cottage.html">Swiss Cottage</a></li>
+          <li><a href="/london/dental-marketing-kings-cross.html">King's Cross and Euston</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Local search</h3>
+        <ul>
+          <li><a href="/london/local-seo-dental-practices.html">Local SEO for dental practices</a></li>
+          <li><a href="/london/google-maps-pack-ranking.html">Google Maps pack ranking for dentists</a></li>
+          <li><a href="/london/gbp-optimisation-dentists.html">Google Business Profile optimisation</a></li>
+          <li><a href="/london/hyper-local-seo-nw1.html">Hyper-local dental SEO in NW1</a></li>
+          <li><a href="/london/hyper-local-seo-nw3.html">Hyper-local dental SEO in NW3</a></li>
+          <li><a href="/london/dental-practice-competitor-analysis.html">Dental practice competitor analysis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Reviews and treatments</h3>
+        <ul>
+          <li><a href="/london/google-reviews-service.html">Google review automation</a></li>
+          <li><a href="/london/automated-patient-review-requests.html">Automated patient review requests</a></li>
+          <li><a href="/london/reputation-management-service.html">Reputation management</a></li>
+          <li><a href="/london/cosmetic-dentistry-marketing.html">Cosmetic dentistry marketing</a></li>
+          <li><a href="/london/dental-implant-marketing.html">Dental implant marketing</a></li>
+          <li><a href="/london/invisalign-marketing-dentists.html">Invisalign marketing</a></li>
+          <li><a href="/london/nhs-dental-practice-marketing.html">NHS dental practice marketing</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <img src="/julien.jpg" alt="Julien Kabongo" width="180" height="180" />
+    <div>
+      <h2>Who runs this</h2>
+      <p>I'm Julien Kabongo. I started Camden Acquisition Hub in 2024 as a dental marketing agency in north London. Doing that work showed me the slowest part of local marketing is finding the right businesses to help and showing them what's wrong.</p>
+      <p>So I build tools for that job, starting with Review Bloom. <a href="/about.html">Read the full story</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Get in touch</h2>
+      <p class="lede">Questions about Review Bloom, partnerships or early access to the dental edition.</p>
+    </div>
+    <dl>
+      <dt>Email</dt><dd><a href="mailto:julien@camdenacquisitionhub.com">julien@camdenacquisitionhub.com</a></dd>
+      <dt>Phone</dt><dd><a href="tel:02046520289">020 4652 0289</a></dd>
+      <dt>Address</dt><dd>349 Royal College St, London NW1 9QS</dd>
+      <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/julien-kabongo1993" target="_blank" rel="noopener">Julien Kabongo</a></dd>
+    </dl>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://tryreviewbloom.com">Review Bloom</a>
+      <a href="/about.html">About</a>
+      <a href="/privacy-policy/privacy-policy-camden-acquisition-hub.pdf">Privacy policy</a>
+      <a href="https://g.page/r/CaqSIaSgMzenEBM/review" target="_blank" rel="noopener">Leave us a Google review</a>
+      <a href="https://www.instagram.com/camdenacquisitionhub" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div>&copy; 2026 Camden Acquisition Hub Ltd. Registered in England and Wales, company no. 15431935. ICO registration <a href="https://ico.org.uk/ESDWebPages/Entry/ZC148168" target="_blank" rel="noopener">ZC148168</a>.</div>
+    <div class="foot-small">
+      Comparisons:
+      <a href="/dental-marketing-agency-alternative.html">Dental marketing agency alternative</a>,
+      <a href="/affordable-dental-marketing-nw-london.html">Affordable dental marketing NW London</a>,
+      <a href="/dominate-dental-alternative.html">Dominate Dental alternative</a>,
+      <a href="/dental-marketing-without-paid-ads.html">Dental marketing without paid ads</a>,
+      <a href="/dominate-dental-vs-camden-acquisition-hub.html">Dominate Dental vs Camden Acquisition Hub</a>,
+      <a href="/paid-ads-vs-google-reviews-dentists.html">Paid ads vs Google reviews for dentists</a>
+    </div>
+  </div>
+</footer>
+
+<!-- CAH visit tracker (unchanged) -->
+<script>
+(function(){
+  var SUPABASE_URL = 'https://wvuaqdoijqdyxncpviet.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_N4aqHZv72AvERxh7B-4VQg_Qoa8ngx2';
+  var params = new URLSearchParams(window.location.search);
+  fetch(SUPABASE_URL + '/rest/v1/site_visits', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer ' + SUPABASE_KEY},
+    body: JSON.stringify({
+      site:'cah', path:window.location.pathname, referrer:document.referrer || null,
+      utm_source:params.get('utm_source'), utm_medium:params.get('utm_medium'),
+      utm_campaign:params.get('utm_campaign'), utm_content:params.get('utm_content'), utm_term:params.get('utm_term')
+    })
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>
